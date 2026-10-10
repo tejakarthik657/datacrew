@@ -24,7 +24,7 @@ pre{background:var(--bg);border:1px solid var(--line);padding:10px;border-radius
 <header><h1>DataCrew</h1><span class="pill" id="mode"></span><span class="sp"></span><span id="who" class="mute"></span><button class="ghost" id="logout" style="display:none">Log out</button></header>
 <div id="app"></div>
 <script>
-const S={token:sessionStorage.getItem('dc_token')||'',list:[],ds:null,plan:null,tab:'plan',busy:false};
+const S={rid:0,token:sessionStorage.getItem('dc_token')||'',list:[],ds:null,plan:null,tab:'plan',busy:false};
 const $=s=>document.querySelector(s);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 async function api(path,opts={}){
@@ -55,16 +55,17 @@ async function boot(){
   if(!S.token){$('#who').textContent='';$('#logout').style.display='none';return authView()}
   try{const me=await api('/auth/me');$('#who').textContent=me.email+' ('+me.role+')';$('#logout').style.display=''}catch(e){S.token='';return authView()}
   $('#app').innerHTML=`<main><aside><div class="card"><div class="row"><button id="up">Upload file</button><input type="file" id="file" hidden accept=".csv,.xlsx,.json,.parquet,.tsv"></div>
-  <p><button class="ghost" id="demo">Load demo (dirty customers)</button></p><div id="dsl"></div></div></aside><section id="main"></section></main>`;
+  <p><button class="ghost" id="demo">Load demo (dirty customers)</button></p><p><button class="ghost" id="url">Import table from a web page</button></p><div id="dsl"></div></div></aside><section id="main"></section></main>`;
   $('#up').onclick=()=>$('#file').click();
   $('#file').onchange=e=>upload(e.target.files[0]);
+  $('#url').onclick=()=>{const u=prompt('Public page URL containing an HTML table (robots.txt is respected):');if(u)guard(async()=>{const d=await api('/datasets/from-url',{method:'POST',body:{url:u}});toast('Imported '+d.rows+' rows; health score '+d.score);await refreshList();open(d.id)})};
   $('#demo').onclick=()=>guard(async()=>{const r=await fetch('/demo/dirty_customers.csv');if(!r.ok)throw new Error('demo file missing: run make demo-data');upload(new File([await r.blob()],'dirty_customers.csv'))});
   await refreshList();if(S.list.length)open(S.list[0].id);else $('#main').innerHTML='<div class="card"><h3>Start here</h3><p>Upload a CSV/XLSX/JSON file, or load the demo dataset. You will see the health score, an AI cleaning plan with a toggle per step, and a before/after diff.</p></div>'}
 async function refreshList(){S.list=await api('/datasets');$('#dsl').innerHTML=S.list.map(d=>`<div class="ds ${S.ds&&S.ds.id===d.id?'on':''}" data-id="${esc(d.id)}"><b>${esc(d.name)}</b><div class="mute">score ${d.score} · ${d.rows} rows · v${d.current_version}</div></div>`).join('');
   document.querySelectorAll('.ds').forEach(e=>e.onclick=()=>open(e.dataset.id))}
 function upload(f){if(!f)return;guard(async()=>{const fd=new FormData();fd.append('file',f);const d=await api('/datasets',{method:'POST',body:fd});toast('Uploaded: health score '+d.score);await refreshList();open(d.id)})}
 async function open(id){await guard(async()=>{S.ds=await api('/datasets/'+id);S.plan=null;await refreshList();render()})}
-function render(){const d=S.ds;if(!d)return;const tabs=[['plan','Clean'],['risks','Risks & rules'],['ask','Ask'],['forecast','Forecast'],['strategy','Strategy'],['crew','Crew'],['trust','Trust & privacy'],['data','Data']];
+function render(){const d=S.ds;if(!d)return;S.rid++;const tabs=[['plan','Clean'],['risks','Risks & rules'],['ask','Ask'],['forecast','Forecast'],['strategy','Strategy'],['crew','Crew'],['trust','Trust & privacy'],['data','Data']];
   $('#main').innerHTML=`<div class="card"><h2 style="margin:0">${esc(d.name)}</h2><div class="mute">${d.rows} rows · ${d.columns.length} columns · version v${d.current_version} · health ${d.score}</div></div>
   <div class="tabs">${tabs.map(([k,l])=>`<button data-t="${k}" class="${S.tab===k?'on':''}">${l}</button>`).join('')}</div><div id="pane"></div>`;
   document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{S.tab=b.dataset.t;render()});
@@ -87,25 +88,25 @@ function planView(){const d=S.ds,p=S.plan;const v0=d.versions[0].score;
     row.firstChild.innerHTML=diffHtml(r.diff,`${r.info.affected_rows} rows affected`)}));
   $('#exe').onclick=()=>guard(async()=>{$('#exe').disabled=true;const j=await api(`/plans/${p.id}/execute`,{method:'POST'});
     await poll(j.job_id,x=>$('#prog').innerHTML=`<span class="bar" style="display:inline-block;width:160px"><i style="width:${Math.round(x.progress*100)}%"></i></span> ${Math.round(x.progress*100)}%`);
-    S.ds=await api('/datasets/'+d.id);S.plan=await api('/plans/'+p.id);await refreshList();toast(`Score ${S.plan.score_before} → ${S.plan.score_after}`);planView();afterView()});
+    S.ds=await api('/datasets/'+d.id);S.plan=await api('/plans/'+p.id);await refreshList();toast(`Score ${S.plan.score_before} → ${S.plan.score_after}`);planView()});
   if(p.status==='executed')afterView()}
 function diffHtml(df,title){const ch=df.changed.slice(0,12).map(c=>`<tr><td>#${c.row_id}</td><td class="chg">${Object.entries(c.cells).map(([k,v])=>`${esc(k)}: ${esc(v[0]??'∅')} → <b>${esc(v[1]??'∅')}</b>`).join('<br>')}</td></tr>`).join('');
   const rm=df.removed.slice(0,6).map(r=>`<tr class="del"><td>#${r.row_id}</td><td>removed: ${esc(Object.values(r.row).slice(0,4).join(' | '))}</td></tr>`).join('');
   return `<div class="mute">${esc(title||'')} · ${df.total_changed} changed rows, ${df.total_removed} removed${df.added_columns.length?', new cols: '+esc(df.added_columns.join(', ')):''}</div><table>${ch}${rm}</table>`}
-async function afterView(){const d=S.ds,p=S.plan;if(!p||p.status!=='executed')return;const df=await api(`/datasets/${d.id}/diff?limit=12`);
+async function afterView(){const d=S.ds,p=S.plan,rid=S.rid;if(!p||p.status!=='executed')return;const df=await api(`/datasets/${d.id}/diff?limit=12`);if(rid!==S.rid||!$('#after'))return;
   $('#after').innerHTML=`<div class="card"><h3 style="margin-top:0">Result</h3><div class="gauges">${gauge('before',p.score_before)}<span class="arrow">→</span>${gauge('after',p.score_after)}</div>
   <h4>Diff (original → current)</h4><div class="scroll">${diffHtml(df,'')}</div>
   <h4>Versions &amp; undo</h4><div class="row">${d.versions.map(v=>`<button class="ghost" data-rv="${v.number}">${v.number===d.current_version?'● ':''}v${v.number}: ${v.score}</button>`).join('')}<button id="undo">Undo last step</button></div>
   <p class="mute">Per-step undo: untick a step above and apply again — the engine always re-runs from the original.</p>
   <h4>Download &amp; recipe</h4><div class="row"><button class="ghost" data-dl="csv">CSV</button><button class="ghost" data-dl="xlsx">XLSX</button><button class="ghost" data-dl="parquet">Parquet</button>
   <button class="ghost" data-rc="python">Python recipe</button><button class="ghost" data-rc="sql">SQL recipe</button><button class="ghost" data-rc="json">JSON recipe</button></div><pre id="rcv" hidden></pre></div>`;
-  document.querySelectorAll('[data-rv]').forEach(b=>b.onclick=()=>guard(async()=>{await api(`/datasets/${d.id}/versions/${b.dataset.rv}/restore`,{method:'POST'});S.ds=await api('/datasets/'+d.id);await refreshList();planView();afterView()}));
-  $('#undo').onclick=()=>guard(async()=>{await api(`/datasets/${d.id}/undo`,{method:'POST'});S.ds=await api('/datasets/'+d.id);await refreshList();planView();afterView()});
+  document.querySelectorAll('[data-rv]').forEach(b=>b.onclick=()=>guard(async()=>{await api(`/datasets/${d.id}/versions/${b.dataset.rv}/restore`,{method:'POST'});S.ds=await api('/datasets/'+d.id);await refreshList();planView()}));
+  $('#undo').onclick=()=>guard(async()=>{await api(`/datasets/${d.id}/undo`,{method:'POST'});S.ds=await api('/datasets/'+d.id);await refreshList();planView()});
   document.querySelectorAll('[data-dl]').forEach(b=>b.onclick=()=>download(`/datasets/${d.id}/export?fmt=${b.dataset.dl}`,`clean.${b.dataset.dl}`));
   document.querySelectorAll('[data-rc]').forEach(b=>b.onclick=()=>guard(async()=>{const r=await api(`/plans/${p.id}/recipe?fmt=${b.dataset.rc}`,{raw:true});const t=await r.text();const pre=$('#rcv');pre.hidden=false;pre.textContent=t.length>14000?t.slice(0,14000)+'\n… (download via API for the full file)':t}))}
 
 // ---------- risks
-async function risksView(){const d=S.ds;$('#pane').innerHTML='<div class="card">Loading…</div>';const [now,orig]=await Promise.all([api(`/datasets/${d.id}/risks`),api(`/datasets/${d.id}/risks?version=0`)]);
+async function risksView(){const d=S.ds,rid=S.rid;$('#pane').innerHTML='<div class="card">Loading…</div>';const [now,orig]=await Promise.all([api(`/datasets/${d.id}/risks`),api(`/datasets/${d.id}/risks?version=0`)]);if(rid!==S.rid)return;
   const tbl=(r)=>`<table><tr><th>Risk</th><th>Column</th><th>Severity</th><th>Count</th><th>Detail</th></tr>${r.map(x=>`<tr><td>${esc(x.kind)}</td><td>${esc(x.column||'—')}</td><td><span class="badge ${x.severity}">${x.severity}</span></td><td>${x.count}</td><td>${esc(x.detail)}</td></tr>`).join('')}</table>`;
   $('#pane').innerHTML=`<div class="card"><h3 style="margin-top:0">Risk grid (current version): ${now.risks.length} open · ${orig.risks.length} in the original</h3><div class="scroll">${tbl(now.risks)}</div></div>
   <div class="card"><h3 style="margin-top:0">Plain-English rules</h3><div class="row"><input type="text" id="rt" placeholder="e.g. phone must be 10 digits · salary between 20000 and 90000" style="flex:1"><button id="ra">Add rule</button></div><div id="rr"></div>
@@ -129,7 +130,7 @@ function lineChart(f){const H=f.history,P=f.points,all=[...H.map(x=>x.value),...
   return `<svg viewBox="0 0 600 190" width="100%"><polygon points="${band}" fill="#2b5fd933"/><polyline points="${hp}" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="${fp}" fill="none" stroke="#2b5fd9" stroke-width="2" stroke-dasharray="5 4"/></svg>`}
 
 // ---------- strategy
-async function strategyView(){const d=S.ds;$('#pane').innerHTML='<div class="card">Loading…</div>';const s=await api(`/datasets/${d.id}/strategy`);drawStrategy(s)}
+async function strategyView(){const d=S.ds,rid=S.rid;$('#pane').innerHTML='<div class="card">Loading…</div>';const s=await api(`/datasets/${d.id}/strategy`);if(rid!==S.rid)return;drawStrategy(s)}
 function drawStrategy(s){const d=S.ds;$('#pane').innerHTML=`<div class="card"><h3 style="margin-top:0">What will add value</h3>${s.opportunities.map(o=>`<div class="card"><b>#${o.rank} ${esc(o.title)}</b><div>₹${Math.round(o.value_at_stake_inr_per_month).toLocaleString('en-IN')} / month at stake · confidence ${esc(o.confidence)}</div><div class="mute">Next: ${esc(o.next_step)} · evidence rows: ${esc(o.evidence_row_keys.slice(0,8).join(', ')||'—')}</div>
   <div class="row" style="margin-top:6px">${Object.entries(o.assumptions).map(([k,v])=>`<label>${esc(k)} <input type="number" step="any" style="width:130px" data-o="${esc(o.id)}" data-k="${esc(k)}" value="${v}"></label>`).join('')}</div></div>`).join('')||'<p>No opportunities detected for this dataset shape.</p>'}
   <button id="sim">Recalculate with my assumptions</button><p class="mute">Values are computed from your data and these editable assumptions, never generated by an LLM.</p></div><div class="card"><h3 style="margin-top:0">CEO brief</h3><pre>${esc(s.ceo_brief_markdown)}</pre></div>`;
@@ -144,7 +145,7 @@ function drawRun(r){$('#run').innerHTML=`<div class="card"><h3 style="margin-top
   if($('#ap')){$('#ap').onclick=()=>dec(true);$('#rj').onclick=()=>dec(false)}}
 
 // ---------- trust
-async function trustView(){const d=S.ds;$('#pane').innerHTML='<div class="card">Loading…</div>';const [p,l]=await Promise.all([api('/privacy/dashboard'),api('/ledger/verify')]);
+async function trustView(){const d=S.ds,rid=S.rid;$('#pane').innerHTML='<div class="card">Loading…</div>';const [p,l]=await Promise.all([api('/privacy/dashboard'),api('/ledger/verify')]);if(rid!==S.rid)return;
   $('#pane').innerHTML=`<div class="card"><h3 style="margin-top:0">Privacy dashboard</h3><div class="gauges">${gauge('bytes sent externally',p.bytes_sent_external)}${gauge('fields masked',p.fields_masked)}${gauge('ledger entries',p.ledger_entries)}</div>
   <p>Mode <b>${esc(p.mode)}</b>. Ledger hash chain: <b class="${l.ok?'':'err'}">${l.ok?'verified ('+l.entries+' entries)':'BROKEN at entry '+l.broken_at_seq}</b>. Models used: ${esc(Object.keys(p.models_used).join(', ')||'none (rule-based, local)')}</p>
   <p class="mute">We claim verifiable controls, not absolute security.</p></div>
@@ -152,7 +153,7 @@ async function trustView(){const d=S.ds;$('#pane').innerHTML='<div class="card">
   $('#pp').onclick=()=>guard(async()=>{const x=await api(`/datasets/${d.id}/passport`,{method:'POST'});$('#pr').innerHTML=`<p>Score ${x.score.before} → ${x.score.after} · risks found ${x.risks.found}, resolved ${x.risks.resolved}, open ${x.risks.open}</p><p><a href="/passport/${esc(x.public_id)}" target="_blank">Open public passport page</a> · <span class="mute">${esc(x.content_hash)}</span></p>`})}
 
 // ---------- data
-async function dataView(){const d=S.ds;const r=await api(`/datasets/${d.id}/rows?limit=30`);
+async function dataView(){const d=S.ds,rid=S.rid;const r=await api(`/datasets/${d.id}/rows?limit=30`);if(rid!==S.rid)return;
   $('#pane').innerHTML=`<div class="card"><div class="mute">First 30 of ${r.total} rows (current version). Row ids are stable across versions.</div><div class="scroll"><table><tr>${r.columns.map(c=>`<th>${esc(c)}</th>`).join('')}</tr>${r.rows.map(x=>`<tr>${r.columns.map(c=>`<td>${esc(x[c])}</td>`).join('')}</tr>`).join('')}</table></div></div>
   <div class="card"><h3 style="margin-top:0">Profile</h3><div class="scroll"><table><tr><th>Column</th><th>Type</th><th>Missing</th><th>Distinct</th><th>Samples</th></tr>${Object.entries(d.profile.columns).map(([c,i])=>`<tr><td>${esc(c)}</td><td>${esc(i.semantic)}</td><td>${(i.null_rate*100).toFixed(1)}%</td><td>${i.distinct}</td><td>${esc(i.samples.slice(0,3).join(' · '))}</td></tr>`).join('')}</table></div></div>`}
 boot();

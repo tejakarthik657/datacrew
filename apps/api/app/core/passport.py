@@ -9,8 +9,19 @@ from typing import Any
 from .health import recompute_from_inputs
 
 
+def _norm(o: Any) -> Any:
+    """Integral floats become ints so the hash survives a JavaScript JSON round trip (100.0 -> 100)."""
+    if isinstance(o, float) and o.is_integer():
+        return int(o)
+    if isinstance(o, dict):
+        return {k: _norm(v) for k, v in o.items()}
+    if isinstance(o, list):
+        return [_norm(v) for v in o]
+    return o
+
+
 def canonical(doc: dict[str, Any]) -> str:
-    d = {k: v for k, v in doc.items() if k != "content_hash"}
+    d = _norm({k: v for k, v in doc.items() if k != "content_hash"})
     return json.dumps(d, sort_keys=True, separators=(",", ":"), ensure_ascii=False, default=str)
 
 

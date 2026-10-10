@@ -21,7 +21,7 @@ from .core.passport import verify_passport
 from .db import AuditLog, CrewRun, Job, Membership, Passport, User, Workspace, get_db, init_db
 from .storage import get_storage
 
-app = FastAPI(title="DataCrew API", version="0.5.0")
+app = FastAPI(title="DataCrew API", version="0.6.0")
 init_db()
 storage = get_storage()
 
@@ -158,6 +158,25 @@ def switch_workspace(body: dict, ctx: Ctx = Depends(current_ctx), db: Session = 
 async def upload(file: UploadFile = File(...), ctx: Ctx = Depends(require("editor")), db: Session = Depends(get_db)) -> dict[str, Any]:
     content = await file.read()
     return svc.create_dataset(db, storage, ctx, file.filename or "upload.csv", content)
+
+
+class UrlIn(BaseModel):
+    url: str
+
+
+class DbIn(BaseModel):
+    url: str
+    query: str
+
+
+@app.post("/datasets/from-url", status_code=201)
+def from_url(body: UrlIn, ctx: Ctx = Depends(require("editor")), db: Session = Depends(get_db)) -> dict[str, Any]:
+    return svc.create_from_url(db, storage, ctx, body.url)
+
+
+@app.post("/datasets/from-db", status_code=201)
+def from_db(body: DbIn, ctx: Ctx = Depends(require("admin")), db: Session = Depends(get_db)) -> dict[str, Any]:
+    return svc.create_from_db(db, storage, ctx, body.url, body.query)
 
 
 @app.get("/datasets")

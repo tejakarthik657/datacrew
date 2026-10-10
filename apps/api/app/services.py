@@ -92,13 +92,46 @@ def create_dataset(db: Session, storage: StorageAdapter, ctx: Ctx, filename: str
         df = read_bytes(filename, content)
     except ReadError as e:
         raise err(422, "UNREADABLE_FILE", str(e), "Check the file is a valid CSV, XLSX, JSON or Parquet")
-    ds = Dataset(workspace_id=ctx.workspace_id, name=filename, source_json=json.dumps({"type": "file", "origin": "upload"}), created_by=ctx.user_id)
+    return create_dataset_from_df(db, storage, ctx, filename, df, {"type": "file", "origin": "upload"}, "upload")
+
+
+def create_dataset_from_df(db: Session, storage: StorageAdapter, ctx: Ctx, name: str, df: pl.DataFrame, source: dict, action: str) -> dict[str, Any]:
+    ds = Dataset(workspace_id=ctx.workspace_id, name=name, source_json=json.dumps(source), created_by=ctx.user_id)
     db.add(ds)
     db.commit()
-    v = save_version(db, storage, ds, df, "original upload")
-    append_ledger(db, ctx.workspace_id, ctx.user_id, "upload", ds.id, payload={"rows": df.height, "cols": df.width})
-    audit(db, ctx.workspace_id, ctx.user_id, "dataset.upload", ds.id, {"name": filename, "rows": df.height})
+    save_version(db, storage, ds, df, f"original ({source.get('type', 'file')})")
+    append_ledger(db, ctx.workspace_id, ctx.user_id, action, ds.id, payload={"rows": df.height, "cols": df.width, "source": source.get("type")})
+    audit(db, ctx.workspace_id, ctx.user_id, f"dataset.{action}", ds.id, {"name": name, "rows": df.height, "source": source})
     return dataset_overview(db, storage, ds)
+
+
+def create_from_url(db: Session, storage: StorageAdapter, ctx: Ctx, url: str, fetch=None, resolve: bool = True) -> dict[str, Any]:
+    from .core.ingest import IngestError, scrape_table
+    try:
+        df, passport = scrape_table(url, fetch, resolve)
+    except IngestError as e:
+        raise err(422, "INGEST_FAILED", str(e), "Check the URL is a public page with an HTML table and allows crawling")
+    return create_dataset_from_df(db, storage, ctx, urlparse_name(url), df, passport, "ingest_url")
+
+
+def create_from_db(db: Session, storage: StorageAdapter, ctx: Ctx, url: str, query: str) -> dict[str, Any]:
+    from .core.ingest import IngestError, read_database
+    import pathlib
+    root = pathlib.Path(settings.storage_dir) / "connectors"
+    root.mkdir(parents=True, exist_ok=True)
+    try:
+        df, passport = read_database(url, query, str(root))
+    except IngestError as e:
+        raise err(422, "INGEST_FAILED", str(e), "Use one read-only SELECT; SQLite files must live in <storage>/connectors")
+    except Exception as e:
+        raise err(422, "INGEST_FAILED", f"Database error: {type(e).__name__}", "Check the connection URL and query")
+    return create_dataset_from_df(db, storage, ctx, f"db:{passport['origin']}", df, passport, "ingest_db")
+
+
+def urlparse_name(url: str) -> str:
+    from urllib.parse import urlparse
+    p = urlparse(url)
+    return f"{p.hostname}{p.path}".rstrip("/")[:80] or url[:80]
 
 
 def dataset_overview(db: Session, storage: StorageAdapter, ds: Dataset) -> dict[str, Any]:

@@ -7,7 +7,7 @@ Runs **fully offline with no keys** (rule-based planner, SQLite, local disk, in-
 ## Run (3 commands)
 ```bash
 make install          # venv + dependencies (or: pip install -r apps/api/requirements.txt)
-make test             # generates demo data, runs 33 tests (~75 s)
+make test             # generates demo data, runs 47 tests (~70 s)
 make dev              # http://localhost:8000  (UI + API; docs at /docs)
 ```
 One-shot terminal demo: `make demo`. Docker: `cp .env.example .env && docker compose up`.
@@ -28,3 +28,5 @@ packages/schemas/        plan JSON schema     scripts/demo_data/  seeded generat
 Key rules enforced in code: the LLM (if any) sees only a masked sample + type profile and returns schema-validated JSON; all execution is deterministic; SQL is SELECT-only behind a parser guard; CSV/XLSX exports are formula-injection-safe; every query is scoped by workspace id from the JWT.
 
 See `STATUS.md` (what is built/tested) and `REMAINING.md` (what is not).
+
+UI smoke test (optional): `cd scripts/ui && npm i jsdom`, start the server on port 8765, then `node ui_walkthrough.mjs`.

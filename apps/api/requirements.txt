@@ -17,3 +17,5 @@ python-multipart>=0.0.9
 statsmodels>=0.14
 faker>=24
 pytest>=8
+beautifulsoup4>=4.12
+lxml>=5

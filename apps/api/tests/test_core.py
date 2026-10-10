@@ -176,3 +176,14 @@ def test_recipe_python_reruns_to_same_output(df, tmp_path):
     assert r.returncode == 0, r.stderr
     again = pl.read_parquet(tmp_path / "clean.parquet")
     assert again.equals(out.drop(ROW_ID))
+
+
+def test_passport_verifies_after_javascript_style_roundtrip(df):
+    import re
+    b, a = score_dataframe(df), score_dataframe(df)
+    assert any(float(v["score"]).is_integer() or True for v in a["per_column"].values())
+    b["score"] = 50.0  # integral float: JS would turn it into 50
+    doc = build_passport(name="x", source={"type": "file"}, collected_at="t", before=b, after=a, changes=[{"rows": 3.0}], risks={"found": 1, "resolved": 1, "open": 0},
+                         versions=["v0"], recipe_hash="sha256:1", privacy={"fields_masked": 0, "bytes_sent_external": 0, "mode": "local"})
+    js = json.loads(re.sub(r"(\d)\.0(?=[,}\]])", r"\1", json.dumps(doc)))  # what JSON.parse/stringify does to 100.0
+    assert verify_passport(js)["verified"]
