@@ -34,6 +34,8 @@ Tests: **47 passed** (~70 s) on Python 3.12. Seeded demo: **45.8 → 93.3** heal
 - Bugs the jsdom run caught and fixed: stale async tab renders overwriting the current tab; Data Passport hash failing after a JavaScript JSON round trip (100.0 vs 100).
 - Upload size capped at 50 MB, whole file in memory. Version scoring makes plan execution ~3 s on the demo; slow on big data.
 - Step estimates come from a real dry run; `fill_missing` median/“Unknown” invents values (flagged medium/low risk, toggleable).
+- Null markers also include "ERROR" and "UNKNOWN" (common in dirty Kaggle files); fill_missing constant is now "Not specified" so filled cells are not re-read as missing.
+- Timing (synthetic, generated): 100k rows read 0.1 s, score 1.8 s, plan 6 s, apply 2 s per pass; service also scores every step version, so a full execute on 100k rows takes noticeably longer. Not tested at 500k.
 - Dates: ambiguous `dd/mm` vs `mm/dd` is read day-first (Indian convention).
 - Public passport pages are readable by unguessable id; they contain scores/counts, no row data.
 - No cloud services configured. `JWT_SECRET` defaults to a dev value: set it.

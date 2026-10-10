@@ -8,7 +8,7 @@ from typing import Any, Callable
 import polars as pl
 
 ROW_ID = "_row_id"
-NULL_TOKENS = {"", "na", "n/a", "nan", "null", "none", "-", "--", "?", "nil", "#n/a"}
+NULL_TOKENS = {"", "na", "n/a", "nan", "null", "none", "-", "--", "?", "nil", "#n/a", "error", "unknown"}
 DATE_FORMATS = ["%Y-%m-%d", "%d/%m/%Y", "%d-%m-%Y", "%d %b %Y", "%b %d, %Y", "%d.%m.%Y", "%Y/%m/%d", "%d %B %Y"]
 NUM_RE = re.compile(r"^-?\d+(\.\d+)?$")
 EMAIL_RE = re.compile(r"^[a-z0-9._%+\-]+@[a-z0-9\-]+(\.[a-z0-9\-]+)+$")

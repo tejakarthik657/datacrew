@@ -151,7 +151,7 @@ def rule_based_plan(df: pl.DataFrame) -> dict[str, Any]:
         if s == "numeric":
             add("fill_missing", [c], {"strategy": "median"}, f"Fill missing '{c}' with the median (flagged medium risk: invents values)", 0.7, "medium")
         elif s == "category":
-            add("fill_missing", [c], {"strategy": "constant", "value": "Unknown"}, f"Mark missing '{c}' as 'Unknown'", 0.8, "low")
+            add("fill_missing", [c], {"strategy": "constant", "value": "Not specified"}, f"Mark missing '{c}' as 'Not specified'", 0.8, "low")
 
     # 8. outliers
     for c in data_columns(cur):

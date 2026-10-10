@@ -145,7 +145,7 @@ def fill_missing(df: pl.DataFrame, step: dict) -> pl.DataFrame:
             vals = [fill if m else parse_number(v) for v, m in zip(raw, miss)]
             df = df.with_columns(pl.Series(c, vals, dtype=pl.Float64))
         elif strat == "constant":
-            val = p.get("value", "Unknown")
+            val = p.get("value", "Not specified")
             vals2 = [val if m else v for v, m in zip(raw, miss)]
             df = df.with_columns(pl.Series(c, vals2, dtype=pl.Utf8))
         elif strat == "mode":
