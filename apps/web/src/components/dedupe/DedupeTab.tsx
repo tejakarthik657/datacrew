@@ -57,6 +57,7 @@ export function DedupeTab({ datasetId }: DedupeTabProps) {
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["dedupe", datasetId],
     queryFn: () => get<DedupeResponse>(`/datasets/${datasetId}/dedupe`),
+    staleTime: 60000,
   });
 
   const clusters = useMemo(() => data?.clusters ?? [], [data?.clusters]);

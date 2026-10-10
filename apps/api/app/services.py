@@ -661,7 +661,7 @@ def get_dedupe_clusters(db: Session, storage: StorageAdapter, ds: Dataset) -> di
     rows = df.to_dicts()
     clusters: list[dict[str, Any]] = []
 
-    text_cols = [c for c, dtype in zip(df.columns, df.dtypes) if "str" in str(dtype).lower() or "utf8" in str(dtype).lower()]
+    text_cols = [c for c, dtype in zip(df.columns, df.dtypes) if "str" in str(dtype).lower() or "utf8" in str(dtype).lower()][:5]
     cluster_idx = 1
 
     for col in text_cols:
@@ -694,14 +694,17 @@ def get_dedupe_clusters(db: Session, storage: StorageAdapter, ds: Dataset) -> di
                     "status": "pending"
                 })
                 cluster_idx += 1
-                if cluster_idx > 25:
+                if cluster_idx > 20:
                     break
+
+        if len(clusters) >= 20:
+            break
 
     # Pairwise fuzzy row check if fewer than 4 clusters found
     if len(clusters) < 4 and len(rows) > 1:
-        sample_rows = rows[:120]
+        sample_rows = rows[:60]
         for i in range(len(sample_rows)):
-            for j in range(i + 1, min(i + 25, len(sample_rows))):
+            for j in range(i + 1, min(i + 15, len(sample_rows))):
                 r1, r2 = sample_rows[i], sample_rows[j]
                 sims = []
                 for c in text_cols[:4]:
