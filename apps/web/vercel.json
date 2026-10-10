@@ -3,5 +3,8 @@
   "framework": "nextjs",
   "installCommand": "npx pnpm install --frozen-lockfile",
   "buildCommand": "npx pnpm run build",
-  "outputDirectory": ".next"
+  "outputDirectory": ".next",
+  "env": {
+    "API_URL": "https://datacrew-h98o.onrender.com"
+  }
 }

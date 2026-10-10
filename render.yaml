@@ -20,6 +20,6 @@ services:
       - key: GOOGLE_CLIENT_SECRET
         sync: false
       - key: GOOGLE_REDIRECT_URI
-        sync: false
+        value: "https://datacrew-gamma.vercel.app/auth/google/callback"
       - key: ALLOWED_ORIGINS
-        sync: false
+        value: "https://datacrew-gamma.vercel.app,http://localhost:3000"
