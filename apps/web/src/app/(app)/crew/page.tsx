@@ -140,7 +140,7 @@ export default function WorkspaceCrewPage() {
           </div>
         ) : (
           <div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 12, marginBottom: 16 }}>
+            <div className="crew-form-grid" style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 12, marginBottom: 16 }}>
               <div>
                 <label style={{ display: "block", fontSize: 12, fontWeight: 600, color: "var(--text)", marginBottom: 6 }}>
                   Target Dataset

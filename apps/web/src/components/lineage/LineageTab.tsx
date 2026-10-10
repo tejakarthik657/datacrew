@@ -299,6 +299,7 @@ export function LineageTab({ datasetId }: LineageTabProps) {
 
       {/* Main layout: Stages Flow on Left/Center, Inspection Drawer on Right */}
       <div
+        className="lineage-grid-container"
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 340px",

@@ -335,6 +335,7 @@ export function DedupeTab({ datasetId }: DedupeTabProps) {
         </div>
       ) : (
         <div
+          className="dedupe-grid-container"
           style={{
             display: "grid",
             gridTemplateColumns: "320px 1fr",

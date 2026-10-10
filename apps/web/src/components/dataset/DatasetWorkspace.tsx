@@ -81,8 +81,8 @@ export function DatasetWorkspace({ datasetId, children }: Props) {
         {isLoading ? (
           <div style={{ height: 40, width: 300, background: "var(--surface-hover)", borderRadius: 6, marginBottom: 14 }} />
         ) : ds ? (
-          <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 14, flexWrap: "wrap" }}>
-            <div>
+          <div className="dataset-header-wrapper" style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 14, flexWrap: "wrap" }}>
+            <div className="dataset-header-title">
               <h1
                 style={{
                   margin: 0,
@@ -100,7 +100,7 @@ export function DatasetWorkspace({ datasetId, children }: Props) {
             </div>
 
             {/* Delete button & Score delta display */}
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginLeft: "auto" }}>
+            <div className="dataset-header-actions" style={{ display: "flex", alignItems: "center", gap: 12, marginLeft: "auto" }}>
               <button
                 type="button"
                 onClick={() => setShowDeleteModal(true)}

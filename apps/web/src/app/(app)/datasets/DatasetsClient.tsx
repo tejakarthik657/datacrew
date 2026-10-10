@@ -346,7 +346,7 @@ export function DatasetsClient() {
 
       {/* Dataset grid */}
       {isLoading && (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 18 }}>
+        <div className="datasets-grid-container" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 18 }}>
           {[1, 2, 3].map((i) => (
             <div key={i} style={{ height: 140, background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "var(--radius-card, 12px)", animation: "pulse 1.5s ease-in-out infinite" }} />
           ))}
@@ -360,7 +360,7 @@ export function DatasetsClient() {
       )}
 
       {datasets && datasets.length > 0 && (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 18 }}>
+        <div className="datasets-grid-container" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 18 }}>
           {datasets.map((ds) => (
             <article
               key={ds.id}

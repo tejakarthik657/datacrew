@@ -167,10 +167,49 @@ table td,
     padding: 6px 8px !important;
   }
 
+  /* Auth Pages */
+  .auth-showcase-wrapper {
+    display: none !important;
+  }
+
+  .auth-form-wrapper {
+    padding: 16px 8px !important;
+  }
+
+  .auth-form-card {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 16px 8px !important;
+  }
+
+  /* Dataset Workspace Header */
+  .dataset-header-wrapper {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+
+  .dataset-header-actions {
+    margin-left: 0 !important;
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+
+  /* Side-by-side Dual Panes -> Stacked Single Columns */
+  .dedupe-grid-container,
+  .lineage-grid-container,
+  .crew-form-grid,
+  .datasets-grid-container {
+    grid-template-columns: 1fr !important;
+  }
+
   /* Global Container & Card Adaptations */
   .responsive-container,
   main > div {
     max-width: 100% !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
   }
 
   /* Scrollable Navigation Bar (Tab Bars across dataset pages) */
@@ -181,6 +220,11 @@ table td,
     white-space: nowrap !important;
     -webkit-overflow-scrolling: touch !important;
     max-width: 100% !important;
+    padding-bottom: 4px !important;
+  }
+
+  [role="tablist"]::-webkit-scrollbar {
+    display: none !important;
   }
 
   /* Responsive Tables */
