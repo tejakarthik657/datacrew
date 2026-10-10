@@ -28,9 +28,16 @@ init_db()
 storage = get_storage()
 
 origins = [o.strip() for o in settings.allowed_origins.split(",") if o.strip()]
+if not origins or origins == ["*"] or "*" in origins:
+    origins = [
+        "https://datacrew-gamma.vercel.app",
+        "http://localhost:3000",
+        "http://localhost:8000",
+    ]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins if origins and origins != ["*"] else ["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -46,8 +46,8 @@ class Settings:
     neo4j_database: str = field(default_factory=lambda: _env("NEO4J_DATABASE", "neo4j"))
     google_client_id: str = field(default_factory=lambda: _env("GOOGLE_CLIENT_ID", ""))
     google_client_secret: str = field(default_factory=lambda: _env("GOOGLE_CLIENT_SECRET", ""))
-    google_redirect_uri: str = field(default_factory=lambda: _env("GOOGLE_REDIRECT_URI", "http://localhost:8000/auth/google/callback"))
-    allowed_origins: str = field(default_factory=lambda: _env("ALLOWED_ORIGINS", "*"))
+    google_redirect_uri: str = field(default_factory=lambda: _env("GOOGLE_REDIRECT_URI", "https://datacrew-gamma.vercel.app/auth/google/callback"))
+    allowed_origins: str = field(default_factory=lambda: _env("ALLOWED_ORIGINS", "https://datacrew-gamma.vercel.app,http://localhost:3000,http://localhost:8000"))
 
     @property
     def external_llm_allowed(self) -> bool:
