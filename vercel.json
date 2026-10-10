@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "framework": "nextjs",
+  "rootDirectory": "apps/web",
+  "installCommand": "npx pnpm install --frozen-lockfile",
+  "buildCommand": "npx pnpm run build",
+  "outputDirectory": ".next"
+}
