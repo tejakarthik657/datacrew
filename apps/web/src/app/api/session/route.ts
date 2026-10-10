@@ -9,7 +9,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 
-const API_URL = process.env.API_URL ?? "http://localhost:8000";
+const API_URL = process.env.API_URL ?? "https://datacrew-h98o.onrender.com";
 
 const COOKIE_NAME = "dc_jwt";
 const COOKIE_OPTIONS = {

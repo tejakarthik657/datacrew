@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // API proxy target (server-side only, never exposed to browser)
   env: {
-    API_URL: process.env.API_URL ?? "http://localhost:8000",
+    API_URL: process.env.API_URL ?? "https://datacrew-h98o.onrender.com",
   },
   // Security headers
   async headers() {
