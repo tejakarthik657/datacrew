@@ -67,16 +67,29 @@ export function DatasetsClient() {
       router.push(`/datasets/${ds.id}/clean`);
     },
     onError: (err) => {
-      const msg = err instanceof ApiError ? err.message : "Upload failed";
-      const hint = err instanceof ApiError ? err.hint : undefined;
+      let msg = err instanceof ApiError ? err.message : "Upload failed";
+      let hint = err instanceof ApiError ? err.hint : undefined;
+      if (err instanceof ApiError && err.status === 413) {
+        msg = "File size too large (HTTP 413)";
+        hint = "Please upload a CSV file smaller than 50 MB or split your dataset into smaller chunks.";
+      }
       toast.error(msg, { description: hint });
     },
   });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) uploadMutation.mutate(file);
-    // Reset so the same file can be re-selected
+    if (file) {
+      const maxMb = 50;
+      if (file.size > maxMb * 1024 * 1024) {
+        toast.error(`File size exceeds ${maxMb} MB limit`, {
+          description: "Please upload a smaller CSV file or split your file into chunks.",
+        });
+        e.target.value = "";
+        return;
+      }
+      uploadMutation.mutate(file);
+    }
     e.target.value = "";
   };
 

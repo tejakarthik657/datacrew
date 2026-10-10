@@ -11,6 +11,9 @@ import { NextRequest, NextResponse } from "next/server";
 const API_URL = process.env.API_URL ?? "https://datacrew-h98o.onrender.com";
 const COOKIE_NAME = "dc_jwt";
 
+export const dynamic = "force-dynamic";
+export const maxDuration = 60;
+
 type Params = { path: string[] };
 
 async function handler(
@@ -45,10 +48,10 @@ async function handler(
     forwardHeaders.set("Authorization", `Bearer ${token}`);
   }
 
-  // Forward the body for non-GET/HEAD requests
-  let body: BodyInit | null = null;
+  // Forward body stream for non-GET/HEAD requests
+  let body: ReadableStream<Uint8Array> | null = null;
   if (req.method !== "GET" && req.method !== "HEAD") {
-    body = await req.arrayBuffer().then((b) => (b.byteLength > 0 ? b : null));
+    body = req.body;
   }
 
   let upstream: Response;
