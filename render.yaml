@@ -5,8 +5,10 @@ services:
     region: singapore
     plan: free
     buildCommand: "pip install -r apps/api/requirements.txt"
-    startCommand: "python -m uvicorn apps.api.app.main:app --host 0.0.0.0 --port $PORT"
+    startCommand: "PYTHONPATH=. python -m uvicorn apps.api.app.main:app --host 0.0.0.0 --port $PORT"
     envVars:
+      - key: PYTHONPATH
+        value: "."
       - key: MODE
         value: cloud
       - key: JWT_SECRET

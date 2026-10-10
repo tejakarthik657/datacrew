@@ -40,11 +40,12 @@ This guide provides step-by-step instructions for deploying DataCrew to producti
      - **Root Directory**: Leave blank or set `.`
      - **Environment**: `Python 3`
      - **Build Command**: `pip install -r apps/api/requirements.txt`
-     - **Start Command**: `python -m uvicorn apps.api.app.main:app --host 0.0.0.0 --port $PORT`
+     - **Start Command**: `PYTHONPATH=. python -m uvicorn apps.api.app.main:app --host 0.0.0.0 --port $PORT`
 
 3. **Configure Environment Variables in Render Dashboard**:
    | Variable | Value |
    | :--- | :--- |
+   | `PYTHONPATH` | `.` |
    | `MODE` | `cloud` |
    | `JWT_SECRET` | *(Random 64-char string)* |
    | `JWT_TTL_HOURS` | `24` |
