@@ -12,7 +12,6 @@ import {
   Eye, 
   EyeOff, 
   ArrowRight, 
-  Sparkles, 
   KeyRound 
 } from "lucide-react";
 import Link from "next/link";
@@ -43,7 +42,6 @@ function LoginFormContent() {
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm<LoginForm>({
     resolver: zodResolver(loginSchema),
