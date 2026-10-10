@@ -1,5 +1,4 @@
-"use client";
-
+import { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -11,6 +10,7 @@ import {
   Settings,
   ChevronLeft,
   ChevronRight,
+  X,
 } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 
@@ -18,6 +18,8 @@ interface SidebarProps {
   collapsed: boolean;
   onToggle: () => void;
   userRole: string;
+  mobileOpen?: boolean;
+  onMobileClose?: () => void;
 }
 
 interface NavSection {
@@ -32,9 +34,13 @@ interface NavSection {
   }[];
 }
 
-export function Sidebar({ collapsed, onToggle, userRole }: SidebarProps) {
+export function Sidebar({ collapsed, onToggle, userRole, mobileOpen, onMobileClose }: SidebarProps) {
   const pathname = usePathname();
   const isAdmin = userRole === "admin" || userRole === "owner";
+
+  useEffect(() => {
+    onMobileClose?.();
+  }, [pathname]);
 
   const navSections: NavSection[] = [
     {
@@ -61,37 +67,71 @@ export function Sidebar({ collapsed, onToggle, userRole }: SidebarProps) {
   ];
 
   return (
-    <aside
-      aria-label="Main navigation"
-      style={{
-        width: collapsed ? "var(--sidebar-collapsed, 64px)" : "var(--sidebar-width, 256px)",
-        background: "var(--surface)",
-        borderRight: "1px solid var(--border)",
-        display: "flex",
-        flexDirection: "column",
-        transition: "width 200ms cubic-bezier(0.16, 1, 0.3, 1)",
-        overflow: "hidden",
-        flexShrink: 0,
-        position: "relative",
-        zIndex: 20,
-      }}
-    >
-      {/* Brand Header */}
-      <div
+    <>
+      {/* Mobile Backdrop Overlay */}
+      {mobileOpen && (
+        <div
+          onClick={onMobileClose}
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0, 0, 0, 0.5)",
+            backdropFilter: "blur(2px)",
+            zIndex: 90,
+          }}
+          className="mobile-backdrop"
+        />
+      )}
+
+      <aside
+        aria-label="Main navigation"
+        className={`app-sidebar ${mobileOpen ? "mobile-open" : ""}`}
         style={{
-          height: "var(--topbar-height, 60px)",
+          width: collapsed ? "var(--sidebar-collapsed, 64px)" : "var(--sidebar-width, 256px)",
+          background: "var(--surface)",
+          borderRight: "1px solid var(--border)",
           display: "flex",
-          alignItems: "center",
-          justifyContent: collapsed ? "center" : "space-between",
-          padding: collapsed ? "0" : "0 20px",
-          borderBottom: "1px solid var(--border)",
+          flexDirection: "column",
+          transition: "width 200ms cubic-bezier(0.16, 1, 0.3, 1), transform 200ms cubic-bezier(0.16, 1, 0.3, 1)",
+          overflow: "hidden",
           flexShrink: 0,
+          position: "relative",
+          zIndex: 100,
         }}
       >
-        <Link href="/datasets" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-          <Logo size={collapsed ? "sm" : "md"} showWordmark={!collapsed} />
-        </Link>
-      </div>
+        {/* Brand Header */}
+        <div
+          style={{
+            height: "var(--topbar-height, 60px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "0 20px",
+            borderBottom: "1px solid var(--border)",
+            flexShrink: 0,
+          }}
+        >
+          <Link href="/datasets" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+            <Logo size={collapsed ? "sm" : "md"} showWordmark={!collapsed} />
+          </Link>
+          {mobileOpen && (
+            <button
+              onClick={onMobileClose}
+              aria-label="Close mobile navigation"
+              style={{
+                background: "none",
+                border: "none",
+                color: "var(--text-muted)",
+                cursor: "pointer",
+                padding: 4,
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <X size={18} />
+            </button>
+          )}
+        </div>
 
       {/* Navigation Groups */}
       <div

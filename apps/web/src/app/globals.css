@@ -116,3 +116,90 @@ table td,
 .agent-forecaster { color: var(--agent-forecaster); }
 .agent-strategist { color: var(--agent-strategist); }
 .agent-ops        { color: var(--agent-ops); }
+
+/* ── Mobile & Responsive Design System ── */
+
+/* Desktop defaults */
+.mobile-menu-btn {
+  display: none !important;
+}
+
+/* Tablet & Mobile (under 768px) */
+@media (max-width: 768px) {
+  /* Show hamburger button */
+  .mobile-menu-btn {
+    display: flex !important;
+  }
+
+  /* Transform Sidebar into an off-canvas drawer */
+  .app-sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 280px !important;
+    height: 100vh !important;
+    z-index: 100 !important;
+    transform: translateX(-100%) !important;
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.4);
+    transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  .app-sidebar.mobile-open {
+    transform: translateX(0) !important;
+  }
+
+  /* Header adjustments for small viewports */
+  .header-divider,
+  .header-privacy-chip,
+  .search-shortcut,
+  .header-user-role,
+  .header-user-email {
+    display: none !important;
+  }
+
+  .search-text {
+    display: none !important;
+  }
+
+  .command-trigger-btn {
+    min-width: unset !important;
+    padding: 6px 8px !important;
+  }
+
+  /* Global Container & Card Adaptations */
+  .responsive-container,
+  main > div {
+    max-width: 100% !important;
+  }
+
+  /* Scrollable Navigation Bar (Tab Bars across dataset pages) */
+  nav,
+  [role="tablist"],
+  .dataset-nav-tabs {
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    max-width: 100% !important;
+  }
+
+  /* Responsive Tables */
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+  }
+
+  /* Responsive Flex Wrappers */
+  .flex-mobile-column {
+    flex-direction: column !important;
+  }
+
+  .flex-mobile-wrap {
+    flex-wrap: wrap !important;
+  }
+
+  .w-mobile-full {
+    width: 100% !important;
+  }
+}

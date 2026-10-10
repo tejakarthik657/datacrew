@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { LogOut, Moon, Sun, Search } from "lucide-react";
+import { LogOut, Moon, Sun, Search, Menu } from "lucide-react";
 import { useTheme } from "next-themes";
 import { PrivacyChip } from "./PrivacyChip";
 import { CommandPalette } from "./CommandPalette";
@@ -10,6 +10,7 @@ import type { AppUser } from "./AppShell";
 
 interface HeaderProps {
   user: AppUser;
+  onMobileMenuToggle?: () => void;
 }
 
 const ROUTE_NAMES: Record<string, string> = {
@@ -21,7 +22,7 @@ const ROUTE_NAMES: Record<string, string> = {
   "/settings/members": "Workspace Settings",
 };
 
-export function Header({ user }: HeaderProps) {
+export function Header({ user, onMobileMenuToggle }: HeaderProps) {
   const router = useRouter();
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
@@ -49,6 +50,7 @@ export function Header({ user }: HeaderProps) {
 
   return (
     <header
+      className="app-header"
       style={{
         height: "var(--topbar-height, 56px)",
         background: "var(--surface)",
@@ -56,16 +58,38 @@ export function Header({ user }: HeaderProps) {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: "0 20px",
-        gap: 16,
+        padding: "0 16px",
+        gap: 12,
         flexShrink: 0,
         zIndex: 10,
         transition: "background 150ms ease, border-color 150ms ease",
       }}
     >
       {/* Left Context & Privacy Status */}
-      <div style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 0 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
+        {/* Mobile Hamburger Menu Toggle */}
+        <button
+          onClick={onMobileMenuToggle}
+          aria-label="Open mobile menu"
+          className="mobile-menu-btn"
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            width: 32,
+            height: 32,
+            borderRadius: 6,
+            background: "var(--surface-raised, transparent)",
+            border: "1px solid var(--border)",
+            color: "var(--text)",
+            cursor: "pointer",
+            flexShrink: 0,
+            padding: 0,
+          }}
+        >
+          <Menu size={18} />
+        </button>
+
+        <div style={{ display: "flex", alignItems: "center", gap: 8, minWidth: 0 }}>
           <span
             style={{
               fontSize: 14,
@@ -73,32 +97,36 @@ export function Header({ user }: HeaderProps) {
               color: "var(--text)",
               letterSpacing: "-0.2px",
               whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
             }}
           >
             {currentSection}
           </span>
         </div>
 
-        <div style={{ width: 1, height: 16, background: "var(--border)" }} />
+        <div className="header-divider" style={{ width: 1, height: 16, background: "var(--border)" }} />
 
         {/* Privacy chip — always visible on authenticated pages */}
-        <PrivacyChip />
+        <div className="header-privacy-chip">
+          <PrivacyChip />
+        </div>
       </div>
 
       {/* Right Actions: Command Search, Theme Toggle, Profile */}
-      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
         {/* Command Palette Trigger */}
         <button
           onClick={() => setPaletteOpen(true)}
           aria-label="Open command palette"
           title="Search anything (⌘K / Ctrl+K)"
+          className="command-trigger-btn"
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
             gap: 12,
-            padding: "6px 14px",
-            minWidth: 220,
+            padding: "6px 12px",
             background: "var(--surface-raised, rgba(0,0,0,0.03))",
             border: "1px solid var(--border)",
             borderRadius: 8,
@@ -110,10 +138,11 @@ export function Header({ user }: HeaderProps) {
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <Search size={14} style={{ color: "var(--text-subtle, #94a3b8)" }} />
-            <span style={{ fontSize: 12, fontWeight: 500, color: "var(--text-muted)" }}>Search or jump…</span>
+            <Search size={14} style={{ color: "var(--text-subtle, #94a3b8)", flexShrink: 0 }} />
+            <span className="search-text" style={{ fontSize: 12, fontWeight: 500, color: "var(--text-muted)" }}>Search or jump…</span>
           </div>
           <kbd
+            className="search-shortcut"
             style={{
               fontSize: 10,
               fontFamily: "var(--font-mono, monospace)",
@@ -186,6 +215,7 @@ export function Header({ user }: HeaderProps) {
           </div>
 
           <span
+            className="header-user-email"
             style={{
               fontSize: 12,
               fontWeight: 500,
@@ -200,6 +230,7 @@ export function Header({ user }: HeaderProps) {
           </span>
 
           <span
+            className="header-user-role"
             style={{
               fontSize: 9,
               fontWeight: 700,

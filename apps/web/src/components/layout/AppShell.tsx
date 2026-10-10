@@ -18,6 +18,7 @@ interface AppShellProps {
 
 export function AppShell({ user, children }: AppShellProps) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <div
@@ -34,6 +35,8 @@ export function AppShell({ user, children }: AppShellProps) {
         collapsed={sidebarCollapsed}
         onToggle={() => setSidebarCollapsed((c) => !c)}
         userRole={user.role}
+        mobileOpen={mobileOpen}
+        onMobileClose={() => setMobileOpen(false)}
       />
 
       {/* Main area */}
@@ -47,7 +50,7 @@ export function AppShell({ user, children }: AppShellProps) {
         }}
       >
         {/* Top header */}
-        <Header user={user} />
+        <Header user={user} onMobileMenuToggle={() => setMobileOpen((m) => !m)} />
 
         {/* Content */}
         <main
