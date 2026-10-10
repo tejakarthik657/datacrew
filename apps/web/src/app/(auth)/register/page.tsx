@@ -75,14 +75,18 @@ export default function RegisterPage() {
   const handleGoogleSignIn = async () => {
     try {
       const res = await fetch("/api/proxy/auth/google/url");
-      const data = await res.json();
-      if (data.url) {
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.url) {
         window.location.href = data.url;
       } else {
-        toast.error("Google authentication URL could not be generated");
+        const errorMsg =
+          typeof data.detail === "object"
+            ? data.detail?.message
+            : data.detail || data.message || "Google OAuth is not configured on the server. Please set GOOGLE_CLIENT_ID in Render backend settings.";
+        toast.error(errorMsg);
       }
     } catch {
-      toast.error("Failed to connect to Google OAuth server");
+      toast.error("Failed to connect to Google OAuth server. Check your network or backend logs.");
     }
   };
 
