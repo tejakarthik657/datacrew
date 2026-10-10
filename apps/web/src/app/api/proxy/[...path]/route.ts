@@ -8,7 +8,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 
-const API_URL = process.env.API_URL ?? "http://localhost:8000";
+const API_URL = process.env.API_URL ?? "https://datacrew-h98o.onrender.com";
 const COOKIE_NAME = "dc_jwt";
 
 type Params = { path: string[] };
@@ -77,7 +77,14 @@ async function handler(
   const responseHeaders = new Headers();
   upstream.headers.forEach((value, key) => {
     const lower = key.toLowerCase();
-    if (lower === "transfer-encoding" || lower === "connection") return;
+    if (
+      lower === "transfer-encoding" ||
+      lower === "connection" ||
+      lower === "content-encoding" ||
+      lower === "content-length"
+    ) {
+      return;
+    }
     responseHeaders.set(key, value);
   });
   if (requestId) responseHeaders.set("x-request-id", requestId);
