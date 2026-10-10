@@ -20,6 +20,6 @@ services:
       - key: GOOGLE_CLIENT_SECRET
         sync: false
       - key: GOOGLE_REDIRECT_URI
-        value: "http://localhost:8000/auth/google/callback"
+        sync: false
       - key: ALLOWED_ORIGINS
-        value: "*"
+        sync: false
