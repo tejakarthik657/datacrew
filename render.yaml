@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: datacrew-api
+    env: python
+    region: singapore
+    plan: free
+    buildCommand: "pip install -r apps/api/requirements.txt"
+    startCommand: "python -m uvicorn apps.api.app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: MODE
+        value: cloud
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_TTL_HOURS
+        value: "24"
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_REDIRECT_URI
+        value: "http://localhost:8000/auth/google/callback"
+      - key: ALLOWED_ORIGINS
+        value: "*"

@@ -1,6 +1,4 @@
-# PART 9: TECHSTACK AND SERVICES
-
-## 09 · Tech Stack and External Services
+# 09 · Tech Stack and External Services
 
 > Stack supports **any data source** (files, URLs, databases, MCP business connectors) and a LangGraph agent crew.
 
@@ -148,7 +146,3 @@ datacrew/
   infra/               docker-compose, GitHub Actions
   docs/                these 11 files
 ```
-
-
-
----

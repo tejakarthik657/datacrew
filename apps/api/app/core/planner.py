@@ -185,7 +185,7 @@ def generate_plan(df: pl.DataFrame, llm: Any, masked_rows: list[dict], profile: 
                 return _finalize(df, raw), "llm", "LLM plan validated against schema; row estimates recomputed by the engine"
             feedback = "; ".join(errs[:5])
             notes = f"LLM plan failed validation ({feedback}); retried" if attempt == 0 else f"LLM plan failed validation twice; fell back to rule-based planner"
-    return base, "rule_based", notes or "Rule-based planner (deterministic, offline)"
+    return _finalize(df, base), "rule_based", notes or "Rule-based planner (deterministic, offline)"
 
 
 def profile_for_llm(profile: dict) -> dict:

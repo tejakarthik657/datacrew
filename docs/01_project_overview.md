@@ -1,6 +1,4 @@
-# PART 1: PROJECT OVERVIEW
-
-## 01 · Project Overview
+# 01 · Project Overview
 
 > **Working name:** DataCrew (earlier names: TrustSheet, DataPilot, TidyAI)
 > **Final positioning:** *an autonomous AI data team for every company.* Connect **any data**, and a crew of agents **cleans it, watches it, predicts what's coming, and tells you what will add value.**
@@ -166,7 +164,3 @@ Framing line: **"Cleaning is step one. Once data is trusted, we predict, advise 
 | 3 | Trust | Risk grid, Data Passport, privacy dashboard, ledger |
 | 4 | Wow + deep | Chosen wow option; Forecast Accountability, Value-at-Stake, Red Team, Synthetic Twin |
 | 5 | Post-hackathon | MCP connectors, Ops autopilot, scheduling, API/webhooks, workspaces at scale, DPDP/SOC 2 |
-
-
-
----

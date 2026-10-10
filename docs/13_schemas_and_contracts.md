@@ -1,6 +1,4 @@
-# PART 13: SCHEMAS AND CONTRACTS
-
-## 13 · Schemas and Contracts
+# 13 · Schemas and Contracts
 
 Reference snippets so every file's design has a concrete shape. Treat as starting points.
 
@@ -115,7 +113,3 @@ df = df.with_columns(pl.col("city").str.strip_chars().replace(MAPPING_CITY))  # 
 # ... one commented block per approved step, in order
 df.write_csv("clean.csv")
 ```
-
-
-
----

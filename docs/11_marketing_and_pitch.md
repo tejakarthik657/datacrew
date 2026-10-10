@@ -1,6 +1,4 @@
-# PART 11: MARKETING AND PITCH
-
-## 11 · Marketing, Pitch and Uniqueness
+# 11 · Marketing, Pitch and Uniqueness
 
 ## 1. Positioning Statement
 
@@ -158,7 +156,3 @@ Frontend on Cloudflare Pages; backend and agents (FastAPI, LangGraph, LangChain,
 - Credit dataset sources and licenses (Kaggle/UCI/data.gov.in/Wikipedia).
 - State: all personal data in the demo is **synthetic** (Faker).
 - Scraping demos only on practice sites (books.toscrape.com, quotes.toscrape.com, scrapethissite.com) and Wikipedia tables.
-
-
-
----

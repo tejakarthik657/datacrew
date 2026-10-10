@@ -11,9 +11,33 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from .config import settings
-from .db import Membership, User, get_db
+from .db import Membership, User, Workspace, get_db
 
 ROLE_RANK = {"viewer": 1, "editor": 2, "admin": 3, "owner": 4}
+
+
+def get_or_create_google_user(email: str, db: Session) -> tuple[User, Membership]:
+    email_clean = email.strip().lower()
+    u = db.scalar(select(User).where(User.email == email_clean))
+    if not u:
+        # Create user with a dummy hashed password (since auth is Google OAuth)
+        u = User(email=email_clean, password_hash=hash_password(f"google_oauth_{email_clean}_secret"))
+        ws = Workspace(name=f"{email_clean}'s workspace")
+        db.add_all([u, ws])
+        db.commit()
+        m = Membership(user_id=u.id, workspace_id=ws.id, role="owner")
+        db.add(m)
+        db.commit()
+    else:
+        m = db.scalar(select(Membership).where(Membership.user_id == u.id).order_by(Membership.id))
+        if not m:
+            ws = Workspace(name=f"{email_clean}'s workspace")
+            db.add(ws)
+            db.commit()
+            m = Membership(user_id=u.id, workspace_id=ws.id, role="owner")
+            db.add(m)
+            db.commit()
+    return u, m
 
 
 @dataclass

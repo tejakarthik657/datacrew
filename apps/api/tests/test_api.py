@@ -131,6 +131,18 @@ def test_chat_guarded_sql(client, alice, ds):
     assert client.post(f"/datasets/{ds['id']}/chat", headers=alice, json={"question": "tell me a joke"}).status_code == 422
 
 
+def test_dedupe_and_dataset_plans_endpoint(client, alice, ds):
+    # Test GET /datasets/{ds_id}/dedupe returns 200 OK without 500 error
+    r_dedupe = client.get(f"/datasets/{ds['id']}/dedupe", headers=alice)
+    assert r_dedupe.status_code == 200, r_dedupe.text
+    assert "clusters" in r_dedupe.json()
+
+    # Test GET /datasets/{ds_id}/plans returns list of plans
+    r_plans = client.get(f"/datasets/{ds['id']}/plans", headers=alice)
+    assert r_plans.status_code == 200, r_plans.text
+    assert isinstance(r_plans.json(), list)
+
+
 def test_forecast_and_accountability(client, alice, ds):
     r = client.post(f"/datasets/{ds['id']}/forecast", headers=alice, json={"horizon": 3})
     assert r.status_code == 201, r.text
@@ -145,7 +157,8 @@ def test_strategy_and_simulator(client, alice, ds):
     s = client.get(f"/datasets/{ds['id']}/strategy", headers=alice).json()
     assert s["opportunities"] and s["opportunities"][0]["rank"] == 1 and "CEO brief" in s["ceo_brief_markdown"]
     top = s["opportunities"][0]
-    sim = client.post(f"/datasets/{ds['id']}/strategy/simulate", headers=alice, json={"assumptions": {top["id"]: {"recovery_rate": 0.8}}}).json()
+    param = {"probability": 0.5} if top["kind"] == "forecast_downside" else {"recovery_rate": 0.8}
+    sim = client.post(f"/datasets/{ds['id']}/strategy/simulate", headers=alice, json={"assumptions": {top["id"]: param}}).json()
     new = next(o for o in sim["opportunities"] if o["id"] == top["id"])
     assert new["value_at_stake_inr_per_month"] > top["value_at_stake_inr_per_month"]
 
@@ -198,3 +211,12 @@ def test_roles(client, alice, bob):
 def test_audit_log_records_actions(client, alice):
     acts = {a["action"] for a in client.get("/audit", headers=alice).json()}
     assert {"dataset.upload", "plan.create", "plan.execute", "plan.step_approval"} <= acts
+
+
+def test_delete_dataset(client, alice):
+    r = client.post("/datasets", headers=alice, files={"file": ("to_delete.csv", b"a,b\n1,2\n3,4\n", "text/csv")})
+    assert r.status_code == 201
+    dsid = r.json()["id"]
+    del_r = client.delete(f"/datasets/{dsid}", headers=alice)
+    assert del_r.status_code == 200 and del_r.json()["status"] == "deleted"
+    assert client.get(f"/datasets/{dsid}", headers=alice).status_code == 404

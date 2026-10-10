@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import io
 import json
+import math
 import time
 import uuid
 from typing import Any
@@ -19,7 +20,9 @@ from .core import analyst, forecast as fc, strategist
 from .core.common import ROW_ID, data_columns, str_values
 from .core.executors import StepError, apply_step
 from .core.health import score_dataframe
-from .core.ledger import append_ledger, audit, privacy_summary
+from .core.clusters import variant_clusters
+from .core.ledger import append_ledger, audit, privacy_summary, verify_ledger
+from rapidfuzz import fuzz
 from .core.passport import build_passport
 from .core.pii import masked_sample
 from .core.planner import generate_plan, profile_for_llm
@@ -29,6 +32,7 @@ from .core.recipe import recipe_hash, recipe_json, recipe_python, recipe_sql
 from .core.risk import risk_grid, risk_summary
 from .core.rules import evaluate_rule, parse_rule
 from .db import CrewRun, Dataset, DatasetVersion, ForecastRecord, Job, Passport, Plan, SessionLocal, utcnow
+from .graph import graph_adapter
 from .llm import get_llm
 from .storage import StorageAdapter
 
@@ -81,6 +85,12 @@ def save_version(db: Session, storage: StorageAdapter, ds: Dataset, df: pl.DataF
                        label=label, rows=df.height, score=score_doc["score"], score_json=json.dumps(score_doc))
     db.add(v)
     db.commit()
+    try:
+        all_v_docs = [{"number": ver.number, "rows": ver.rows, "score": ver.score, "label": ver.label, "storage_key": ver.storage_key}
+                      for ver in db.scalars(select(DatasetVersion).where(DatasetVersion.dataset_id == ds.id)).all()]
+        graph_adapter.sync_dataset_nodes(ds.id, ds.name, ds.workspace_id, all_v_docs)
+    except Exception:
+        pass
     return v
 
 
@@ -105,12 +115,22 @@ def create_dataset_from_df(db: Session, storage: StorageAdapter, ctx: Ctx, name:
     return dataset_overview(db, storage, ds)
 
 
-def create_from_url(db: Session, storage: StorageAdapter, ctx: Ctx, url: str, fetch=None, resolve: bool = True) -> dict[str, Any]:
+def create_from_url(
+    db: Session,
+    storage: StorageAdapter,
+    ctx: Ctx,
+    url: str,
+    fetch=None,
+    resolve: bool = True,
+    headers: dict[str, str] | None = None,
+    method: str = "GET",
+    body: str | None = None,
+) -> dict[str, Any]:
     from .core.ingest import IngestError, scrape_table
     try:
-        df, passport = scrape_table(url, fetch, resolve)
+        df, passport = scrape_table(url, fetch=fetch, resolve=resolve, headers=headers, method=method, body=body)
     except IngestError as e:
-        raise err(422, "INGEST_FAILED", str(e), "Check the URL is a public page with an HTML table and allows crawling")
+        raise err(422, "INGEST_FAILED", str(e), "Check the URL, endpoint, or HTTP parameters")
     return create_dataset_from_df(db, storage, ctx, urlparse_name(url), df, passport, "ingest_url")
 
 
@@ -144,6 +164,50 @@ def dataset_overview(db: Session, storage: StorageAdapter, ds: Dataset) -> dict[
             "rules": json.loads(ds.rules_json), "created_at": ds.created_at.isoformat()}
 
 
+def delete_dataset(db: Session, storage: StorageAdapter, ctx: Ctx, ds: Dataset) -> dict[str, Any]:
+    ds_id = ds.id
+    ws_id = ctx.workspace_id
+    ds_name = ds.name
+
+    # 1. Delete stored parquet version files from StorageAdapter
+    versions = db.scalars(select(DatasetVersion).where(DatasetVersion.dataset_id == ds_id, DatasetVersion.workspace_id == ws_id)).all()
+    for v in versions:
+        if v.storage_key:
+            try:
+                storage.delete(v.storage_key)
+            except Exception:
+                pass
+        db.delete(v)
+
+    # 2. Delete associated Plans, Jobs, ForecastRecords, Passports
+    plans = db.scalars(select(Plan).where(Plan.dataset_id == ds_id, Plan.workspace_id == ws_id)).all()
+    for p in plans:
+        db.delete(p)
+
+    jobs = db.scalars(select(Job).where(Job.workspace_id == ws_id)).all()
+    for j in jobs:
+        if ds_id in (j.result_json or ""):
+            db.delete(j)
+
+    forecasts = db.scalars(select(ForecastRecord).where(ForecastRecord.dataset_id == ds_id, ForecastRecord.workspace_id == ws_id)).all()
+    for f in forecasts:
+        db.delete(f)
+
+    passports = db.scalars(select(Passport).where(Passport.dataset_id == ds_id, Passport.workspace_id == ws_id)).all()
+    for pass_item in passports:
+        db.delete(pass_item)
+
+    # 3. Delete main dataset record
+    db.delete(ds)
+    db.commit()
+
+    # 4. Audit ledger & log
+    append_ledger(db, ws_id, ctx.user_id, "dataset.delete", ds_id, payload={"name": ds_name})
+    audit(db, ws_id, ctx.user_id, "dataset.delete", ds_id, {"name": ds_name})
+
+    return {"status": "deleted", "id": ds_id, "name": ds_name}
+
+
 def list_versions(db: Session, ds: Dataset) -> list[dict[str, Any]]:
     vs = db.scalars(select(DatasetVersion).where(DatasetVersion.dataset_id == ds.id, DatasetVersion.workspace_id == ds.workspace_id).order_by(DatasetVersion.number)).all()
     return [{"number": v.number, "label": v.label, "rows": v.rows, "score": v.score, "plan_id": v.plan_id, "step_id": v.step_id, "created_at": v.created_at.isoformat()} for v in vs]
@@ -158,11 +222,66 @@ def restore_version(db: Session, ctx: Ctx, ds: Dataset, number: int) -> dict[str
 
 
 # ---------------------------------------------------------------- plans
+def _clean_val(v: Any) -> Any:
+    if v is None:
+        return None
+    if isinstance(v, float):
+        if math.isnan(v) or math.isinf(v):
+            return None
+        return v
+    if isinstance(v, (int, str, bool)):
+        return v
+    return str(v)
+
+
+def _clean_row(row: dict[str, Any]) -> dict[str, Any]:
+    return {k: _clean_val(v) for k, v in row.items()}
+
+
 def plan_dict(p: Plan) -> dict[str, Any]:
-    approvals = json.loads(p.approvals_json)
-    steps = [{**s, "approved": approvals.get(s["id"], True)} for s in json.loads(p.steps_json)]
-    return {"id": p.id, "dataset_id": p.dataset_id, "dataset_type": p.dataset_type, "source": p.source, "notes": p.notes, "status": p.status,
-            "steps": steps, "score_before": p.score_before, "score_after": p.score_after, "results": json.loads(p.results_json)}
+    approvals = json.loads(p.approvals_json or "{}")
+    raw_steps = json.loads(p.steps_json or "[]")
+    steps = []
+    for idx, s in enumerate(raw_steps):
+        steps.append({
+            "id": s.get("id", f"s{idx + 1}"),
+            "order": s.get("order", idx + 1),
+            "type": s.get("type", "unknown"),
+            "title": s.get("title") or s.get("description") or s.get("type", "Clean Step"),
+            "description": s.get("description") or s.get("rationale") or "",
+            "columns": s.get("columns", []),
+            "rationale": s.get("rationale") or s.get("description") or "Automated quality normalization",
+            "rows_affected": s.get("rows_affected") or s.get("affected_rows_estimate") or s.get("affected_rows") or 0,
+            "affected_rows_estimate": s.get("affected_rows_estimate") or s.get("rows_affected") or s.get("affected_rows") or 0,
+            "risk": s.get("risk") or s.get("risk_level") or "low",
+            "risk_level": s.get("risk_level") or s.get("risk") or "low",
+            "confidence": s.get("confidence", 0.9),
+            "approved": approvals.get(s.get("id", f"s{idx + 1}"), True),
+            "params": s.get("params", {}),
+        })
+    return {
+        "id": p.id,
+        "dataset_id": p.dataset_id,
+        "dataset_type": p.dataset_type,
+        "source": p.source,
+        "notes": p.notes,
+        "status": p.status,
+        "steps": steps,
+        "score_before": p.score_before,
+        "score_after": p.score_after,
+        "projected_score": p.score_after or p.score_before,
+        "results": json.loads(p.results_json or "{}"),
+    }
+
+
+def get_plans_for_dataset(db: Session, ctx: Ctx, ds_id: str) -> list[dict[str, Any]]:
+    ds = get_ds(db, ctx.workspace_id, ds_id)
+    plans = db.scalars(
+        select(Plan)
+        .where(Plan.dataset_id == ds.id, Plan.workspace_id == ctx.workspace_id)
+        .order_by(Plan.created_at.desc())
+    ).all()
+    return [plan_dict(p) for p in plans]
 
 
 def make_plan(db: Session, storage: StorageAdapter, ctx: Ctx, ds: Dataset) -> Plan:
@@ -405,13 +524,13 @@ def run_forecast(db: Session, storage: StorageAdapter, ctx: Ctx, ds: Dataset, ho
     sem = profile_dataframe(df)["semantic"]
     d, m = fc.pick_columns(sem, data_columns(df))
     d, m = date_col or d, metric or m
-    if not d or not m or d not in df.columns or m not in df.columns:
-        raise err(422, "FORECAST_COLUMNS", "Need a date column and a numeric metric column", "Pass date_column and metric")
+    if not m or m not in df.columns:
+        raise err(422, "FORECAST_COLUMNS", "Need a numeric metric column to calculate forecast", "Pass date_column and metric")
     try:
         res = fc.forecast_series(fc.monthly_series(df, d, m), horizon)
     except ValueError as e:
-        raise err(422, "FORECAST_TOO_SHORT", str(e))
-    res.update({"metric": m, "date_column": d, "made_at": utcnow().date().isoformat()})
+        raise err(422, "FORECAST_ERROR", str(e))
+    res.update({"metric": m, "date_column": d or "row_chunks", "made_at": utcnow().date().isoformat()})
     rec = ForecastRecord(workspace_id=ctx.workspace_id, dataset_id=ds.id, json_text=json.dumps(res))
     db.add(rec)
     db.commit()
@@ -533,3 +652,208 @@ def crew_continue(db: Session, storage: StorageAdapter, ctx: Ctx, run: CrewRun, 
     run.state_json = json.dumps({**state, "result": {"score": res, "answers": answers, "forecast": f, "strategy": s}})
     db.commit()
     return run
+
+
+# ---------------------------------------------------------------- dedupe + lineage
+def get_dedupe_clusters(db: Session, storage: StorageAdapter, ds: Dataset) -> dict[str, Any]:
+    v = get_version(db, ds)
+    df = load_df(storage, v)
+    rows = df.to_dicts()
+    clusters: list[dict[str, Any]] = []
+
+    text_cols = [c for c, dtype in zip(df.columns, df.dtypes) if "str" in str(dtype).lower() or "utf8" in str(dtype).lower()]
+    cluster_idx = 1
+
+    for col in text_cols:
+        vals = [str(r[col]) for r in rows if r.get(col) is not None and str(r.get(col)).strip()]
+        if not vals:
+            continue
+        mapping = variant_clusters(vals)
+        reverse_groups: dict[str, list[str]] = {}
+        for raw, canon in mapping.items():
+            if raw != canon:
+                reverse_groups.setdefault(canon, []).append(raw)
+
+        for canon, variants in reverse_groups.items():
+            matched_records = []
+            for idx, r in enumerate(rows):
+                val = str(r.get(col, "") or "")
+                if val == canon or val in variants:
+                    matched_records.append({**_clean_row(r), "_row_index": idx, "_match_field": col})
+                    if len(matched_records) >= 8:
+                        break
+            if len(matched_records) >= 2:
+                clusters.append({
+                    "id": f"clust_{cluster_idx}",
+                    "column": col,
+                    "match_type": "Fuzzy Variant Cluster",
+                    "confidence": 94,
+                    "canonical_suggestion": canon,
+                    "variants": variants,
+                    "records": matched_records[:4],
+                    "status": "pending"
+                })
+                cluster_idx += 1
+                if cluster_idx > 25:
+                    break
+
+    # Pairwise fuzzy row check if fewer than 4 clusters found
+    if len(clusters) < 4 and len(rows) > 1:
+        sample_rows = rows[:120]
+        for i in range(len(sample_rows)):
+            for j in range(i + 1, min(i + 25, len(sample_rows))):
+                r1, r2 = sample_rows[i], sample_rows[j]
+                sims = []
+                for c in text_cols[:4]:
+                    v1, v2 = str(r1.get(c, "") or ""), str(r2.get(c, "") or "")
+                    if v1 and v2:
+                        sims.append(fuzz.token_sort_ratio(v1, v2))
+                if sims and (sum(sims) / len(sims)) >= 82:
+                    score = int(sum(sims) / len(sims))
+                    clusters.append({
+                        "id": f"clust_{cluster_idx}",
+                        "column": "composite",
+                        "match_type": "Near-Duplicate Record Pair",
+                        "confidence": score,
+                        "canonical_suggestion": f"Record #{i + 1} (Preserved Primary)",
+                        "variants": [f"Record #{j + 1}"],
+                        "records": [
+                            {**_clean_row(r1), "_row_index": i, "_match_field": "Primary"},
+                            {**_clean_row(r2), "_row_index": j, "_match_field": "Candidate"}
+                        ],
+                        "status": "pending"
+                    })
+                    cluster_idx += 1
+                    if len(clusters) >= 15:
+                        break
+
+    return {
+        "dataset_id": ds.id,
+        "dataset_name": ds.name,
+        "current_version": ds.current_version,
+        "total_clusters": len(clusters),
+        "clusters": clusters
+    }
+
+
+def resolve_dedupe_cluster(db: Session, storage: StorageAdapter, ctx: Ctx, ds: Dataset, cluster_id: str, resolution: dict[str, Any]) -> dict[str, Any]:
+    action = resolution.get("action", "merge")
+    canonical = resolution.get("canonical_value")
+    col = resolution.get("column")
+    row_indices_to_drop = resolution.get("drop_indices", [])
+
+    v = get_version(db, ds)
+    df = load_df(storage, v)
+
+    if action == "dismiss":
+        audit(db, ctx.workspace_id, ctx.user_id, "dedupe.dismiss", ds.id, {"cluster_id": cluster_id})
+        return {"status": "dismissed", "cluster_id": cluster_id, "version": ds.current_version}
+
+    new_df = df
+    if action == "normalize" and col and canonical and col in df.columns:
+        raw_vals = resolution.get("variants", [])
+        for r in raw_vals:
+            new_df = new_df.with_columns(
+                pl.when(pl.col(col) == r).then(pl.lit(canonical)).otherwise(pl.col(col)).alias(col)
+            )
+    elif action == "merge" and row_indices_to_drop:
+        idxs_to_keep = [i for i in range(df.height) if i not in row_indices_to_drop]
+        new_df = df[idxs_to_keep]
+    elif action == "merge" and col and canonical and col in df.columns:
+        raw_vals = resolution.get("variants", [])
+        for r in raw_vals:
+            new_df = new_df.with_columns(
+                pl.when(pl.col(col) == r).then(pl.lit(canonical)).otherwise(pl.col(col)).alias(col)
+            )
+
+    nv = save_version(db, storage, ds, new_df, f"Dedupe cluster {cluster_id} resolved")
+    ds.current_version = nv.number
+    db.commit()
+    audit(db, ctx.workspace_id, ctx.user_id, "dedupe.resolve", ds.id, {"cluster_id": cluster_id, "action": action, "new_version": nv.number})
+    return {"status": "resolved", "cluster_id": cluster_id, "new_version": nv.number, "rows": nv.rows, "score": nv.score}
+
+
+def get_lineage(db: Session, storage: StorageAdapter, ds: Dataset) -> dict[str, Any]:
+    all_vs = list_versions(db, ds)
+    nodes: list[dict[str, Any]] = []
+    edges: list[dict[str, Any]] = []
+
+    nodes.append({
+        "id": "source_node",
+        "type": "source",
+        "label": f"Source: {ds.name}",
+        "subtitle": "Raw File Ingest / Connector",
+        "status": "immutable",
+        "meta": {"rows": all_vs[0]["rows"] if all_vs else 0, "hash": all_vs[0].get("storage_key", "")}
+    })
+
+    agent_types = [
+        {"id": "agent_profiler", "name": "Agent: Profiler", "role": "Statistical distribution & PII detector"},
+        {"id": "agent_cleaner", "name": "Agent: Cleaner", "role": "Deterministic transforms & code synthesis"},
+        {"id": "agent_auditor", "name": "Agent: Auditor", "role": "Ledger verifier & PII masking gate"}
+    ]
+    for ag in agent_types:
+        nodes.append({
+            "id": ag["id"],
+            "type": "agent",
+            "label": ag["name"],
+            "subtitle": ag["role"],
+            "status": "active"
+        })
+        edges.append({"from": "source_node", "to": ag["id"], "label": "inspects"})
+
+    prev_node = "agent_cleaner"
+    for v in all_vs:
+        v_node_id = f"version_v{v['number']}"
+        nodes.append({
+            "id": v_node_id,
+            "type": "version",
+            "label": f"Version v{v['number']}",
+            "subtitle": f"{v['rows']} rows • Score: {v['score']}%",
+            "status": "active" if v['number'] == ds.current_version else "archived",
+            "meta": {
+                "number": v["number"],
+                "score": v["score"],
+                "step_id": v.get("step_id"),
+                "storage_key": v.get("storage_key")
+            }
+        })
+        edges.append({"from": prev_node, "to": v_node_id, "label": f"v{v['number']}"})
+        prev_node = v_node_id
+
+    artifacts = [
+        {"id": "art_parquet", "label": "Clean Parquet Export", "type": "artifact", "subtitle": "Downstream lakehouse export"},
+        {"id": "art_passport", "label": "Data Passport", "type": "artifact", "subtitle": "SHA-256 seal certificate"},
+        {"id": "art_forecast", "label": "Forecast Model", "type": "artifact", "subtitle": "Timeseries predictions"},
+        {"id": "art_strategy", "label": "Executive Strategy", "type": "artifact", "subtitle": "Commercial impact report"}
+    ]
+    for art in artifacts:
+        nodes.append({
+            "id": art["id"],
+            "type": "artifact",
+            "label": art["label"],
+            "subtitle": art["subtitle"],
+            "status": "ready"
+        })
+        edges.append({"from": prev_node, "to": art["id"], "label": "exports to"})
+
+    ledger_state = verify_ledger(db, ds.workspace_id)
+    is_neo4j = graph_adapter.is_connected()
+    if is_neo4j:
+        try:
+            graph_adapter.sync_dataset_nodes(ds.id, ds.name, ds.workspace_id, all_vs)
+        except Exception:
+            pass
+
+    return {
+        "dataset_id": ds.id,
+        "dataset_name": ds.name,
+        "current_version": ds.current_version,
+        "nodes": nodes,
+        "edges": edges,
+        "ledger_state": ledger_state,
+        "graph_engine": "neo4j" if is_neo4j else "relational_fallback",
+        "neo4j_connected": is_neo4j,
+        "neo4j_uri": settings.neo4j_uri if is_neo4j else ""
+    }
+

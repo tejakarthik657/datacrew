@@ -1,6 +1,4 @@
-# PART 12: BUILD PLAN
-
-## 12 · Build Plan and Repo Skeleton
+# 12 · Build Plan and Repo Skeleton
 
 > Adjust day counts to your real hackathon window. Order matters more than dates: **finish the core before any extra.**
 
@@ -64,7 +62,3 @@ datacrew/
 | Full-stack | 2, 4 UI, wow layer |
 | Infra/security | 0, 4, Red Team, keep-alive |
 | Pitch | 6, deck, demo script (file 10) |
-
-
-
----

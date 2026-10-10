@@ -1,0 +1,206 @@
+/**
+ * DataCrew Design Tokens
+ * Implements ux_design_system.md sections 2-4 and DESIGN.md color palette
+ * Linear-inspired dark workbench with Supabase emerald trust tokens
+ */
+
+:root {
+  /* ── Canvas & Surface (Linear Dark Slate) ── */
+  --bg: #0d0e12;
+  --canvas-soft: #12141a;
+  --surface: #16171d;
+  --surface-raised: #1e2029;
+  --surface-hover: #252833;
+  --surface-active: #2c303d;
+  --header-bg: rgba(13, 14, 18, 0.85);
+  --header-border: #292b35;
+  --hero-title-gradient: linear-gradient(180deg, #ffffff 40%, #94a3b8 100%);
+  --hero-badge-bg: rgba(99, 91, 255, 0.12);
+  --hero-badge-border: rgba(99, 91, 255, 0.28);
+  --hero-badge-text: #a5a0ff;
+  --card-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  --table-zebra: rgba(255, 255, 255, 0.02);
+  --agent-pill-bg: rgba(255, 255, 255, 0.06);
+  --passport-bg-gradient: linear-gradient(180deg, rgba(62, 207, 142, 0.06) 0%, rgba(13, 14, 18, 0) 100%);
+
+  /* ── Borders & Dividers ── */
+  --border: #292b35;
+  --border-strong: #3f4352;
+  --border-focus: #635bff;
+
+  /* ── Typography Hierarchy ── */
+  --text: #f8fafc;
+  --text-body: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-subtle: #64748b;
+  --text-disabled: #475569;
+
+  /* ── Brand Primary (Electric Purple) ── */
+  --brand: #635bff;
+  --brand-hover: #7a73ff;
+  --brand-active: #5046e5;
+  --brand-contrast: #ffffff;
+
+  /* ── Semantic Status Colors ── */
+  --success: #3ecf8e;
+  --success-bg: rgba(62, 207, 142, 0.08);
+  --success-border: rgba(62, 207, 142, 0.28);
+  --warning: #f59e0b;
+  --warning-bg: rgba(245, 158, 11, 0.08);
+  --warning-border: rgba(245, 158, 11, 0.28);
+  --danger: #ef4444;
+  --danger-bg: rgba(239, 68, 68, 0.08);
+  --danger-border: rgba(239, 68, 68, 0.28);
+  --info: #38bdf8;
+  --info-bg: rgba(56, 189, 248, 0.08);
+  --info-border: rgba(56, 189, 248, 0.28);
+
+  /* ── Agent Color Tokens (LangGraph) ── */
+  --agent-intake: #38bdf8;
+  --agent-cleaner: #f59e0b;
+  --agent-auditor: #ef4444;
+  --agent-analyst: #8b5cf6;
+  --agent-forecaster: #ec4899;
+  --agent-strategist: #14b8a6;
+  --agent-ops: #6366f1;
+
+  /* ── Data Passport & Trust ── */
+  --passport-verified: #3ecf8e;
+  --passport-verified-bg: rgba(62, 207, 142, 0.08);
+  --passport-verified-border: rgba(62, 207, 142, 0.28);
+  --passport-warning: #f59e0b;
+  --passport-danger: #ef4444;
+
+  /* ── Source Connector Badges ── */
+  --source-file: #22c55e;
+  --source-database: #3b82f6;
+  --source-mcp: #a855f7;
+  --source-webhook: #eab308;
+
+  /* ── Diff Colors ── */
+  --diff-added: rgba(62, 207, 142, 0.10);
+  --diff-added-text: #3ecf8e;
+  --diff-removed: rgba(239, 68, 68, 0.10);
+  --diff-removed-text: #ef4444;
+  --diff-changed: rgba(245, 158, 11, 0.10);
+  --diff-changed-text: #f59e0b;
+
+  /* ── Typography ── */
+  --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Geist Mono', 'SF Mono', ui-monospace, monospace;
+
+  /* ── Spacing (4pt grid) ── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ── Border Radii ── */
+  --radius-sm: 4px;     /* grid cells */
+  --radius-md: 6px;     /* inputs, buttons */
+  --radius-card: 8px;   /* cards */
+  --radius-modal: 12px; /* modals, drawers */
+  --radius-full: 9999px; /* pills, badges */
+
+  /* ── Elevation ── */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --shadow-popover: 0 4px 16px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-modal: 0 20px 40px rgba(0, 0, 0, 0.6), 0 8px 16px rgba(0, 0, 0, 0.4);
+
+  /* ── Motion ── */
+  --duration-fast: 120ms;
+  --duration-normal: 200ms;
+  --duration-slow: 400ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── Sidebar ── */
+  --sidebar-width: 256px;
+  --sidebar-collapsed: 64px;
+  --topbar-height: 60px;
+
+  /* ── Content ── */
+  --content-max: 1440px;
+}
+
+/* Light mode overrides */
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f8fafc;
+  --canvas-soft: #f1f5f9;
+  --surface: #ffffff;
+  --surface-raised: #f1f5f9;
+  --surface-hover: #f8fafc;
+  --surface-active: #cbd5e1;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --border-focus: #635bff;
+  --text: #0f172a;
+  --text-body: #334155;
+  --text-muted: #64748b;
+  --text-subtle: #94a3b8;
+  --text-disabled: #cbd5e1;
+  --header-bg: rgba(255, 255, 255, 0.88);
+  --header-border: #e2e8f0;
+  --hero-title-gradient: linear-gradient(180deg, #0f172a 35%, #475569 100%);
+  --hero-badge-bg: rgba(99, 91, 255, 0.08);
+  --hero-badge-border: rgba(99, 91, 255, 0.22);
+  --hero-badge-text: #4f46e5;
+  --card-shadow: 0 16px 40px -6px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.04);
+  --table-zebra: rgba(15, 23, 42, 0.02);
+  --agent-pill-bg: rgba(15, 23, 42, 0.04);
+  --passport-bg-gradient: linear-gradient(180deg, rgba(62, 207, 142, 0.12) 0%, rgba(255, 255, 255, 0) 100%);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-popover: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-modal: 0 20px 40px rgba(0, 0, 0, 0.10), 0 8px 16px rgba(0, 0, 0, 0.06);
+  --diff-added: rgba(22, 163, 74, 0.08);
+  --diff-removed: rgba(220, 38, 38, 0.08);
+  --diff-changed: rgba(202, 138, 4, 0.08);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --bg: #f8fafc;
+    --canvas-soft: #f1f5f9;
+    --surface: #ffffff;
+    --surface-raised: #f1f5f9;
+    --surface-hover: #e2e8f0;
+    --surface-active: #cbd5e1;
+    --border: #e2e8f0;
+    --border-strong: #cbd5e1;
+    --text: #0f172a;
+    --text-body: #334155;
+    --text-muted: #64748b;
+    --text-subtle: #94a3b8;
+    --text-disabled: #cbd5e1;
+    --header-bg: rgba(255, 255, 255, 0.88);
+    --header-border: #e2e8f0;
+    --hero-title-gradient: linear-gradient(180deg, #0f172a 35%, #475569 100%);
+    --hero-badge-bg: rgba(99, 91, 255, 0.08);
+    --hero-badge-border: rgba(99, 91, 255, 0.22);
+    --hero-badge-text: #4f46e5;
+    --card-shadow: 0 16px 40px -6px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.04);
+    --table-zebra: rgba(15, 23, 42, 0.02);
+    --agent-pill-bg: rgba(15, 23, 42, 0.04);
+    --passport-bg-gradient: linear-gradient(180deg, rgba(62, 207, 142, 0.12) 0%, rgba(255, 255, 255, 0) 100%);
+    --shadow-popover: 0 4px 16px rgba(0, 0, 0, 0.08);
+    --shadow-modal: 0 20px 40px rgba(0, 0, 0, 0.10);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

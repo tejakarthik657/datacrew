@@ -6,15 +6,17 @@ import uuid
 from pathlib import Path
 from typing import Any
 
+import httpx
 from fastapi import BackgroundTasks, Depends, FastAPI, File, HTTPException, Request, Response, UploadFile
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
 from pydantic import BaseModel, Field
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from . import services as svc
-from .auth import Ctx, current_ctx, hash_password, make_token, require, verify_password
+from .auth import Ctx, current_ctx, get_or_create_google_user, hash_password, make_token, require, verify_password
 from .config import settings
 from .core.ledger import audit, privacy_summary, verify_ledger
 from .core.passport import verify_passport
@@ -24,6 +26,15 @@ from .storage import get_storage
 app = FastAPI(title="DataCrew API", version="0.6.0")
 init_db()
 storage = get_storage()
+
+origins = [o.strip() for o in settings.allowed_origins.split(",") if o.strip()]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins if origins and origins != ["*"] else ["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 # ---------------------------------------------------------------- error envelope
@@ -90,6 +101,14 @@ class ApproveIn(BaseModel):
     approve: bool = True
 
 
+class DedupeResolveIn(BaseModel):
+    action: str = "merge"
+    canonical_value: str | None = None
+    column: str | None = None
+    variants: list[str] = []
+    drop_indices: list[int] = []
+
+
 # ---------------------------------------------------------------- health + auth
 @app.get("/health")
 def health() -> dict[str, Any]:
@@ -117,6 +136,92 @@ def login(body: Login, db: Session = Depends(get_db)) -> dict[str, Any]:
         raise HTTPException(401, detail={"code": "BAD_CREDENTIALS", "message": "Wrong email or password"})
     m = db.scalar(select(Membership).where(Membership.user_id == u.id).order_by(Membership.id))
     return {"token": make_token(u.id, m.workspace_id), "user": {"id": u.id, "email": u.email}, "workspace": {"id": m.workspace_id}, "role": m.role}
+
+
+@app.get("/auth/google/url")
+def google_auth_url(redirect_uri: str | None = None) -> dict[str, str]:
+    if not settings.google_client_id:
+        raise HTTPException(500, detail={"code": "OAUTH_UNCONFIGURED", "message": "Google Client ID is not configured"})
+    r_uri = redirect_uri or settings.google_redirect_uri
+    scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+    url = (
+        "https://accounts.google.com/o/oauth2/v2/auth?"
+        f"client_id={settings.google_client_id}&"
+        f"redirect_uri={r_uri}&"
+        "response_type=code&"
+        f"scope={scope}&"
+        "access_type=offline&prompt=select_account"
+    )
+    return {"url": url}
+
+
+@app.get("/auth/google/callback")
+def google_callback(code: str, redirect_uri: str | None = None, db: Session = Depends(get_db)) -> Any:
+    if not settings.google_client_id or not settings.google_client_secret:
+        raise HTTPException(500, detail={"code": "OAUTH_UNCONFIGURED", "message": "Google OAuth credentials missing"})
+    r_uri = redirect_uri or settings.google_redirect_uri
+    token_url = "https://oauth2.googleapis.com/token"
+    data = {
+        "code": code,
+        "client_id": settings.google_client_id,
+        "client_secret": settings.google_client_secret,
+        "redirect_uri": r_uri,
+        "grant_type": "authorization_code",
+    }
+    try:
+        res = httpx.post(token_url, data=data, timeout=15)
+        res.raise_for_status()
+        tokens = res.json()
+        access_token = tokens.get("access_token")
+        
+        userinfo_res = httpx.get("https://www.googleapis.com/oauth2/v3/userinfo", headers={"Authorization": f"Bearer {access_token}"}, timeout=15)
+        userinfo_res.raise_for_status()
+        profile = userinfo_res.json()
+        email = profile.get("email")
+        if not email:
+            raise HTTPException(400, detail={"code": "NO_EMAIL", "message": "Google account did not return an email address"})
+            
+        u, m = get_or_create_google_user(email, db)
+        token = make_token(u.id, m.workspace_id)
+        
+        return {
+            "token": token,
+            "user": {"id": u.id, "email": u.email},
+            "workspace": {"id": m.workspace_id},
+            "role": m.role
+        }
+    except Exception as e:
+        raise HTTPException(400, detail={"code": "GOOGLE_AUTH_FAILED", "message": f"Google authentication failed: {str(e)}"})
+
+
+class GoogleAuthBody(BaseModel):
+    code: str | None = None
+    credential: str | None = None
+    redirect_uri: str | None = None
+
+
+@app.post("/auth/google")
+def google_post_auth(body: GoogleAuthBody, db: Session = Depends(get_db)) -> dict[str, Any]:
+    if body.code:
+        return google_callback(body.code, body.redirect_uri, db)
+    if body.credential:
+        try:
+            res = httpx.get(f"https://oauth2.googleapis.com/tokeninfo?id_token={body.credential}", timeout=15)
+            res.raise_for_status()
+            info = res.json()
+            email = info.get("email")
+            if not email:
+                raise HTTPException(400, detail={"code": "NO_EMAIL", "message": "Google ID token has no email"})
+            u, m = get_or_create_google_user(email, db)
+            return {
+                "token": make_token(u.id, m.workspace_id),
+                "user": {"id": u.id, "email": u.email},
+                "workspace": {"id": m.workspace_id},
+                "role": m.role
+            }
+        except Exception as e:
+            raise HTTPException(400, detail={"code": "GOOGLE_AUTH_FAILED", "message": f"Google token verification failed: {str(e)}"})
+    raise HTTPException(400, detail={"code": "MISSING_PARAM", "message": "Provide code or credential"})
 
 
 @app.get("/auth/me")
@@ -162,6 +267,9 @@ async def upload(file: UploadFile = File(...), ctx: Ctx = Depends(require("edito
 
 class UrlIn(BaseModel):
     url: str
+    method: str | None = "GET"
+    headers: dict[str, str] | None = None
+    body: str | None = None
 
 
 class DbIn(BaseModel):
@@ -171,7 +279,15 @@ class DbIn(BaseModel):
 
 @app.post("/datasets/from-url", status_code=201)
 def from_url(body: UrlIn, ctx: Ctx = Depends(require("editor")), db: Session = Depends(get_db)) -> dict[str, Any]:
-    return svc.create_from_url(db, storage, ctx, body.url)
+    return svc.create_from_url(
+        db,
+        storage,
+        ctx,
+        body.url,
+        headers=body.headers,
+        method=body.method or "GET",
+        body=body.body,
+    )
 
 
 @app.post("/datasets/from-db", status_code=201)
@@ -186,13 +302,34 @@ def list_datasets(ctx: Ctx = Depends(require("viewer")), db: Session = Depends(g
     out = []
     for d in rows:
         v = svc.get_version(db, d)
-        out.append({"id": d.id, "name": d.name, "current_version": d.current_version, "score": v.score, "rows": v.rows, "created_at": d.created_at.isoformat()})
+        cols: list[str] = []
+        try:
+            score_data = json.loads(v.score_json) if v.score_json else {}
+            cols = list(score_data.get("per_column", {}).keys())
+        except Exception:
+            cols = []
+        out.append({
+            "id": d.id,
+            "name": d.name,
+            "current_version": d.current_version,
+            "score": v.score,
+            "rows": v.rows,
+            "columns": cols,
+            "created_at": d.created_at.isoformat(),
+            "updated_at": v.created_at.isoformat(),
+        })
     return out
 
 
 @app.get("/datasets/{ds_id}")
 def get_dataset(ds_id: str, ctx: Ctx = Depends(require("viewer")), db: Session = Depends(get_db)) -> dict[str, Any]:
     return svc.dataset_overview(db, storage, svc.get_ds(db, ctx.workspace_id, ds_id))
+
+
+@app.delete("/datasets/{ds_id}")
+def delete_dataset(ds_id: str, ctx: Ctx = Depends(require("editor")), db: Session = Depends(get_db)) -> dict[str, Any]:
+    ds = svc.get_ds(db, ctx.workspace_id, ds_id)
+    return svc.delete_dataset(db, storage, ctx, ds)
 
 
 @app.get("/datasets/{ds_id}/rows")
@@ -254,6 +391,21 @@ def risks(ds_id: str, version: int | None = None, ctx: Ctx = Depends(require("vi
     return {"risks": svc.get_risks(db, storage, svc.get_ds(db, ctx.workspace_id, ds_id), version)}
 
 
+@app.get("/datasets/{ds_id}/dedupe")
+def dedupe_clusters(ds_id: str, ctx: Ctx = Depends(require("viewer")), db: Session = Depends(get_db)) -> dict[str, Any]:
+    return svc.get_dedupe_clusters(db, storage, svc.get_ds(db, ctx.workspace_id, ds_id))
+
+
+@app.post("/datasets/{ds_id}/dedupe/{cluster_id}/resolve")
+def resolve_dedupe(ds_id: str, cluster_id: str, body: DedupeResolveIn, ctx: Ctx = Depends(require("editor")), db: Session = Depends(get_db)) -> dict[str, Any]:
+    return svc.resolve_dedupe_cluster(db, storage, ctx, svc.get_ds(db, ctx.workspace_id, ds_id), cluster_id, body.model_dump())
+
+
+@app.get("/datasets/{ds_id}/lineage")
+def lineage(ds_id: str, ctx: Ctx = Depends(require("viewer")), db: Session = Depends(get_db)) -> dict[str, Any]:
+    return svc.get_lineage(db, storage, svc.get_ds(db, ctx.workspace_id, ds_id))
+
+
 # ---------------------------------------------------------------- plans + jobs
 @app.post("/datasets/{ds_id}/plan", status_code=202)
 def create_plan(ds_id: str, bg: BackgroundTasks, ctx: Ctx = Depends(require("editor")), db: Session = Depends(get_db)) -> dict[str, Any]:
@@ -269,6 +421,19 @@ def get_job(job_id: str, ctx: Ctx = Depends(require("viewer")), db: Session = De
     if not j or j.workspace_id != ctx.workspace_id:
         raise HTTPException(404, detail={"code": "JOB_NOT_FOUND", "message": "Job not found"})
     return {"id": j.id, "kind": j.kind, "status": j.status, "progress": j.progress, **json.loads(j.result_json), "error": json.loads(j.error) if j.error else None}
+
+
+@app.get("/datasets/{ds_id}/plans")
+def list_dataset_plans(ds_id: str, ctx: Ctx = Depends(require("viewer")), db: Session = Depends(get_db)) -> list[dict[str, Any]]:
+    return svc.get_plans_for_dataset(db, ctx, ds_id)
+
+
+@app.get("/datasets/{ds_id}/plan")
+def get_latest_dataset_plan(ds_id: str, ctx: Ctx = Depends(require("viewer")), db: Session = Depends(get_db)) -> dict[str, Any]:
+    plans = svc.get_plans_for_dataset(db, ctx, ds_id)
+    if not plans:
+        raise HTTPException(404, detail={"code": "PLAN_NOT_FOUND", "message": "No cleaning plan generated yet for this dataset"})
+    return plans[0]
 
 
 @app.get("/plans/{plan_id}")

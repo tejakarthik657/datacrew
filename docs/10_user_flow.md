@@ -1,6 +1,4 @@
-# PART 10: USER FLOW
-
-## 10 · User Flow: Inputs and Outputs
+# 10 · User Flow: Inputs and Outputs
 
 > Inputs are **any data**: files, pasted URLs, databases, business apps (MCP), API/webhook, email-in. Outputs are clean data, risk findings, answers with proof, forecasts, advice, and a Data Passport.
 
@@ -213,7 +211,3 @@ Invite members, assign roles (Admin/Editor/Viewer), create folders/categories, s
 
 **Backup plan:** pre-cleaned outputs, offline/local mode, screen recording, backup copy of every demo file in case the network or scraping fails. Rehearse until the score reaches ~94 every time.
 
-
-
-
----

@@ -1,6 +1,4 @@
-# PART 8: FEATURES AND MODULES
-
-## 08 · Features and Modules
+# 08 · Features and Modules
 
 Legend: **A** = #11 core, must work first · **B** = trust must-have · **C** = crew build (final order: Supervisor → Cleaner → Analyst → Forecaster → Strategist) · **W** = wow-layer option · **D** = one of the 4 deep differentiators · **R** = roadmap slide only
 
@@ -201,7 +199,3 @@ M13 Agent Crew & Transparency
 | Synthetic Twin, Drift Sentinel, KPI Truth Layer, Data Time Machine, Agent Replay, Money Leak Finder (smart matching), Value-at-Stake | Plain-English Governance, Red Team Agent, Contract-to-Data | Forecast Accountability, Impact Tracker, Predict & Advise |
 
 **Demo ratio:** ~50% #11 core · ~30% trust and privacy · ~20% prediction.
-
-
-
----

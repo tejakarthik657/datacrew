@@ -36,8 +36,9 @@ def _strip_imports(src: str) -> str:
 
 def recipe_python(steps: list[dict], dataset_name: str) -> str:
     base = Path(common.__file__).parent
-    engine = "\n\n".join(_strip_imports((base / f).read_text()) for f in ("common.py", "clusters.py", "pii.py", "rules.py", "executors.py"))
-    head = f'''#!/usr/bin/env python3
+    engine = "\n\n".join(_strip_imports((base / f).read_text(encoding="utf-8")) for f in ("common.py", "clusters.py", "pii.py", "rules.py", "executors.py"))
+    head = f'''# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
 """DataCrew recipe for {dataset_name}. Re-run: python recipe.py input.parquet clean.csv
 Each approved step is listed below in order; the engine that executes them is embedded after the steps.
 Requires: pip install polars rapidfuzz networkx pyarrow

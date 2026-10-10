@@ -1,6 +1,4 @@
-# PART 3: TECHNICAL
-
-## 03 · Technical Document
+# 03 · Technical Document
 
 > Scope: **any data source** (files, URLs, databases, MCP business connectors, APIs) flows through one pipeline, coordinated by a LangGraph agent crew.
 
@@ -234,7 +232,3 @@ Must be **deterministic** (no LLM) so before/after is trustworthy and repeatable
 - LLM plan schema validation tests (reject malformed plans).
 - Security tests: cross-tenant access, SQL guard bypass, prompt injection fixtures.
 - Load test with a 1M-row file.
-
-
-
----

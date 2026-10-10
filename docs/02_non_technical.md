@@ -1,6 +1,4 @@
-# PART 2: NON TECHNICAL
-
-## 02 · Non-Technical Document
+# 02 · Non-Technical Document
 
 > DataCrew is an **autonomous AI data team**: connect *any* data (files, databases, business apps, web pages) and agents clean, watch, predict and advise. Spreadsheets are the entry point, not the limit.
 
@@ -151,7 +149,3 @@ Solo builders: follow the must-have list only, then add one wow feature.
 - [ ] Qdrant and Neo4j confirmed awake the day before
 - [ ] Dataset licenses credited on a slide
 - [ ] Roadmap slide ready for unbuilt features
-
-
-
----

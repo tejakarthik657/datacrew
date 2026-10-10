@@ -1,6 +1,4 @@
-# PART 4: FRONTEND
-
-## 04 · Frontend Document
+# 04 · Frontend Document
 
 > The UI covers the whole crew: connecting **any data source**, approving cleaning plans, auditing risk, asking questions, forecasting and advising, and proving privacy.
 
@@ -200,7 +198,3 @@ Implementation: MediaPipe Hands in a Web Worker, landmark smoothing, debounce, o
 - Tone: calm, trustworthy, a little playful ("the spreadsheet you're embarrassed by").
 - Color idea: deep blue/teal for trust; red/amber/green reserved for risk semantics.
 - Signature visual: the score gauge animating 42 → 94.
-
-
-
----

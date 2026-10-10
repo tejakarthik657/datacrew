@@ -1,6 +1,4 @@
-# PART 7: AI LLM
-
-## 07 · AI / LLM Document
+# 07 · AI / LLM Document
 
 > AI powers an **autonomous crew** over any data source: Intake, Cleaner, Auditor, Analyst, Forecaster, Strategist (main feature), Ops. Statistics for numbers, LLM for understanding and explaining.
 
@@ -188,7 +186,3 @@ Selects the next specialist from a closed set and decides when to interrupt for 
 ## 13. Synthetic Twin
 
 SDV generates a statistically similar dataset with no real individuals; validates with distribution and correlation comparison; used for sharing with vendors/interns and as safe input for cloud LLMs.
-
-
-
----

@@ -1,0 +1,583 @@
+Cust ID,Full Name,E-mail,ph no,City ,Signup Date,Amt (INR),Status,Salary,Aadhaar No,Notes
+C1000,Isaac Bakshi,isaac.bakshi91@example.com,916043321819,Warangle,07/05/2026,22120.21,Paid ,43867,940265423511,
+C1001,N/A,anvi.konda22@example.com,08594078161,Hanamkonda ,31/03/2025,"₹ 42,899",Overdue,-,9310 3413 1647,
+C1002,Liam Chaudry, liam.chaudry30@example.com ,85341-92832,Warangle,18.03.2026,26533,Paid,-,564139537672,
+TEST0,Test User,test@test.com,9999999999,Hyderabad,2025-01-01,1,Paid,0,111122223333,test entry
+C1003,gagan sami, gagan.sami27@example.com ,07884969653,NA,02-11-2024,"₹ 12,692",null,59673,1226 9166 9784,called twice
+c1004,Ayushman Chander,ayushman.chander97@example.com,+91 68451 46270,Bengaluru,27 Mar 2025,"₹ 32,660",Paid,63484,4893 2528 8095,
+C1005,Viraj Tiwari,viraj.tiwari12@example.com,65430-39117,Bengaluru,19.01.2026,"Rs.9,422.84",Overdue,-,2489-6383-4657,
+C1006,Avi Issac,-,917315098393,hyderabad ,18/04/2026,null,null,62539,8347-3829-9737,
+C1283,RUDRA SANDAL,rudra.sandal44@example.com,,Hanamkonda ,2025-01-06,12489.47,N/A,48082,768118071569,
+C1007,Oni Kannan,oni.kannan34@example.com,+91 61656 67010,Warangal,22-09-2025,"Rs.8,983.72",Overdue,6165667010,7262-4731-7810,called twice
+C1008,Arunima Ahuja, arunima.ahuja21@example.com ,+91 72677 36026,-,21.05.2026,6965.96,Pending,7267736026,8723 4309 8050,called twice
+C1009,Nathaniel Sami, nathaniel.sami84@example.com ,N/A,Hydrabad,2025-06-30,35188.73,Overdue,-,9399 0916 9985,
+C1010,Arunima Dugal, arunima.dugal36@example.com ,918346247510,N/A,25/03/2025,,Paid,70079,5427 8498 0841,gst invoice requested
+C1011,Gayathri Chaudry,gayathri.chaudry43@example.com,N/A,NA,20 Dec 2024,38210,Paid,6182449353,0164-0052-4278,
+C1012,Lajita Chatterjee,lajita.chatterjee81@example.com,+91 61128 05982,Warangal ,14/07/2025,"₹ 12,623",Overdue,62941,3158 6923 2260,gst invoice requested
+c1013,Hemangini Lalla,hemangini.lalla52@example.com,93421-60733,Bangalore,27 Jun 2026,"₹ 21,076",Pending,54801,330365414586,
+C1217,Hritik Bal,hritik.bal34example.com,7030937618,Hanamkonda,30 Sep 2026,"Rs.21,873.75",Overdue,57135,0050-5061-3878,gst invoice requested
+C1014,Caleb Sharaf,caleb.sharaf13@example.com,6429401965,Pune,2025-11-29,15287,Paid,NA,406088356159,
+C1015,Jeet Radhakrishnan, jeet.radhakrishnan94@example.com ,64846-56482,null,09 Dec 2024,27040,Pending ,NA,2994 6804 4369,
+ C1016 ,Chaaya Pathak,chaaya.pathak69@example.com,919738721489,Warangal,31.12.2025,"Rs.59,146.50",Overdue,52839,3791 7693 6763,gst invoice requested
+C1017,Rehaan Boase,rehaan.boase93@example.com,+91 61632 87083,Bengalore,2024-11-13,"Rs.15,720.50",NA,N/A,8895 7986 8727,
+C1018,Vedant Mann,vedant.mann43@example.com,+91 74873 47143,Hyderabad,09/12/2024,"Rs.16,274.10",Paid,-,3166 5876 0366,called twice
+C1313,BHAVNA SARMA,bhavna.sarma22@example.com,N/A,Pune,2026-08-24,16564,Overdue,N/A,7932 3023 4679,prefers whatsapp
+C1019,Viraj Chaudhuri, viraj.chaudhuri83@example.com ,9705466889,,2025-07-31,21752.90,,,6562 7298 0699,called twice
+C1020,Arunima Setty,arunima.setty20@example.com,+91 92720 46537,Hyd,14 Feb 2026,30480,Pending,56505,1708 0531 0033,called twice
+C1021,-,JANYA.GABA89@EXAMPLE.COM,7327193745,Hyderabad,23 Jul 2025,30590.65,Paid,44036,2419 0496 6319,follow up next week
+C1022,Isha Kadakia,isha.kadakia23@example.com,918919058651,NA,13-03-2026,NA,OVERDUE,68536,7262-8498-7769,
+C1023,AMARA BORA,amara.bora51@example.com,+91 71473 79965,hyderabad ,25.01.2026,30673.27,Paid,47841,454948083136,
+C1024,  Onveer Walla ,onveer.walla81@example.com,-,Hyderabad,2026-04-28,1489382.40,Paid,34272,557444313518,gst invoice requested
+ C1025 ,Yash Gade,yash.gade34example.com,null,,03/10/2025,22841.01,NA,60962,842710947775,gst invoice requested
+C1026,Ladli Madan,LADLI.MADAN16@EXAMPLE.COM,918711671902,NA,27-09-2026,23616.10,N/A,null,999386774964,called twice
+C1027,theodore nair,theodore.nair88@example.com,916334123281,Hydrabad,25.07.2026,"₹ 17,547",PAID ,NA,034471349361,follow up next week
+C1028,Daksh Karnik,DAKSH.KARNIK92@EXAMPLE.COM,74210-24994,warangal,09/07/2026,"Rs.21,274.74",Paid,39526,9065 9401 3990,
+C1029,Azad Mutti, azad.mutti83@example.com ,62787-42967,Bangalore,16/08/2025,"₹ 21,181",Paid,48799,1256 7468 0715,
+C1030,Amrita Bhatti,amrita.bhatti51@example.com,916680876038,Warangal,21.03.2025,"₹ 37,365",-,null,7710 9324 8086,prefers whatsapp
+C1031,DIVYA KALA,divya.kala38@example.com,671274846,BENGALURU ,02 Mar 2026,"₹ 14,173",Paid ,43629,9821 4658 4044,
+C1032,Xalak Randhawa,xalak.randhawa29@example.com,987558867,Bengaluru,27 Aug 2026,11761.04,NA,,6627-0289-5171,
+C1033,Tara Dhar,tara.dhar11@example.com,917621745961,N/A,02/05/2025,NA,Pending,null,7809 1343 1611,
+C1003,"sami, gagan", GAGAN.SAMI27@EXAMPLE.COM ,07884969653,NA,02-11-2024,"₹ 12,692",null,59673,1226 9166 9784,called twice
+C1034,  Liam Koshy ,null,918005045562,hyderabad ,10 May 2026,17794,Paid,8005045562,6937 9237 4740,
+C1470,Riya Sachdeva,riya.sachdeva40@example.com,,BENGALURU ,09/05/2025,12160,OVERDUE,,0392 0514 6074,
+C1035,Adya Sangha,adya.sangha46@example.com,7175946474, Hyderabad,06.09.2026,18541,paid,66666,9594 4064 0909,
+C1036,Mohini Pathak,mohini.pathak46@example.com,07953394210,N/A,28-03-2025,NA,Pending,60469,6232 8588 4247,
+C1314,NA,vedhika.dara91@example.com,917141614150,hanamkonda,31.10.2024,20907,Paid,7141614150,0901 3806 9847,
+C1037,  Lakshit Upadhyay , lakshit.upadhyay53@example.com ,67123-68516,hyderabad ,27/10/2025,,pending,57385,4965 1370 9859,follow up next week
+C1038,Gavin Batta, gavin.batta92example.com ,6746120047,NA,08.08.2026,"₹ 14,148",Paid,N/A,869261796405,follow up next week
+C1293,"KRISHNA, EKANTIKA", EKANTIKA.KRISHNA77@EXAMPLE.COM ,N/A,Hyderabad,29/10/2024,18967.97,Overdue,55108,993842530428,
+C1039,IMARAN DUA,N/A,919351585064,Hyderabad,08.02.2026,null,-,73240,9005-3293-1839,follow up next week
+C1040,Nathaniel Sami,nathaniel.sami39@example.com,,Hyderabad,15-01-2026,30511,Paid,55826,0240-2681-1775,prefers whatsapp
+C1041,Devansh Rajan,devansh.rajan67@example.com,79084-70076,warangal,2025-08-01,571694.00,N/A,36465,2499 8569 8478,
+C1042,Upadhriti Wadhwa,upadhriti.wadhwa22@example.com,916836736576,,22-04-2025,NA,Pending ,N/A,1111 6152 8098,
+C1043,  Advay Contractor ,advay.contractor95@example.com,06656049451,Hanamkonda,22-03-2026,N/A,Paid,6656049451,1585 1493 6899,called twice
+C1044,  Amara Oak ,AMARA.OAK87@EXAMPLE.COM,+91 80244 55022,hanamkonda,03 Jan 2025,,Pending ,71502,3667 5254 5991,called twice
+C1045,Chaaya Saran,chaaya.saran29@example.com,917901476797,Warangle,08 Feb 2025,"Rs.14,040.86",Overdue,55804,978403690034,follow up next week
+C1046,Sudiksha Aggarwal,sudiksha.aggarwal27@example.com,8451076226,,22/04/2026,"₹ 13,737",Pending,36235,6071-5969-6641,
+C1047,Adya Tella,ADYA.TELLA12@EXAMPLE.COM,08297516136,Hanamkonda ,23/05/2026,22711.24,Paid,null,5352 1818 8355,gst invoice requested
+C1048,Pranav Tripathi,pranav.tripathi40@example.com,06243292127,null,17.09.2026,N/A,Pending,30063,5527 1774 4905,prefers whatsapp
+C1049,hitesh misra,hitesh.misra49@example.com,+91 97005 41199,Warangal ,24.07.2026,NA,Pending,NA,7935 9782 0715,prefers whatsapp
+C1050,,yashica.issac74@example.com,07037788925,-,2025-02-04,"Rs.16,589.37",null,N/A,151864492519,gst invoice requested
+C1051,KASHVI EDWIN,kashvi.edwin54@example.com,08629148652,Pune,2025-12-01,58230.10,PENDING,35199,8168-5054-2357,follow up next week
+ C1052 ,Aadi Naik,aadi.naik38@example.com,72141-88805,N/A,23.10.2025,27618,PAID ,59762,927065379473,follow up next week
+C1053,Anirudh Choudhury,anirudh.choudhury49@example.com,919359774688,NA,2026-09-30,null,Pending,68725,0758 1814 1247,gst invoice requested
+c1054,  Janani Mohanty ,janani.mohanty65@example.com,6375060685, Hyderabad,12-04-2025,40568,Paid,72808,5220 4727 7901,called twice
+C1055,DALBIR KHOSLA,dalbir.khosla42@example.com,728986143,Hyd,2026-08-21,12590.98,Pending,42340,1179 8089 3246,called twice
+C1056,Farhan Chada,farhan.chada88@example.com,83962-18518,N/A,30/04/2026,2070714.00,Paid ,-,6540 5153 1952,called twice
+C1057,Vedika Biswas, vedika.biswas55@example.com ,8277221704,null,22.05.2026,17919.80,PAID ,49442,8740 3450 5415,
+C1058,Jeremiah Dave,jeremiah.dave61@example.com,919652775841,pune,05 Mar 2026,-,null,41865,1544 7962 7570,
+C1336,max tandon,max.tandon58@example.com,09843356708,warangal,06/11/2024,-,OVERDUE,69637,534749162475,
+C1059,Vaishnavi Gandhi,vaishnavi.gandhi88@example.com,null,NA,02-05-2025,28133,Paid,49023,3556 9092 7557,prefers whatsapp
+C1060,Pallavi Kakar,PALLAVI.KAKAR83@EXAMPLE.COM,785654310,Warangal,30/09/2026,,-,14049,4731 2172 7155,prefers whatsapp
+ C1061 ,Sai Muni,sai.muni80@example.com,8422583132,Hydrabad,2025-08-14,,-,8422583132,7829 1146 7866,prefers whatsapp
+C1183,Ria Brahmbhatt,ria.brahmbhatt70@example.com,916864168622,Warangal,16/04/2026,14982,Paid ,15310,8331 4659 1166,
+C1062,Kashvi Sarma,kashvi.sarma26@example.com,918177852892,PUNE ,07 Sep 2026,-,OVERDUE,,422535841438,
+C1063,Zansi Seth,zansi.seth26@example.com,89818-29922,NA,10 Jan 2025,null,NA,8981829922,9001 0943 9690,
+C1336,max tandon,max.tandon58@example.com,09843356708,warangal,06/11/2024,-,OVERDUE,69637,534749162475,
+C1064,Yug Kar,yug.kar90@example.com,918473647102,NA,27/11/2024,"Rs.21,692.59",Pending,48142,562588153714,
+C1065,Hamsini Bail,hamsini.bail41@example.com,7104696325,Bengaluru,2026-01-08,27193,Paid,,877470168733,
+C1066,Victor Kannan,victor.kannan16@example.com,+91 64797 48016,Hyderabad,14 Oct 2024,,PAID ,55733,8358 4168 7849,prefers whatsapp
+ C1025 ,Yash Gade,yash.gade34example.com,null,,03/10/2025,22841.01,NA,60962,842710947775,gst invoice requested
+ C1067 ,Ekavir Bhargava,ekavir.bhargava26example.com,665585239,Warangal ,04 Apr 2025,51079,Overdue,N/A,8259 5269 4958,
+C1068,Ekansh Balay,ekansh.balay82@example.com,87055-16940,-,07.08.2026,N/A,Overdue,8705516940,0972 8962 3091,follow up next week
+C1069,ganga bobal,ganga.bobal12@example.com,919562636897,Bengaluru,12-11-2025,1069856.40,Paid,null,3857 8652 7858,
+C1070,Wazir Mallick,wazir.mallick96@example.com,N/A,,12/03/2026,null,Paid,36737,4419 8665 2404,prefers whatsapp
+ C1071 ,  VEDIKA KALA ,vedika.kala54@example.com,94733-84842,-,2025-12-01,28126,paid,9473384842,8330 1657 1208,gst invoice requested
+C1072,Kevin Solanki, kevin.solanki62@example.com ,919734540193,,2025-04-15,32426,Overdue,64114,672400499154,
+c1073,-,urvashi.ray92@example.com,928743152,Hanamkonda,05 Mar 2025,"₹ 18,428",pending,null,3296 6851 6122,
+C1074,Girindra Chatterjee, girindra.chatterjee51@example.com ,917046374549,pune,04/03/2026,"Rs.25,814.00",paid,7046374549,8414-5933-2727,
+c1075,Raagini Pandya,NA,9833918785,null,03/09/2025,23220.67,Paid,9833918785,8398 2258 7139,
+ C1076 ,Nirja Sibal,nirja.sibal21@example.com,907286790,warangal,10-08-2026,N/A,Paid,N/A,0651 8017 0462,gst invoice requested
+ C1077 ,  chatura chaudhari , chatura.chaudhari92example.com ,N/A,HYDERABAD,2024-11-25,"₹ 41,228",Paid,36236,3004 7868 6337,
+C1078,Neha Nori,neha.nori29@example.com,83106-90331,Hyderabad,22 Jun 2026,25976.94,Pending,-,3028-4395-9953,
+C1079,  IKBAL KOTHARI ,ikbal.kothari28@example.com,null,Warangle,06-03-2025,N/A,Paid,57053,246287334270,
+c1080,ranveer yadav,NA,+91 76343 51751,Hanamkonda,22.09.2025,17326,Paid,,9837-3540-3317,follow up next week
+C1081,Logan Sami,logan.sami87@example.com,917638546785,,28/02/2025,8738,Paid,61575,7535 5609 3204,
+C1082,Arya Shere,,917353693785,HYDERABAD,2025-04-21,27302.51,Paid,54038,8728 0801 0062,follow up next week
+C1083,Faqid Savant, faqid.savant18@example.com ,7038750997,hanamkonda,28.06.2026,"Rs.20,545.35",Pending,44982,8408 6211 8233,
+C1084,Guneet Bedi,guneet.bedi55example.com,8615679334,PUNE ,27/02/2026,"Rs.47,837.30",overdue,52320,668700217659,prefers whatsapp
+C1085,Alexander Chander,alexander.chander77@example.com,916339740148,Hanamkonda,28.09.2026,"₹ 28,889",null,46693,6142 9396 8562,prefers whatsapp
+ C1086 ,Warjas Ganesan,,918016315999,Warangal,20 Aug 2025,871192.80,Overdue,44457,1943-1142-6265,
+C1087,Vedika Srivastava,vedika.srivastava23@example.com,,WARANGAL,2025-03-24,"Rs.24,106.30",Overdue,-,8199 5604 6618,follow up next week
+C1288,null,,NA,Hyderabad,27.03.2026,NA,N/A,31650,907676991507,
+C1088,Nandini Bhargava,nandini.bhargava83@example.com,,Hyderabad,2025-02-13,"₹ 17,206",Pending,33465,7993 7124 0659,
+C1089,Ladli Agate,ladli.agate52@example.com,956924593,Hyderabad,08 Aug 2025,N/A,PAID ,74085,9356 4651 9398,gst invoice requested
+c1054,  Janani Mohanty ,janani.mohanty65@example.com,6375060685, Hyderabad,12-04-2025,40568,Paid,72808,5220 4727 7901,called twice
+C1090,Alka Sha,alka.sha97@example.com,6737416724,Hydrabad,2025-05-18,"₹ 33,865",N/A,6737416724,7968 8680 5891,prefers whatsapp
+c1091,Pallavi Sur,pallavi.sur41@example.com,918290965610,,2025-02-06,"₹ 9,435",Paid ,68450,9375 6798 2507,prefers whatsapp
+C1092,Ranveer Minhas,ranveer.minhas47@example.com,09112545738,Warangal,27 Mar 2025,21317,pending,45205,1051 2382 8258,
+ C1093 ,Dalbir Bhat,dalbir.bhat69@example.com,762266093,Hanumakonda,12.05.2026,16470.96,Paid ,N/A,1918 2553 7147,
+C1094,Dipta Bhandari,dipta.bhandari86@example.com,09969155792,Bengaluru,16.11.2024,NA,NA,57545,1341 2528 6692,
+C1095,Vansha Thakkar,vansha.thakkar64@example.com,NA,Hyderabad,2026-09-23,21163,-,NA,0723 6887 6767,
+C1096,Nakul Bhandari,nakul.bhandari31@example.com,+91 69034 04384,-,2025-11-07,"Rs.19,380.84",NA,46402,1485 8078 3613,
+C1097,  Faris Grewal ,faris.grewal14@example.com,919451713395,Bengaluru,2024-12-01,N/A,Pending,9451713395,330958498254,
+C1098,Ekansh Keer,ekansh.keer83@example.com,08812604223,Hyd,18.08.2025,"₹ 18,352",-,-,4667 1168 4577,
+C1099,Jagdish Koshy,jagdish.koshy84@example.com,+91 61751 86363,Warangal ,01.01.2026,N/A,Overdue ,56149,750017012770,
+C1100,,,+91 74241 54152,Hyderabad,30.08.2025,31378,pending,N/A,1037 1293 8700,
+C1306,Ekiya D’Alia,N/A,6956252571,Warangal,01 Jun 2026,26954.70,PAID ,53760,030914363910,gst invoice requested
+c1101,Diya Lal,DIYA.LAL25EXAMPLE.COM,919271361115,null,2025-03-16,,Overdue ,-,2189 0927 5326,
+C1102,Dipta Khare,dipta.khare37@example.com,612196565, Hyderabad,03 May 2025,N/A,pending,50230,0438-9836-4037,
+C1103,Meghana Deep,meghana.deep24@example.com,+91 77918 05526,Bengaluru,14 Mar 2026,"₹ 23,937",Pending,42333,7109 1043 0068,
+C1104,Charita Shankar,charita.shankar90@example.com,09661889241,N/A,11-06-2025,-,Overdue,null,146303161799,called twice
+C1105,Elijah Andra, elijah.andra49@example.com ,7102027588,NA,2025-09-29,"₹ 27,027",Paid,NA,4105 6481 4917,
+C1106,Harish Borah,harish.borah75@example.com,918079252419,Pune,30.11.2025,"Rs.5,905.66",paid,55121,6353 6541 9518,called twice
+C1107,Tanay Toor,tanay.toor32@example.com,NA,null,02.05.2025,1891328.80,Pending,51206,7597 3832 0603,
+C1108,Kevin Palla,kevin.palla91example.com,916506413836,-,24-08-2026,26374.48,Overdue,33501,5719 1826 1990,
+ C1109 ,EKAPAD KONDA,ekapad.konda94@example.com,73445-65574,-,23-07-2025,"Rs.27,835.17",Paid,N/A,7756 1853 7474,prefers whatsapp
+C1110,Bhavani Dugar,bhavani.dugar21@example.com,7490352135,Warangal,14.09.2025,"₹ 13,405",Overdue,-,883171210032,follow up next week
+C1111,Chasmum Wadhwa,chasmum.wadhwa61@example.com,918199410137,bengaluru,15-10-2024,"Rs.28,904.56",OVERDUE,45014,0296-6706-6253,gst invoice requested
+C1112,Chandani Chawla,chandani.chawla45@example.com,8720999347,,2026-10-08,-,-,-,8380-6578-7598,
+C1113,Krish Lalla,krish.lalla59@example.com,08205930407,Warangal ,2025-01-06,"Rs.25,980.49",,-,0396 5223 9559,called twice
+C1114,Hredhaan Dugal,hredhaan.dugal55example.com,793784270,Hyderabad,08 May 2025,"Rs.23,862.85",Paid,43864,2525 0029 2185,prefers whatsapp
+C1115,Baghyawati Kade,baghyawati.kade57@example.com,99154-52267,Hanamkonda ,2026-04-19,"Rs.29,296.62",paid,66424,264422096902,
+C1116,Hemal Jani,N/A,,Hyderabad,26 Mar 2026,"₹ 34,441",,43104,3154 1006 7626,
+C1117,Aishani Tiwari,aishani.tiwari58@example.com,918861793271,Pune,23/10/2025,17926,paid,55100,6218 1599 7062,
+C1118,Zayan Behl,N/A,+91 61533 68844,N/A,2024-12-19,"₹ 13,176",Paid,47989,061497310324,prefers whatsapp
+C1119,Pallavi Malhotra,pallavi.malhotra70@example.com,916467741862,-,12 Nov 2024,19682,Paid,52228,4349 0211 5869,follow up next week
+C1120,Aarush Nath,aarush.nath80@example.com,06686879374, Hyderabad,30.05.2026,null,null,44657,1722 3320 6163,gst invoice requested
+C1121,Kalpit Lala, kalpit.lala86@example.com ,918511686854,Warangal,11-02-2025,32053,Overdue,NA,2299-9119-1485,
+C1122,Riya Sane,riya.sane43@example.com,9799702462,Hanamkonda,2025-12-18,27814,Paid ,-,0745 0544 4713,gst invoice requested
+c1123,  Aditya Choudhury ,aditya.choudhury48@example.com,954691373,PUNE ,2024-12-06,-,NA,39331,4862 8902 3303,called twice
+ C1124 ,Manthan Banik,manthan.banik68@example.com,916534578610,-,2026-07-19,21685,OVERDUE,NA,5241 4060 2933,follow up next week
+C1300,Upma Pall,upma.pall78@example.com,+91 97163 23467,N/A,22/08/2025,23957.87,Paid,-,3027 1693 8597,
+C1125,Kala Divan,kala.divan96@example.com,746800722,BENGALURU ,07-09-2025,12778.60,N/A,54416,4665 7437 4896,prefers whatsapp
+C1126,Joshua Barman, joshua.barman10@example.com ,8899441715,null,05 Jun 2025,N/A,paid,N/A,4328 3096 5207,
+C1127,Janya Baral,JANYA.BARAL43@EXAMPLE.COM,966099353,Hanumakonda,07 Sep 2026,16063.15,NA,27416,428241724825,prefers whatsapp
+C1128,Ishita Kade,ishita.kade38@example.com,83465-54947,-,2026-03-22,18578.47,Paid,56333,3816-8460-2235,
+C1129,Zaid Chauhan,zaid.chauhan82@example.com,9252175250,NA,10-07-2025,10592.34,,null,2712 9666 6760,called twice
+C1130,Niharika Dubey,niharika.dubey78example.com,750583003,null,28/09/2026,N/A,PAID ,,044789856257,
+C1131,Warjas Gaba,warjas.gaba34@example.com,7603323098,HYDERABAD,2026-06-22,656165.20,Paid,7603323098,4890-9010-0167,
+C1132,Peter Sachar,,8723046184,Hanumakonda,28 Oct 2024,"Rs.28,756.80",,8723046184,411739348356,
+c1133,  praneel natarajan , praneel.natarajan30@example.com ,,,08-06-2026,48141.98,,6873753001,1811 4374 4701,gst invoice requested
+C1134,Nisha Kothari,NISHA.KOTHARI15EXAMPLE.COM,08556110022,NA,04 May 2025,N/A,Paid,48754,674676212021,
+ C1135 ,Nathaniel Chokshi,nathaniel.chokshi85example.com,+91 99729 65902,Warangal,2025-08-02,812042.80,Overdue,56926,5089 9358 8916,follow up next week
+C1136,Balvan Singhal,balvan.singhal71example.com,918628900287,Bengaluru,30 Mar 2025,-,OVERDUE,60095,6631 7797 1775,prefers whatsapp
+C1137,Ryan Sharma,null,6166088019,null,07 Jul 2025,,Paid ,54650,7550 3758 9975,
+c1138,Dalaja Kari,dalaja.kari24@example.com,630554885,null,2025-03-31,null,Pending,50985,933163735160,prefers whatsapp
+C1139,Arjun Hans,null,9982708086,Bengaluru,2025-08-14,21444,Overdue,46383,2922 1699 5866,follow up next week
+C1140,Falguni Mallick,falguni.mallick45@example.com,95472-26984,N/A,11/08/2026,,Pending,null,3945 2288 5158,
+C1141,Ekaraj Mallick,ekaraj.mallick84@example.com,919846081062,null,08.07.2025,"Rs.13,808.43",pending,49225,4420-4380-5719,follow up next week
+C1142,Yashodhara Ratta,null,+91 93840 66658,Hyd,20-03-2026,"₹ 27,891",overdue,,3598 9334 7212,gst invoice requested
+ C1143 ,Garima Bala,GARIMA.BALA75@EXAMPLE.COM,6606484229,Bengaluru,06/01/2025,"₹ 50,053",PENDING,6606484229,9479 8515 8328,prefers whatsapp
+C1144,Advika Gokhale,-,,Hydrabad,02/01/2026,26209.54,Paid,52233,1573 9930 5616,
+C1145,  Alka Barad ,ALKA.BARAD79@EXAMPLE.COM,80858-87704,Bengaluru,2025-01-01,13516.64,overdue,34630,2880 1336 1386,prefers whatsapp
+C1146,Radha Pai,radha.pai97@example.com,07075011024,Hanamkonda,27.04.2026,23740.24,Paid,7075011024,6506 1809 1901,
+C1147,Dipta Sarin,dipta.sarin74@example.com,+91 64491 47660,WARANGAL,22-01-2026,NA,PAID ,62950,8424-5088-2100,
+ C1148 ,Yasti D’Alia,yasti.d’alia78example.com,6435368222,Hyderabad,04.08.2025,"₹ 30,356",Paid,59204,878141413975,
+ C1149 ,Ranveer Kumar,ranveer.kumar26@example.com,NA,Hanumakonda,12-11-2024,"Rs.15,355.62",Paid,NA,5562 0533 6452,
+C1150,Rajata Agarwal, rajata.agarwal71@example.com ,9754781291,Bengaluru,16.11.2025,null,Paid,49921,1108 0996 9308,
+C1151,Ronith Patla, ronith.patla79@example.com ,92563-94278,Warangal ,08 Sep 2025,null,N/A,N/A,9282 7229 9275,called twice
+C1152,null,NA,931453038,NA,05 Feb 2026,"₹ 25,385",Pending,NA,6591 8463 8655,
+c1153,Dipta Dash,dipta.dash71@example.com,06827231843,Hyderabad,21-04-2026,11331.63,Overdue,47022,365177739260,follow up next week
+C1475,Megha Bhakta,megha.bhakta51@example.com,7892187851,null,14 Oct 2024,,null,-,8374 9079 7796,prefers whatsapp
+C1154,Charita Tripathi,charita.tripathi15example.com,917992280920,NA,2025-06-06,"₹ 43,248",-,68780,4137 9772 3692,gst invoice requested
+C1155,Nilima Narain,NILIMA.NARAIN89@EXAMPLE.COM,8257991366,Hydrabad,17 Aug 2025,"₹ 41,730",Paid ,48716,990881172980,
+TEST3,Test User,test@test.com,9999999999,Hyderabad,2025-01-01,1,Paid,0,111122223333,test entry
+c1156,Chakrika Datta,chakrika.datta76@example.com,9508637659,NA,2025-03-07,,paid,54620,1498 6430 0981,called twice
+C1157,Osha Raghavan,osha.raghavan58@example.com,756512694,bengaluru,19-03-2026,20069.92,Paid ,25791,6368 8725 8874,
+C1158,Owen Mitra, owen.mitra83@example.com ,862137213,Warangle,20.08.2025,"Rs.16,688.59",PENDING,68497,0127 9611 4351,called twice
+C1159,Aadi Modi,aadi.modi59@example.com,+91 99849 02770,,19/05/2025,40849.01,Paid,78264,098839205302,prefers whatsapp
+C1160,Shivansh Sani,shivansh.sani45@example.com,9566938011,Hanamkonda,11.06.2026,32727.36,Paid,39317,393769042681,prefers whatsapp
+C1161,  Ekanta Shroff ,,851848947,Hanamkonda,2025-09-17,52017,overdue,70053,779071416335,
+C1333,William Rajagopal,william.rajagopal94@example.com,9225605313,-,2025-04-08,"₹ 13,515",paid,52551,0237 4167 8725,
+C1162,Riya Kala,riya.kala55@example.com,64341-65182,Warangal,2025-11-10,7556.32,PAID ,-,7333 4333 3952,prefers whatsapp
+C1163,Urvashi Gara,,67908-07595,Warangal ,2026-03-04,38526,Overdue,,4639-2086-7808,
+C1164,Frado Mander,FRADO.MANDER60@EXAMPLE.COM,NA,Hanamkonda,13 Nov 2025,"Rs.15,552.55",Paid,N/A,7955 2763 6556,
+C1165,NA,NA,7929314386,Bengalore,2026-07-06,31239,Paid,7929314386,672885744890,
+c1166,Wahab Mukherjee,wahab.mukherjee22@example.com,70347-17545,WARANGAL,2025-04-01,27822.85,Paid,41258,9399-8245-5877,prefers whatsapp
+C1450,DEVIKA PANDEY,devika.pandey91example.com,NA,Warangal,28 Dec 2024,,Overdue ,46144,2925 8796 4347,
+ C1167 ,Rushil Din,rushil.din58@example.com,918722569961,N/A,27-10-2024,18474.70,Pending ,66574,4964 7598 7622,called twice
+C1168,Chakradhar Konda,chakradhar.konda26@example.com,7413261117,Hanamkonda,13-10-2025,960919.20,,null,2164-3347-2282,called twice
+c1482,Irya Bora,irya.bora72@example.com,671587964,Bengaluru,13.08.2025,"₹ 54,834",Pending ,null,149982508004,
+C1230,Veda Shroff,veda.shroff83@example.com,+91 77452 38055,null,12/09/2025,-,Paid ,NA,7275 2088 5474,gst invoice requested
+C1169,Elijah Shah,elijah.shah14@example.com,null,Hyderabad,26 Aug 2025,"Rs.27,015.95",Pending,-,968845783174,
+C1034,  Liam Koshy ,null,918005045562,hyderabad ,10 May 2026,17794,Paid,8005045562,6937 9237 4740,
+C1170,Robert Rajagopalan,ROBERT.RAJAGOPALAN62@EXAMPLE.COM,824008254,,27 Oct 2025,"Rs.29,298.99",Pending,45729,4930 8536 8663,gst invoice requested
+C1171,MUGDHA KOHLI,mugdha.kohli92@example.com,NA, Hyderabad,31.01.2025,58740,paid,71463,1224 1797 4973,
+C1172,Abdul Chhabra,abdul.chhabra12@example.com,07080214427,Pune ,2026-06-05,17277,-,7080214427,7570 5120 4618,
+C1173,Pavani Kanda,pavani.kanda33example.com,74601-36730,HYDERABAD,22.02.2025,NA,-,60688,3764 5208 8147,
+C1174,Zarna Shetty,zarna.shetty35@example.com,80313-65024,Hanumakonda,17 Nov 2024,,Overdue,null,9251-3271-9500,
+C1175,Zaid Dara,-,7812735857,Pune,28 Sep 2025,"Rs.12,163.00",Pending ,,4077 8487 3928,
+C1176,Kiaan Shetty,kiaan.shetty51@example.com,9498218274,Bangalore,11.03.2026,"Rs.23,361.28",Pending ,32494,0959 3518 6387,gst invoice requested
+C1252,Reyansh Mutti,null,06837606441,-,09 Jan 2025,29202.95,Overdue,58896,560417765612,
+TEST6,Test User,test@test.com,9999999999,Hyderabad,2025-01-01,1,Paid,0,111122223333,test entry
+C1177,  Edhitha Savant ,edhitha.savant88@example.com,+91 85651 18102,Hyd,27/01/2026,"Rs.26,343.67",-,null,994053910371,
+C1178,Yamini Sandhu,YAMINI.SANDHU91@EXAMPLE.COM,658650948,Pune ,16.07.2026,NA,-,53409,3839 2886 1957,
+c1179,Sanaya Dutt,sanaya.dutt23@example.com,+91 72868 52897,Bengaluru,09 May 2026,"Rs.43,940.82",Overdue,63755,566593983684,
+C1180,Vaishnavi Sengupta,N/A,960049082,Hyderabad,28-04-2025,11785,N/A,63815,8899 2107 5224,
+C1181,Yug Malhotra,YUG.MALHOTRA84@EXAMPLE.COM,null,,26/05/2026,28951.80,Overdue ,27821,9194 0961 0556,
+C1466,"Chad, Ekta", EKTA.CHAD69@EXAMPLE.COM ,824014843,Hanamkonda,26 Aug 2026,12901,Paid,8240148439,3626 6933 5134,gst invoice requested
+C1182,VEDHIKA KHARE,VEDHIKA.KHARE25@EXAMPLE.COM,07906048058,hanamkonda,10/05/2025,14152.93,paid,,799813646225,prefers whatsapp
+C1183,Ria Brahmbhatt,ria.brahmbhatt70@example.com,916864168622,Warangal,16/04/2026,14982,Paid ,15310,8331 4659 1166,
+C1184,Bhavika Keer,BHAVIKA.KEER54@EXAMPLE.COM,7559042597,NA,08/05/2025,N/A,Paid,7559042597,1103 9240 5147,
+C1185,Gautami Nagarajan,gautami.nagarajan12@example.com,838338848,NA,02 Sep 2026,27129.25,Overdue,45580,8042 0439 4070,prefers whatsapp
+C1186,Faris Devi,faris.devi59@example.com,918510463681,Bengaluru,03/02/2025,21388.55,paid,-,8003 8457 6205,
+ C1187 ,Vihaan Rajagopal, vihaan.rajagopal55@example.com ,+91 83840 46084,Hydrabad,01.04.2026,"₹ 18,013",paid,8384046084,6893 6392 6495,
+C1188,Michael Kala, michael.kala79@example.com ,73298-32482,Warangal,2024-11-27,,overdue,7329832482,252056647423,prefers whatsapp
+C1308,Aarav Shere,aarav.shere97example.com,796852701,Hyderabad,25/08/2025,null,PAID ,53494,9833 8167 4233,
+C1279,UPMA MANNE,N/A,919189569070,,03.11.2024,"₹ 22,808",,9189569070,8242-2412-4620,
+C1189,oeshi reddy, oeshi.reddy26@example.com ,07099499939,Hyd,2025-06-23,"Rs.27,605.23",Pending,48066,7289 7526 7722,follow up next week
+C1293,"KRISHNA, EKANTIKA", EKANTIKA.KRISHNA77@EXAMPLE.COM ,N/A,Hyderabad,29/10/2024,18967.97,Overdue,55108,993842530428,
+ C1462 ,Azaan Chand,azaan.chand61@example.com,891334245,N/A,11 May 2026,null,Overdue,52396,652906032020,follow up next week
+C1063,Zansi Seth,zansi.seth26@example.com,89818-29922,NA,10 Jan 2025,null,NA,8981829922,9001 0943 9690,
+c1190,UNNATI SAGAR,unnati.sagar38@example.com,660463331,null,26-11-2024,21774.60,,52247,0965 6999 8808,prefers whatsapp
+C1191,Samuel Salvi,samuel.salvi67@example.com,9038860868,PUNE ,07 Aug 2025,14711,Pending,9038860868,4726 4908 2771,prefers whatsapp
+C1307,Netra Varkey,null,09432630397,PUNE ,11/07/2026,-,pending,67872,0864 0355 3380,follow up next week
+C1438,Siya Kari,siya.kari69@example.com,+91 93826 46091,Hanamkonda,26/08/2025,23678,paid,63467,4577-0299-2959,
+C1192,Anmol Rai,anmol.rai33example.com,917665702793,bengaluru,14.10.2025,N/A,Pending,50278,1117 5186 8926,
+C1193,Abeer Pandey,abeer.pandey15example.com,07592222064,Hyderabad,28/05/2025,32032.47,NA,45027,1230 9407 7780,
+C1194,Madhavi Saini,madhavi.saini40@example.com,7977671990,Hyderabad,01-12-2025,,Paid,53731,205020994510,prefers whatsapp
+C1195,Thomas Sura,thomas.sura63@example.com,07249998279,N/A,28.03.2025,"Rs.5,797.49",Overdue,48616,8147 2145 8683,follow up next week
+C1196,Anjali Sarin,anjali.sarin88example.com,6198179469,-,21 Oct 2025,"Rs.14,232.59",Pending,66857,787729343010,
+C1197,Ayush Ramachandran,ayush.ramachandran90@example.com,639660558,Hyderabad,27.06.2025,"Rs.15,976.69",pending,44676,448850155699,called twice
+C1198,nidhi gandhi,nidhi.gandhi32@example.com,917557702727,NA,23 Jul 2026,N/A,-,7557702727,8495 8803 9551,gst invoice requested
+C1199,Unni Datta,unni.datta45@example.com,916568299629,Hydrabad,2026-02-04,"Rs.30,185.23",Overdue ,62175,046173574384,gst invoice requested
+c1200,Avi Ramesh,avi.ramesh24example.com,80317-80782,N/A,2026-01-11,955644.00,Paid ,67448,8230 7681 0409,prefers whatsapp
+C1201,Avi Chacko,avi.chacko52@example.com,901840943,,20-02-2026,15487,null,35917,1422 4109 8813,
+C1202,Priya Deshmukh, priya.deshmukh80@example.com ,+91 84249 32149,Bengaluru,13 Aug 2026,"₹ 22,765",Paid,55170,601662997954,
+C1203,  Triya Gopal ,triya.gopal35example.com,+91 67921 71747,WARANGAL,17.11.2024,33247,null,null,5577 0171 5772,
+c1204,Abha Raghavan,abha.raghavan54@example.com,78161-58148,N/A,2025-06-20,"Rs.24,144.02",Overdue,47591,3966 9583 2197,prefers whatsapp
+C1205,Siddharth Sha,siddharth.sha85@example.com,919581724619,Hyderabad,19 Jun 2025,"₹ 63,599",Paid,,7013 2902 2784,
+C1206,geetika raghavan,geetika.raghavan88@example.com,NA,Hanamkonda,13.05.2025,,null,,8008-5140-3696,
+C1207,Oviya Krishnan,oviya.krishnan58example.com,96683-27238,Warangal,19.07.2026,25633.42,NA,48555,7621-2679-6927,
+TEST5,Test User,test@test.com,9999999999,Hyderabad,2025-01-01,1,Paid,0,111122223333,test entry
+C1208,Finn Singhal,finn.singhal80@example.com,965326909,Bengaluru,24 Oct 2024,null,,,0975 1971 2847,prefers whatsapp
+C1209,Charles Palla, charles.palla76@example.com ,6371894905,null,01 Apr 2025,11029,Overdue,-,9565 4420 9494,called twice
+C1210,Ekapad Baria,ekapad.baria90@example.com,NA,Hyderabad,17-05-2026,22676.42,Paid,,4019 2927 5243,
+C1211,Azaan Kota,azaan.kota33@example.com,65129-27663,Hanamkonda,2025-03-12,1629627.00,Paid,null,5041 0276 7478,follow up next week
+C1212,Anmol Dua,anmol.dua58example.com,+91 97428 60476,pune,12/04/2025,"₹ 11,585",Overdue ,9742860476,1496 7393 8525,called twice
+C1329,Manthan Sekhon,MANTHAN.SEKHON45@EXAMPLE.COM,983414651,N/A,2025-12-01,17652,Paid,46434,148706827788,prefers whatsapp
+C1213,Jonathan Solanki,jonathan.solanki96@example.com,610618175,-,12 Mar 2026,"₹ 24,288",PAID ,60144,3911-1926-9212,
+C1214,Ishwar Kamdar,ishwar.kamdar47@example.com,91746-54214,NA,05-10-2025,"Rs.19,233.74",Paid,61046,7173 9627 1286,follow up next week
+C1215,Aahana Pillay,aahana.pillay88@example.com,916741011947,Hyderabad,16-02-2025,"₹ 21,914",Paid ,49409,0642 5690 8776,
+c1216,Ishwar Gade,ISHWAR.GADE18@EXAMPLE.COM,7067198554,Warangal ,07-06-2025,"Rs.11,169.88",overdue,32187,328063461571,
+C1217,Hritik Bal,hritik.bal34example.com,7030937618,Hanamkonda,30 Sep 2026,"Rs.21,873.75",Overdue,57135,0050-5061-3878,gst invoice requested
+C1218,Devika Prashad,devika.prashad84@example.com,71027-07903,NA,13/08/2025,"Rs.15,606.26",N/A,N/A,7929 1117 9931,follow up next week
+C1219,Rushil Borra,NA,918651982530,hanamkonda,2026-01-11,19064,PAID ,71952,6258 2739 0219,
+C1237,Simon Pant,simon.pant12@example.com,954527985,NA,20.06.2026,NA,Paid,56172,2161 1076 0310,called twice
+C1220,Xavier Chaudry,xavier.chaudry30@example.com,6710021946,Pune ,03/04/2026,NA,Paid ,null,7632-9092-7914,
+C1219,Rushil Borra,NA,918651982530,hanamkonda,2026-01-11,19064,PAID ,71952,6258 2739 0219,
+ C1221 ,  Charvi Dara ,CHARVI.DARA63@EXAMPLE.COM,6833181958,,19 Jun 2026,20456.28,Overdue,59467,127722005436,
+TEST4,Test User,test@test.com,9999999999,Hyderabad,2025-01-01,1,Paid,0,111122223333,test entry
+ C1222 ,Benjamin Palan,benjamin.palan52@example.com,9010822078,Hyderabad,26.11.2025,N/A,PAID ,47274,1531 3636 3179,
+C1223,priya prabhakar,PRIYA.PRABHAKAR16@EXAMPLE.COM,923972652,NA,01-12-2024,"Rs.16,925.95",Pending,null,0421-7762-5349,gst invoice requested
+C1224,YASHAWINI OM,yashawini.om91@example.com,N/A,Warangal ,18.10.2024,NA,Paid,52175,3929 0600 7806,
+ C1225 ,Osha Suri,osha.suri71example.com,677318063,-,2024-12-29,13590.85,paid,6773180632,7726 2570 1658,called twice
+C1226,Rachita Pathak,rachita.pathak47@example.com,949893195,warangal,14.02.2026,"Rs.36,230.71",N/A,48615,528183253817,follow up next week
+C1227,Tripti Dua,tripti.dua38@example.com,85486-40155,Warangal ,12.09.2025,22172,-,null,8479-5137-1162,
+C1228,  Patrick Vig , patrick.vig19@example.com ,06241272380, Hyderabad,26-02-2026,N/A,Paid,44579,0431 0385 6955,
+C1229,Anamika Yohannan,anamika.yohannan85@example.com,-,WARANGAL,02/06/2026,7641,-,-,2928 4222 2310,
+C1230,Veda Shroff,veda.shroff83@example.com,+91 77452 38055,null,12/09/2025,-,Paid ,NA,7275 2088 5474,gst invoice requested
+C1231,AMRITA NAIDU,amrita.naidu82@example.com,951702814,-,01.08.2026,35418.21,Overdue,-,3983 4301 8718,
+C1232,Yatan Chadha,yatan.chadha34@example.com,null,NA,13 May 2025,"Rs.19,201.86",paid,55617,7674 2662 9912,follow up next week
+C1233,Shravya Kohli,shravya.kohli48@example.com,,,14 May 2026,25557.97,-,-,264870494787,follow up next week
+C1234,N/A, ucchal.raghavan13@example.com ,06244714627,NA,27-06-2025,N/A,Pending,20156,959796471589,called twice
+C1235,Ayush Talwar,ayush.talwar43example.com,7902572520,-,31.07.2026,"₹ 10,863",null,53391,4481 8321 9285,
+C1089,Ladli Agate,ladli.agate52@example.com,956924593,Hyderabad,08 Aug 2025,N/A,PAID ,74085,9356 4651 9398,gst invoice requested
+C1236,Ekta Gopal,ekta.gopal97@example.com,+91 84518 95202,Warangle,22.10.2025,null,Paid ,57563,3389 8881 6711,gst invoice requested
+C1237,Simon Pant,simon.pant12@example.com,954527985,NA,20.06.2026,NA,Paid,56172,2161 1076 0310,called twice
+C1238,Aarna Oak,aarna.oak70@example.com,06401401193,Hanamkonda,14/05/2025,NA,PAID ,64125,495528938911,called twice
+C1239,Anya Anne,anya.anne77@example.com,917342801387,Warangle,14.11.2025,"₹ 24,913",Overdue,null,5663 8361 5171,gst invoice requested
+C1240,Rayaan Chada,rayaan.chada73@example.com,918480157164,Warangal ,14 Apr 2025,"₹ 39,442",Overdue,22967,6317 5207 1678,prefers whatsapp
+C1301,"Nagi, Gauri", GAURI.NAGI69@EXAMPLE.COM ,null,hyderabad ,13/03/2026,"Rs.15,288.95",null,38988,9160 3248 4137,
+C1189,"reddy, oeshi", OESHI.REDDY26@EXAMPLE.COM ,07099499939,Hyd,2025-06-23,"Rs.27,605.23",Pending,48066,7289 7526 7722,follow up next week
+C1241,Niharika Suresh,niharika.suresh25@example.com,766912153,-,14.12.2025,34400.66,Paid,-,6749 9465 7967,
+C1242,Wridesh Soni,wridesh.soni28@example.com,-,Pune,2026-02-22,36610.81,NA,59044,524991187734,
+C1243,VRITTI SEM,vritti.sem72@example.com,N/A,NA,16.06.2026,"₹ 35,907",,66751,4276 2467 1978,
+C1244,Anay Chander,N/A,-,Pune,2025-05-25,18448,Paid,59942,9056 1655 6503,follow up next week
+C1245,N/A,timothy.ravel40@example.com,918911415208,Hyderabad,2026-03-30,,Paid,,6407 9056 9659,prefers whatsapp
+C1246,Yagnesh Mohan,yagnesh.mohan72example.com,06357852945,BENGALURU ,08.03.2026,"Rs.11,712.84",N/A,72818,3440-4963-9191,
+ C1247 ,Jyoti Solanki,JYOTI.SOLANKI44@EXAMPLE.COM,69876-35148,Bengalore,12/12/2025,19681.24,PAID ,null,649878208297,follow up next week
+C1248,Hemangini Sandal,hemangini.sandal94@example.com,948969083,null,11.05.2026,N/A,Pending,31881,1364 4249 3631,gst invoice requested
+C1249,Ganga Pandey,,63477-86603,Hyderabad,07.04.2026,"Rs.15,086.19",,,8207-0015-9416,
+C1250,Sudiksha Madan,sudiksha.madan95@example.com,66231-98189,Bengalore,04/06/2025,"Rs.34,381.74",Overdue,-,559636321234,
+C1251,NA,ZAYAN.KASHYAP62@EXAMPLE.COM,918907851586,NA,2025-01-10,N/A,overdue,8907851586,7540-9003-4864,
+C1252,Reyansh Mutti,null,06837606441,-,09 Jan 2025,29202.95,Overdue,58896,560417765612,
+C1253,Qasim Handa,NA,06569857002,Hanamkonda,26/03/2025,28568,NA,62901,459112382965,
+C1254,Veda Malhotra,veda.malhotra71@example.com,74295-43165,Hyderabad,24/04/2026,"₹ 32,293",Overdue,67338,3173-4206-9694,gst invoice requested
+C1255,Barkha Chaudhry,barkha.chaudhry21@example.com,829108677,Hyderabad,17-07-2026,30629.65,Pending,8291086771,6263 9343 6262,called twice
+C1378,"Narain, Chakrika", CHAKRIKA.NARAIN24@EXAMPLE.COM ,918802632570,null,12 May 2026,"₹ 14,407",Paid ,,4878 2455 6964,
+C1256,Rishi Minhas,RISHI.MINHAS47@EXAMPLE.COM,83973-59710,null,2025-04-03,"Rs.19,922.57",null,48171,800537599004,
+C1176,Kiaan Shetty,kiaan.shetty51@example.com,9498218274,Bangalore,11.03.2026,"Rs.23,361.28",Pending ,32494,0959 3518 6387,gst invoice requested
+C1257,Jalsa Gola,jalsa.gola48@example.com,09528092428,NA,31 May 2025,17441.22,Paid,49320,6241 5027 4564,
+c1258,Akshay Walla,null,885625728,-,15/01/2025,null,,N/A,6170 7587 7712,prefers whatsapp
+c1259,Anusha Bath, anusha.bath54example.com ,6342284993,-,20.11.2024,N/A,Paid,70737,6137 1504 1659,prefers whatsapp
+C1260,Brinda Date,,07017774905,Bengalore,16 Feb 2026,"₹ 13,313",Pending,67018,3045 0189 6164,gst invoice requested
+C1227,Tripti Dua,tripti.dua38@example.com,85486-40155,Warangal ,12.09.2025,22172,-,null,8479-5137-1162,
+c1261,Vritti Chauhan,vritti.chauhan40@example.com,91032-66421,N/A,17 Aug 2026,53109.30,Overdue ,47882,9251 5837 7674,
+C1262,Advik Mane,advik.mane21example.com,959266108,BENGALURU ,08-10-2025,32420.01,Pending,65318,814761742243,
+C1142,Yashodhara Ratta,null,+91 93840 66658,Hyd,20-03-2026,"₹ 27,891",overdue,,3598 9334 7212,gst invoice requested
+c1166,Wahab Mukherjee,wahab.mukherjee22@example.com,70347-17545,WARANGAL,2025-04-01,27822.85,Paid,41258,9399-8245-5877,prefers whatsapp
+C1263,varenya sastry,varenya.sastry47@example.com,06810818661,-,30.06.2025,54647,Paid ,45801,8017 2260 1645,
+C1264,Qarin Behl,qarin.behl95@example.com,9945232194,Bangalore,23-04-2025,-,Paid,57474,7769 7499 5641,gst invoice requested
+C1265,Vanya Comar,vanya.comar27@example.com,916310303723,Warangle,09.07.2026,35011.62,-,56930,7276 0122 7770,
+C1266,Dhruv Rattan,dhruv.rattan84@example.com,07349605016,-,2025-10-25,null,Paid,N/A,7678 9973 0806,
+C1267,Ethan Bera, ethan.bera80@example.com ,646717957,Hyderabad,2025-02-03,NA,-,6467179576,3839 5972 4665,
+C1268,Manthan Modi,MANTHAN.MODI30@EXAMPLE.COM,7417223297,Hyderabad,14/12/2024,-,null,76595,522801561931,follow up next week
+C1269,YUVRAJ DANI,yuvraj.dani72@example.com,08550842891,pune,16/12/2025,,-,54814,1199 1808 1213,
+C1270,omaja kara,omaja.kara30example.com,null,null,2026-06-03,,PENDING,,5482-1456-5328,
+C1271,LAJITA SESHADRI,LAJITA.SESHADRI39@EXAMPLE.COM,N/A,Pune,14/09/2026,"Rs.31,197.29",,73831,5562 6060 2908,
+C1272,Saanvi Mishra,SAANVI.MISHRA63@EXAMPLE.COM,,Pune,08/08/2026,"₹ 20,905",Paid,56160,5634 1085 6288,
+ C1273 ,Pushti Mody,PUSHTI.MODY37@EXAMPLE.COM,916884852008,Hanamkonda,24.12.2025,9098.20,Pending,35067,8105-4851-0174,called twice
+C1274,Darpan Chaudhary,darpan.chaudhary68@example.com,918399893544,Pune,24 May 2026,38923,null,37891,1589-3571-2661,prefers whatsapp
+C1275,Sarthak Kakar,NA,9273715869,Hanumakonda,02/05/2025,"₹ 26,345",Overdue,65644,7622 8277 2881,follow up next week
+C1002,Liam Chaudry, liam.chaudry30@example.com ,85341-92832,Warangle,18.03.2026,26533,Paid,-,564139537672,
+C1276,Finn Dugar,finn.dugar68@example.com,9028519611,,13-04-2025,N/A,null,44944,0229-6044-3270,prefers whatsapp
+ C1277 ,  OSCAR BORDE ,oscar.borde80@example.com,NA,pune,2025-02-07,20572,Pending,,2877 7251 9966,follow up next week
+C1278,Aarnav Rege,aarnav.rege60@example.com,918807412094,Hanumakonda,23 Sep 2025,11395,Paid,40440,0983 7801 8204,follow up next week
+C1279,UPMA MANNE,N/A,919189569070,,03.11.2024,"₹ 22,808",,9189569070,8242-2412-4620,
+C1280,Vincent Mani,VINCENT.MANI33@EXAMPLE.COM,+91 60461 52654,WARANGAL,11.04.2026,1762378.20,paid,40008,861405786170,
+C1281,Barkha Setty, barkha.setty91@example.com ,NA,Hanumakonda,03-12-2024,"Rs.16,793.12",Paid,7048913824,2582 3868 7007,
+C1282,Vivaan Lalla,vivaan.lalla93example.com,7007494653,,2026-06-12,22211.23,Pending ,42639,6128-4639-8554,
+C1283,RUDRA SANDAL,rudra.sandal44@example.com,,Hanamkonda ,2025-01-06,12489.47,N/A,48082,768118071569,
+C1284,  Umang Dixit ,umang.dixit59@example.com,70175-37030,N/A,2026-09-14,"Rs.35,572.01",Paid,-,337504793036,prefers whatsapp
+C1285,Amaira Dhar,amaira.dhar45@example.com,+91 92839 99219,-,2024-12-03,"Rs.13,995.32",Paid ,null,3843 0894 8706,called twice
+C1286,Darpan Gandhi,darpan.gandhi51@example.com,+91 96418 77580,Bengalore,16/06/2026,16407.68,Paid,NA,351903613325,
+C1287,damyanti mani, damyanti.mani18@example.com ,06076095431,null,15 Sep 2025,"₹ 36,936",Overdue,52385,9971-7911-0065,prefers whatsapp
+C1119,Pallavi Malhotra,pallavi.malhotra70@example.com,916467741862,-,12 Nov 2024,19682,Paid,52228,4349 0211 5869,follow up next week
+C1288,null,,NA,Hyderabad,27.03.2026,NA,N/A,31650,907676991507,
+C1289,Daksha Rau,,07110919392,Hanamkonda,08/05/2025,N/A,Pending,64717,723200249685,
+C1290,XITI ZACHARIA,xiti.zacharia84@example.com,,,2025-10-27,25489.32,NA,64107,6533 3153 7795,
+C1291,Raksha Buch,,8652170730,Hanamkonda ,16.01.2026,29133,-,31579,756362050150,prefers whatsapp
+C1292,Balveer Sankaran,balveer.sankaran28@example.com,8739500334, Hyderabad,02/05/2026,N/A,Paid,74877,102615347355,gst invoice requested
+C1293,EKANTIKA KRISHNA,EKANTIKA.KRISHNA77@EXAMPLE.COM,N/A,Hyderabad,29/10/2024,18967.97,Overdue,55108,993842530428,
+C1317,Umang Comar,umang.comar21@example.com,918872717833,Hyderabad,02.10.2025,"₹ 39,128",Paid,64159,6025 6434 7128,
+C1294,Gavin Karnik,N/A,916791286857,Warangal ,2026-03-16,N/A,null,65075,9690-3337-3634,
+c1295,Ansh Luthra,ansh.luthra58@example.com,7548121478,-,30-12-2025,24865,PENDING,48268,7665 7546 0273,
+C1296,banjeet gill, banjeet.gill92@example.com ,NA,Hyderabad,2025-10-09,"₹ 16,515",paid,44825,439284044566,called twice
+C1297,Zilmil Sathe,zilmil.sathe70@example.com,76333-73898,Pune,20-09-2026,N/A,NA,72865,536637780529,gst invoice requested
+C1298,Arunima Golla,arunima.golla49@example.com,916755366684,Hyd,06/01/2026,NA,Pending,38901,663618637159,
+c1299,Rajata Swamy, rajata.swamy91@example.com ,918121820970,Hyderabad,18 Dec 2024,"₹ 17,719",Pending,null,170580256621,gst invoice requested
+C1300,Upma Pall,upma.pall78@example.com,+91 97163 23467,N/A,22/08/2025,23957.87,Paid,-,3027 1693 8597,
+C1301,Gauri Nagi,gauri.nagi69@example.com,null,hyderabad ,13/03/2026,"Rs.15,288.95",null,38988,9160 3248 4137,
+c1302,Henry Dyal,henry.dyal80@example.com,-,Hyderabad,22/06/2025,30653,Paid,45274,3600-4125-7771,prefers whatsapp
+C1303,Nisha Tandon,NISHA.TANDON80@EXAMPLE.COM,7727422091,HYDERABAD,20 May 2025,"Rs.10,108.26",Paid,62078,4275 2308 3708,prefers whatsapp
+c1304,Nandini Bansal, nandini.bansal59@example.com ,+91 87090 06335,,27 Sep 2025,47723,N/A,57228,2206-8155-8393,
+C1131,Warjas Gaba,warjas.gaba34@example.com,7603323098,HYDERABAD,2026-06-22,656165.20,Paid,7603323098,4890-9010-0167,
+c1305,Gaurang Murty, gaurang.murty64@example.com ,63315-52065,Hyd,23.04.2025,16576,NA,50614,4950 1364 9718,gst invoice requested
+TEST2,Test User,test@test.com,9999999999,Hyderabad,2025-01-01,1,Paid,0,111122223333,test entry
+C1306,Ekiya D’Alia,N/A,6956252571,Warangal,01 Jun 2026,26954.70,PAID ,53760,030914363910,gst invoice requested
+C1307,Netra Varkey,null,09432630397,PUNE ,11/07/2026,-,pending,67872,0864 0355 3380,follow up next week
+C1308,Aarav Shere,aarav.shere97example.com,796852701,Hyderabad,25/08/2025,null,PAID ,53494,9833 8167 4233,
+C1309,Chatura Guha,chatura.guha32example.com,7449734715,Warangal,15/11/2025,13917,,7449734715,2706 6149 8282,
+C1310,Janaki Tara,janaki.tara58@example.com,9474689715,N/A,06-02-2026,N/A,paid,N/A,5766 6567 4916,called twice
+C1018,Vedant Mann,vedant.mann43@example.com,+91 74873 47143,Hyderabad,09/12/2024,"Rs.16,274.10",Paid,-,3166 5876 0366,called twice
+C1311,Riya Behl,riya.behl25@example.com,9923645875,Pune,16.03.2025,28005,Paid ,N/A,5024 9724 3992,called twice
+C1312,AMARA DEEP,amara.deep24@example.com,-,Hyd,29/09/2026,"Rs.26,855.59",Paid,6669183626,119524364027,called twice
+C1313,BHAVNA SARMA,bhavna.sarma22@example.com,N/A,Pune,2026-08-24,16564,Overdue,N/A,7932 3023 4679,prefers whatsapp
+C1314,NA,vedhika.dara91@example.com,917141614150,hanamkonda,31.10.2024,20907,Paid,7141614150,0901 3806 9847,
+C1315,Wriddhish Dutt, wriddhish.dutt53@example.com ,955553566,N/A,07.06.2025,18658.38,null,59498,7620-9184-3579,
+C1316,Akshay Reddy,N/A,93050-50573,Hanamkonda,20/12/2024,"Rs.18,052.85",Paid ,27016,7164 9328 9802,
+C1317,Umang Comar,umang.comar21@example.com,918872717833,Hyderabad,02.10.2025,"₹ 39,128",Paid,64159,6025 6434 7128,
+C1318,Jacob Dube, jacob.dube21@example.com ,839915668,BENGALURU ,2025-10-31,"₹ 17,304",Paid,68701,3195 2569 0409,follow up next week
+C1319,Bishakha Upadhyay,bishakha.upadhyay59@example.com,95528-99316,N/A,2026-04-09,32782,Overdue,-,437729420954,prefers whatsapp
+C1320,Anjali Sagar,ANJALI.SAGAR45@EXAMPLE.COM,-,Pune,19.07.2026,N/A,Paid,,2086 5675 6618,
+C1321,Vasudha Sodhi,vasudha.sodhi46@example.com,null,Hanamkonda,16.04.2025,null,PAID ,null,233305912662,called twice
+C1322,Tanmayi Dhillon,tanmayi.dhillon22@example.com,08720185962,Hanamkonda,2025-08-02,NA,paid,33732,2617 6475 0111,prefers whatsapp
+C1323,Rayaan Trivedi,RAYAAN.TRIVEDI72@EXAMPLE.COM,917099974192,WARANGAL,11-05-2026,18436,,53308,8260 6888 7189,prefers whatsapp
+C1324,Laban Boase,laban.boase36@example.com,62920-87510, Hyderabad,11 May 2025,null,-,53906,1845 8260 3408,
+c1325,oeshi oak,oeshi.oak94@example.com,+91 92975 85988,null,04-10-2026,"₹ 17,155",Paid,49426,3298 3954 2961,
+C1326,Yashica Loke,yashica.loke43@example.com,919267146283,Hyderabad,08.07.2026,26587.00,Paid ,39768,9262 5660 9314,prefers whatsapp
+C1327,Aarnav Mandal,aarnav.mandal78@example.com,68615-15542,bengaluru,2026-04-25,"Rs.19,837.18",Overdue,33425,2849-7185-9484,prefers whatsapp
+C1328,Chanchal Suri,null,917562588967,Hanumakonda,2026-08-12,12165.91,Pending,null,9405-3967-2757,
+C1329,Manthan Sekhon,MANTHAN.SEKHON45@EXAMPLE.COM,983414651,N/A,2025-12-01,17652,Paid,46434,148706827788,prefers whatsapp
+ C1330 ,Veda Pai,veda.pai61@example.com,6930685389,Hyderabad,24-06-2025,"₹ 21,001",Overdue,54234,2152 8506 7625,prefers whatsapp
+C1331,Krishna Shah,KRISHNA.SHAH53@EXAMPLE.COM,null,,03/10/2026,23574.33,Paid,,8079 7050 9754,
+C1332,Ekanta Gulati,ekanta.gulati23@example.com,6526501673,,03 Apr 2026,22316,Paid,null,4376-5456-2841,
+C1333,William Rajagopal,william.rajagopal94@example.com,9225605313,-,2025-04-08,"₹ 13,515",paid,52551,0237 4167 8725,
+C1334,nirja bassi,N/A,92110-22580,Pune,13 Jun 2025,"Rs.11,703.78",NA,null,6744-7163-9282,follow up next week
+C1335,Urvashi Raj,urvashi.raj45@example.com,NA,,04-08-2025,null,paid,,1260 4326 0931,called twice
+C1336,max tandon,max.tandon58@example.com,09843356708,warangal,06/11/2024,-,OVERDUE,69637,534749162475,
+C1337,N/A,NA,6108255598,Hanumakonda,2026-01-10,null,Paid,NA,112910933711,
+C1244,Anay Chander,N/A,-,Pune,2025-05-25,18448,Paid,59942,9056 1655 6503,follow up next week
+c1338,Garima Chaudhry,garima.chaudhry48@example.com,919382023684,bengaluru,19/08/2026,N/A,-,47890,6176 8802 9424,called twice
+C1339,Ria Chaudhry,ria.chaudhry82example.com,916367881278,warangal,2025-11-21,31570,-,-,2939 0878 8443,
+C1340,Tanmayi Aurora,tanmayi.aurora44@example.com,62308-34024,bengaluru,23/04/2026,"Rs.9,448.24",Pending,-,8105 9551 8426,
+C1341,Maanas Rout,MAANAS.ROUT51@EXAMPLE.COM,06053424089,HYDERABAD,16/08/2026,29941,Pending,6053424089,9837 3543 9627,follow up next week
+C1342,Mohammed Borde,mohammed.borde65@example.com,08271727223,Hanamkonda,08-10-2025,17259,overdue,NA,312163761820,prefers whatsapp
+C1343,Alka Nigam,alka.nigam58@example.com,-,Bengaluru,05/02/2026,1276195.60,N/A,35322,1851 3279 7245,
+C1095,Vansha Thakkar,vansha.thakkar64@example.com,NA,Hyderabad,2026-09-23,21163,-,NA,0723 6887 6767,
+C1344,MITALI BUCH,mitali.buch29example.com,07084810018,Hyderabad,2026-08-01,"₹ 23,260",,54252,662543617213,prefers whatsapp
+C1345,Falguni Walla,falguni.walla46@example.com,918195151092, Hyderabad,31/07/2025,23360,,50613,249451475410,gst invoice requested
+C1346,Edhitha Sura, edhitha.sura93@example.com ,,-,17 Aug 2026,,Overdue ,56912,5767 6952 3668,
+C1347,Balendra Biswas,BALENDRA.BISWAS78@EXAMPLE.COM,09883619689,Pune ,09-04-2025,"₹ 29,966",,62765,503058721055,gst invoice requested
+C1348,  Bhavna Karan ,bhavna.karan47@example.com,919286333021,N/A,12-05-2026,28365.44,Paid ,63289,1917 9202 5213,prefers whatsapp
+ C1349 ,Gautam Saraf,gautam.saraf11@example.com,null,warangal,24/12/2024,29081,Overdue,9227284765,6678 4984 3624,prefers whatsapp
+C1350,HARISH SAWHNEY,HARISH.SAWHNEY76@EXAMPLE.COM,,Hanamkonda,2025-02-15,"Rs.20,948.04",Paid,49059,563411159503,
+C1351,N/A,chandani.balakrishnan30@example.com,N/A,Hyderabad,13/11/2024,"Rs.10,454.63",PAID ,NA,7005-1405-4683,
+C1352,EKTA BHALLA,null,08215681820,null,24.05.2025,"Rs.17,676.35",Overdue,50284,7113 3228 8985,
+C1450,DEVIKA PANDEY,devika.pandey91example.com,NA,Warangal,28 Dec 2024,,Overdue ,46144,2925 8796 4347,
+C1353,Jagrati Prasad,null,08459606339,hanamkonda,2025-09-08,49831.40,Overdue,58662,1024 8171 7524,gst invoice requested
+C1354,Madhav Konda,madhav.konda18@example.com,895511274,NA,2025-11-25,-,Overdue,81776,7054 6692 7589,
+C1355,Nisha Gole,nisha.gole57@example.com,66874-09038,Hyderabad,18/02/2025,32346,Paid,40174,6136 7157 7871,prefers whatsapp
+C1250,"Madan, Sudiksha", SUDIKSHA.MADAN95@EXAMPLE.COM ,66231-98189,Bengalore,04/06/2025,"Rs.34,381.74",Overdue,-,559636321234,
+C1397,DAKSHA TAILOR,daksha.tailor17@example.com,68648-76998,N/A,07-01-2025,NA,Overdue ,6864876998,3204 4138 4596,called twice
+TEST1,Test User,test@test.com,9999999999,Hyderabad,2025-01-01,1,Paid,0,111122223333,test entry
+C1356,PARTH BRAR,parth.brar33@example.com,916663651559,Warangal,2026-01-25,null,-,59548,3590-9605-6730,follow up next week
+C1357,Lavanya Khosla,N/A,null,,2025-10-30,78652,NA,63219,4201-6542-3567,
+C1358,LUKE KATA,LUKE.KATA78@EXAMPLE.COM,+91 76596 08931,null,02/10/2025,"₹ 23,643",Pending,7659608931,5027 2751 6480,
+C1359,Aachal Sharaf,aachal.sharaf26@example.com,09910336829,-,25.04.2025,"Rs.22,296.23",PENDING,-,766558685127,
+ C1360 ,Aditya Shroff,aditya.shroff57@example.com,78928-66464,Pune ,08 Sep 2026,NA,PENDING,7892866464,4633 7861 3715,
+C1361,  BHAVNA DUGAR ,bhavna.dugar62@example.com,09053844446,Pune,05 Dec 2024,N/A,PAID ,N/A,296386396096,gst invoice requested
+C1417,"Ghosh, Zashil", ZASHIL.GHOSH31@EXAMPLE.COM ,77106-72872,Pune ,02.01.2025,23401,Paid,7710672872,644859592248,follow up next week
+C1362,Riya Pai,RIYA.PAI91EXAMPLE.COM,+91 92658 26312,Warangal,08 Jan 2026,"Rs.35,255.79",-,51022,531106092098,prefers whatsapp
+C1363,Chandani Samra,chandani.samra83@example.com,N/A,-,29-03-2026,9009,PENDING,67195,4041 2091 1791,prefers whatsapp
+C1364,Zashil Shan,N/A,8421175361,Warangal,27/07/2026,"₹ 27,764",paid,N/A,0299 0155 7998,called twice
+C1365,Chasmum Issac,chasmum.issac30@example.com,08139080882,Hydrabad,03/08/2025,7877,paid,44950,2312-4473-1584,
+C1089,Ladli Agate,ladli.agate52@example.com,956924593,Hyderabad,08 Aug 2025,N/A,PAID ,74085,9356 4651 9398,gst invoice requested
+C1415,Manbir Agate,manbir.agate67@example.com,N/A,-,12 May 2025,11162.46,OVERDUE,,1823 7931 2697,follow up next week
+C1366,null,vasudha.chhabra73example.com,-,hanamkonda,2025-04-11,NA,Pending,65300,7694-5919-6639,
+C1257,Jalsa Gola,jalsa.gola48@example.com,09528092428,NA,31 May 2025,17441.22,Paid,49320,6241 5027 4564,
+C1367,Lakshmi Parmer,null,916720849649,BENGALURU ,29 Dec 2025,N/A,null,48024,562531355251,called twice
+C1368,Chakrika Merchant,CHAKRIKA.MERCHANT50@EXAMPLE.COM,653795381,hyderabad ,2024-10-26,1326536.00,paid,45895,1966 5533 0770,
+C1369,meghana maharaj,meghana.maharaj63@example.com,06172959639,Hyderabad,15-10-2024,"Rs.23,359.47",Paid,,2608 8050 1716,
+C1308,Aarav Shere,aarav.shere97example.com,796852701,Hyderabad,25/08/2025,null,PAID ,53494,9833 8167 4233,
+C1370,Chandran Taneja,chandran.taneja45@example.com,N/A,Hyderabad,17.07.2026,"Rs.46,046.43",Pending,71536,9103-0021-5632,prefers whatsapp
+C1371,bhavini karpe,bhavini.karpe34@example.com,8800401041,N/A,23.01.2026,"₹ 44,189",Paid ,39683,2297 1252 9671,follow up next week
+C1372,Indira Kanda,indira.kanda83example.com,9745731441,Warangal,15/02/2026,31005,pending,50392,703037637153,
+C1373,Ranveer Krishna,ranveer.krishna49@example.com,+91 92812 35679,Warangle,19.03.2026,,Overdue,-,4912-7113-0724,called twice
+C1072,Kevin Solanki, kevin.solanki62@example.com ,919734540193,,2025-04-15,32426,Overdue,64114,672400499154,
+C1374,Laksh Chatterjee,laksh.chatterjee70@example.com,NA,Warangal,10 Sep 2026,20330,,NA,6343 6294 8978,
+C1375,Balveer More,balveer.more23@example.com,63131-00943,N/A,13 Jun 2026,null,Pending ,null,6661 3473 2354,
+C1376,ridhi bandi,ridhi.bandi10@example.com,6289743251,Hyderabad,02 Jan 2026,N/A,Overdue,45615,0241 2095 7907,follow up next week
+C1377,Janya Deep,janya.deep70@example.com,06009438822,pune,18-12-2024,-,Paid,41042,8474 5705 4589,
+C1378,Chakrika Narain, chakrika.narain24@example.com ,918802632570,null,12 May 2026,"₹ 14,407",Paid ,,4878 2455 6964,
+C1178,Yamini Sandhu,YAMINI.SANDHU91@EXAMPLE.COM,658650948,Pune ,16.07.2026,NA,-,53409,3839 2886 1957,
+C1379,OJASVI GILL,ojasvi.gill34@example.com,916985916795,null,13.03.2025,NA,Pending,,7284-9824-7414,called twice
+C1380,Kevin Zacharia,KEVIN.ZACHARIA68@EXAMPLE.COM,6349107406,Warangal,20/08/2026,34276,-,null,2369 1430 7536,
+C1381,Jasmit Wali,jasmit.wali61@example.com,916449429659,null,02 Nov 2025,-,Paid,46558,3441 4978 2661,gst invoice requested
+TEST4,"User, Test", TEST@TEST.COM ,9999999999,Hyderabad,2025-01-01,1,Paid,0,111122223333,test entry
+C1382,anjali gala,anjali.gala77@example.com,null,Warangal ,26/04/2025,27609.66,PAID ,55608,5298 9406 2607,
+C1383,Vasatika Merchant,null,+91 60415 91497,PUNE ,11 May 2026,"₹ 30,337",Paid,36604,8038-2872-3244,called twice
+C1384,Hamsini Contractor,hamsini.contractor72@example.com,+91 71102 91813,null,07.10.2025,19512.65,Paid,NA,672384979162,called twice
+ C1385 ,Faqid Dhaliwal,faqid.dhaliwal33@example.com,73288-37744,Pune ,2026-05-17,44311,NA,54095,6617 6620 4719,
+c1386,Upkaar Ranganathan,N/A,918097052774,null,27/07/2026,null,overdue,58317,8681 2259 5724,
+C1387,Jasmit Chana,jasmit.chana60@example.com,-,null,15/06/2026,16211,Paid,77113,002311775331,gst invoice requested
+C1388,Megha Atwal,megha.atwal59@example.com,910941017,Hanumakonda,02.05.2025,N/A,Paid,9109410175,3347 7433 2683,prefers whatsapp
+ C1389 ,Jatin Sha,jatin.sha84@example.com,61302-05698,BENGALURU ,22.07.2025,14955.97,Overdue ,NA,8733-9785-5982,prefers whatsapp
+C1390,Adweta Raj,adweta.raj66@example.com,+91 96191 28411,Warangal,09-07-2026,"Rs.10,367.13",Paid,N/A,6512 4189 3898,
+C1391,Kamya Chokshi,kamya.chokshi61@example.com,+91 68197 40056,Hyderabad,2026-03-17,"Rs.12,798.32",null,NA,8503 7199 0516,prefers whatsapp
+C1392,Vivaan Sinha,-,+91 92401 07835,N/A,28 Oct 2024,8018,Overdue ,null,3896 0870 6626,
+C1393,Falak Kant,falak.kant80@example.com,07171955356,Bengaluru,2026-02-24,,Paid ,59050,6890 0301 0272,
+C1394,N/A,dev.shetty15@example.com,N/A,Hanamkonda ,15-09-2026,N/A,Overdue,70999,7458 4384 5881,called twice
+C1395,Chasmum Rege,chasmum.rege54@example.com,+91 99741 32834,Pune,2025-01-07,N/A,Overdue,37761,2037 7107 0449,
+C1396,Logan Bath, logan.bath48@example.com ,null,hyderabad ,2024-11-06,"₹ 16,672",Paid ,61692,8509-5493-0596,
+C1397,DAKSHA TAILOR,daksha.tailor17@example.com,68648-76998,N/A,07-01-2025,NA,Overdue ,6864876998,3204 4138 4596,called twice
+C1398,Gunbir Keer,gunbir.keer88@example.com,854490149,N/A,29-08-2026,"₹ 35,684",Paid,N/A,5783-6091-4985,prefers whatsapp
+C1334,nirja bassi,N/A,92110-22580,Pune,13 Jun 2025,"Rs.11,703.78",NA,null,6744-7163-9282,follow up next week
+C1399,Krishna Rama,krishna.rama66@example.com,74447-23229,Hanamkonda,2025-09-26,"₹ 12,119",Paid ,7444723229,8795-0830-4405,called twice
+C1400,Kamala Zachariah, kamala.zachariah86example.com ,N/A,NA,30.08.2025,"Rs.30,270.42",Pending,NA,4205-9556-5749,called twice
+C1449,"Mani, Charan", CHARAN.MANI52@EXAMPLE.COM ,9844483548,N/A,18.01.2026,NA,OVERDUE,null,0587 7221 6417,
+C1233,Shravya Kohli,shravya.kohli48@example.com,,,14 May 2026,25557.97,-,-,264870494787,follow up next week
+C1401,Mohammed Sachdeva,MOHAMMED.SACHDEVA30@EXAMPLE.COM,08042901935,warangal,01/03/2026,34230.65,null,8042901935,3690 2611 3989,
+C1402,Hardik Suri, hardik.suri78@example.com ,680978875,Hyderabad,30/01/2026,42326.80,Paid,62017,3751 3765 1588,prefers whatsapp
+C1403,nikita mammen,NIKITA.MAMMEN56@EXAMPLE.COM,919937639283,Pune ,03/11/2024,18550.47,N/A,,4455 1166 8297,follow up next week
+C1404,kamala kalla,kamala.kalla33@example.com,N/A,bengaluru,18.09.2025,"₹ 22,571",PAID ,46465,834155999101,
+C1228,"Vig, Patrick", PATRICK.VIG19@EXAMPLE.COM ,06241272380, Hyderabad,26-02-2026,N/A,Paid,44579,0431 0385 6955,
+C1168,Chakradhar Konda,chakradhar.konda26@example.com,7413261117,Hanamkonda,13-10-2025,960919.20,,null,2164-3347-2282,called twice
+C1405,Sai Keer,sai.keer67@example.com,97647-22981,N/A,04 Aug 2026,28160,Paid,54937,2894 1347 5098,
+C1244,Anay Chander,N/A,-,Pune,2025-05-25,18448,Paid,59942,9056 1655 6503,follow up next week
+C1406,Janani Chaudhary,janani.chaudhary46@example.com,08652203684,Hanamkonda,25 Mar 2026,"Rs.24,318.53",Paid,59058,7324 4913 4213,gst invoice requested
+C1407,Jhalak Parmer,jhalak.parmer13@example.com,68830-70534,Bengaluru,25/11/2024,"Rs.27,039.75",paid,null,741176741241,
+C1408,Mitali Majumdar,mitali.majumdar20@example.com,71528-54781,Pune,05 Mar 2025,"₹ 10,296",Pending,42519,0032 9633 4727,gst invoice requested
+C1409,Jason Sha,jason.sha73@example.com,NA,NA,2024-12-19,16751,Paid,72988,4969 3578 2434,
+C1410,Simon Bail,simon.bail72@example.com,,WARANGAL,2024-11-17,,Overdue,NA,5627 7963 0448,follow up next week
+C1411,Gauri Kohli,GAURI.KOHLI62@EXAMPLE.COM,NA,Hyderabad,14/01/2025,11291,Paid ,47218,0476 3928 3199,
+C1412,Samesh Biswas,samesh.biswas26@example.com,null,Hyderabad,15 Jul 2026,"Rs.33,923.32",Pending,50221,5563 8300 0818,
+C1413,Sarthak Kalita,SARTHAK.KALITA72@EXAMPLE.COM,624403304,,02/07/2026,N/A,Overdue,null,4111 8600 8921,
+C1272,Saanvi Mishra,SAANVI.MISHRA63@EXAMPLE.COM,,Pune,08/08/2026,"₹ 20,905",Paid,56160,5634 1085 6288,
+c1414,Viraj Narasimhan,-,8568044731,null,02/06/2026,-,paid,78123,8474 8836 0765,prefers whatsapp
+C1415,Manbir Agate,manbir.agate67@example.com,N/A,-,12 May 2025,11162.46,OVERDUE,,1823 7931 2697,follow up next week
+C1416,Maanav De,null,N/A,Warangal,2025-12-02,-,Paid,45892,7881 1616 2028,prefers whatsapp
+C1417,Zashil Ghosh,zashil.ghosh31@example.com,77106-72872,Pune ,02.01.2025,23401,Paid,7710672872,644859592248,follow up next week
+C1418,Atharv Deep,atharv.deep88@example.com,918894773522,N/A,2024-10-20,-,,8894773522,187510979215,follow up next week
+C1419,Ishita Khanna,null,634469459,BENGALURU ,09.01.2026,"Rs.25,125.40",Paid,59160,9213-4249-1289,
+C1420,ekiya babu,ekiya.babu52@example.com,89732-03319,Hyderabad,21-02-2025,"Rs.5,938.62",Paid,,754813866675,
+ C1421 ,Alka Ben,alka.ben76@example.com,881932426,,15 Jan 2025,1615747.80,paid,51051,5205 7563 9836,
+C1422,Oviya Vora,OVIYA.VORA32@EXAMPLE.COM,N/A, Hyderabad,05-01-2025,NA,,49545,4760 4409 0797,
+C1423,devansh soni,,09810509222,Hyderabad,2025-09-22,-,null,50052,0518 4390 5529,
+C1424,Janaki Varghese,janaki.varghese76@example.com,,-,13/01/2026,-,Pending,6660138241,4485 1579 1971,prefers whatsapp
+C1425,Ikbal Seth,ikbal.seth21@example.com,07125902035,Warangal,04/11/2025,null,-,28094,2406 4242 9563,follow up next week
+C1426,Timothy Bassi,timothy.bassi44@example.com,+91 72447 41759,warangal,26-04-2026,34230,Overdue,7244741759,9628 9365 4358,
+C1427,Charvi Shanker,charvi.shanker21@example.com,+91 74374 01827,null,2026-02-20,980339.60,Paid,77753,9051 5026 7551,gst invoice requested
+C1428,Azaan Bhat,AZAAN.BHAT55@EXAMPLE.COM,918278207979,Hanamkonda,2025-10-16,null,Overdue,51812,5764 0381 6649,
+C1429,N/A,NEELIMA.SANDHU85EXAMPLE.COM,NA,hyderabad ,25 Mar 2026,"Rs.37,259.30",pending,63598,5762 7023 2441,gst invoice requested
+C1430,N/A,hritik.swaminathan40@example.com,917613285072,WARANGAL,15.04.2026,"Rs.20,496.95",Pending ,-,3162-5265-4696,prefers whatsapp
+C1283,RUDRA SANDAL,rudra.sandal44@example.com,,Hanamkonda ,2025-01-06,12489.47,N/A,48082,768118071569,
+C1431,N/A,SACHI.BORAH54@EXAMPLE.COM,09903923555,Warangal,2026-09-07,"₹ 20,228",Paid,32268,0346 1562 6244,
+ C1432 ,Faris Nagy,NA,9046226817,-,24.01.2026,14130.78,pending,34040,252986707660,
+C1433,Manbir Bhatti,null,819785758,Hyderabad,15/01/2025,"Rs.14,321.46",-,64292,120594389760,
+C1434,Anvi Nair,ANVI.NAIR46@EXAMPLE.COM,61775-09546,NA,31 Jul 2025,738032.80,,6177509546,5409 1508 6321,prefers whatsapp
+C1435,Chaitaly Setty, chaitaly.setty26@example.com ,N/A,,05 Nov 2025,13079.28,PAID ,7764579389,1681 5466 0241,
+C1436,Qushi Chaudhary,-,917944988305,hanamkonda,17.06.2026,,N/A,48328,6244 0630 6244,
+C1437,Ishwar Kale,ISHWAR.KALE86@EXAMPLE.COM,918133053194,Pune,08/09/2025,NA,null,8133053194,9586-7805-5557,gst invoice requested
+C1438,Siya Kari,siya.kari69@example.com,+91 93826 46091,Hanamkonda,26/08/2025,23678,paid,63467,4577-0299-2959,
+C1439,Harinakshi Setty,harinakshi.setty63@example.com,06487368269,BENGALURU ,14 Aug 2025,-,Paid,,1942 2686 5369,
+C1440,Ojasvi Chandran,ojasvi.chandran50@example.com,08158886367,Pune ,08-06-2025,64485,-,49780,9666-3093-2998,prefers whatsapp
+C1441,Prisha Munshi,prisha.munshi86@example.com,9059329715,Hyderabad,09.03.2026,"Rs.31,963.04",paid,47012,8327 5327 3524,prefers whatsapp
+C1442,Aadhya Prasad,AADHYA.PRASAD13@EXAMPLE.COM,+91 79773 97327,WARANGAL,04 Feb 2025,N/A,Paid,N/A,1006 8761 6481,called twice
+C1443,NA,urvi.bhavsar66example.com,919046056876,N/A,18.12.2024,"Rs.35,379.90",pending,63252,2565 2373 4151,
+C1444,Frederick Chander,-,917454757494,Hanamkonda,09/09/2025,27911,N/A,NA,5442 9477 4222,
+c1445,Gopal Pradhan,gopal.pradhan59@example.com,8303942904,warangal,01-07-2026,-,PAID ,,2529 8585 6728,
+ C1446 ,Kalpit Bhasin,kalpit.bhasin32@example.com,null,hyderabad ,07/01/2026,"Rs.60,991.96",Pending,null,0833 5061 5814,prefers whatsapp
+C1447,Forum Das,forum.das17@example.com,+91 99833 42337,Hyderabad,24.08.2025,11285.65,Pending,NA,1284 0333 9977,prefers whatsapp
+C1448,Irya Sampath,irya.sampath78@example.com,-,Hyderabad,14.08.2026,"₹ 26,154",-,N/A,1739 9704 6947,gst invoice requested
+C1449,Charan Mani,charan.mani52@example.com,9844483548,N/A,18.01.2026,NA,OVERDUE,null,0587 7221 6417,
+C1450,DEVIKA PANDEY,devika.pandey91example.com,NA,Warangal,28 Dec 2024,,Overdue ,46144,2925 8796 4347,
+c1451,Yashica Kala,yashica.kala57@example.com,745557469,Pune,06/02/2025,NA,null,7455574696,2740 3344 5056,
+C1452,Vasatika Kapur,vasatika.kapur51@example.com,07398741132,HYDERABAD,29 Jul 2026,20821.25,Paid,55622,6734 9960 1054,
+C1453,HRITIK PALLA,hritik.palla66@example.com,+91 81721 56229,Hydrabad,27/07/2026,1366928.80,Paid,51336,9848 8402 1557,follow up next week
+C1454,Jhalak Contractor,,8737553449,Pune,24/05/2026,"Rs.19,651.45",-,,8509 6085 8749,
+ C1455 ,Arya Kara,arya.kara91@example.com,06191818281,hanamkonda,2026-06-27,20545,Paid,56373,1647 7251 2957,
+C1456,Pushti Bal,pushti.bal12@example.com,+91 99409 60035,null,25/01/2026,17334.30,NA,null,9592 3234 2108,called twice
+ C1457 ,amara balakrishnan,amara.balakrishnan26@example.com,815533342,,26/02/2025,31116,Paid,8155333426,7633 6911 2898,prefers whatsapp
+ C1458 ,Anjali More,,+91 71795 56331,Pune,24.09.2026,"₹ 19,048",NA,7179556331,6615 5416 4316,
+C1459,Harinakshi Panchal,harinakshi.panchal12@example.com,918502329028,Hyderabad,2024-10-13,41502.32,null,52387,3459 6262 2822,
+C1460,Pratyush Dhar,pratyush.dhar24@example.com,07073465495,,22.12.2025,-,Paid,39502,982210531611,
+c1461,Nandini Boase,nandini.boase69@example.com,98729-04774,hyderabad ,27/01/2025,26643,null,60192,1779-3238-2231,prefers whatsapp
+ C1462 ,Azaan Chand,azaan.chand61@example.com,891334245,N/A,11 May 2026,null,Overdue,52396,652906032020,follow up next week
+C1257,Jalsa Gola,jalsa.gola48@example.com,09528092428,NA,31 May 2025,17441.22,Paid,49320,6241 5027 4564,
+C1463,Tanveer Puri,tanveer.puri30@example.com,919509775396,Warangle,31 Aug 2025,-,Overdue,45635,4855 2457 8715,
+C1464,Sudiksha Om,sudiksha.om18@example.com,8608213711,hanamkonda,08 Feb 2025,"Rs.6,343.64",,20154,1826 8323 0358,gst invoice requested
+C1465,Kala Muni,kala.muni82@example.com,6858382521,pune,2026-04-22,"Rs.46,088.55",Paid,6858382521,2896 3406 4686,
+C1466,  Ekta Chad , ekta.chad69@example.com ,824014843,Hanamkonda,26 Aug 2026,12901,Paid,8240148439,3626 6933 5134,gst invoice requested
+C1467,charles dugal, charles.dugal61@example.com ,692372450,Warangal,2025-02-08,NA,Overdue,-,7418-9721-5406,
+C1468,Chandran Bumb,chandran.bumb24@example.com,09692743811,-,08 May 2025,-,Paid,null,6601 4448 5645,prefers whatsapp
+C1469,Saanvi Samra,saanvi.samra11@example.com,67397-39641,bengaluru,21.10.2025,36019,Pending,,9698 6091 9191,prefers whatsapp
+C1470,Riya Sachdeva,riya.sachdeva40@example.com,,BENGALURU ,09/05/2025,12160,OVERDUE,,0392 0514 6074,
+C1471,NA,tanveer.vala97@example.com,8534705742,Hyderabad,05/01/2025,-,PAID ,39249,652715598354,prefers whatsapp
+C1045,Chaaya Saran,chaaya.saran29@example.com,917901476797,Warangle,08 Feb 2025,"Rs.14,040.86",Overdue,55804,978403690034,follow up next week
+C1472,Hemani Sani,hemani.sani21@example.com,null,WARANGAL,03-01-2025,20430.07,overdue,59746,4884 8826 9131,prefers whatsapp
+C1473,Bhanumati Sur,bhanumati.sur86@example.com,+91 94258 56261,Bangalore,22-11-2025,"Rs.39,977.38",overdue,52778,5370 3824 0733,follow up next week
+C1474,Darika Bath,darika.bath38@example.com,9320430977,WARANGAL,29 Mar 2025,"Rs.24,138.41",Paid,37273,6454 6553 5851,gst invoice requested
+C1475,Megha Bhakta,megha.bhakta51@example.com,7892187851,null,14 Oct 2024,,null,-,8374 9079 7796,prefers whatsapp
+C1476,Samarth Mitra,samarth.mitra31@example.com,6878057215,Hyd,22/03/2025,-,-,49357,7626 3748 4539,
+c1477,Laksh Kumer,laksh.kumer28@example.com,+91 80905 91191,Warangal,21 May 2025,"₹ 42,830",Paid,33208,2207 1511 6966,
+C1478,Falak Dar,-,75214-52647,-,15.10.2024,17478,,49021,718409080512,called twice
+C1479,Widisha Sani,widisha.sani77@example.com,6056409951,Bangalore,22.02.2025,11681,Paid,48046,3512 9592 7282,
+C1480,kai rai,kai.rai13@example.com,681441529,Hydrabad,26 Nov 2025,"₹ 15,018",Paid ,43752,7867 1815 3523,
+C1481,N/A,victor.tella34example.com,90507-91815,BENGALURU ,16-12-2025,25933.99,Paid ,44893,8345-2734-6666,prefers whatsapp
+c1482,Irya Bora,irya.bora72@example.com,671587964,Bengaluru,13.08.2025,"₹ 54,834",Pending ,null,149982508004,
+C1329,Manthan Sekhon,MANTHAN.SEKHON45@EXAMPLE.COM,983414651,N/A,2025-12-01,17652,Paid,46434,148706827788,prefers whatsapp
+C1483,BRIJESH SARIN,N/A,88068-82850,Bengaluru,23 Oct 2024,14560.23,,8806882850,900631403526,follow up next week
+c1484,  Tripti Brahmbhatt ,tripti.brahmbhatt57@example.com,9022939469,Pune ,2026-08-09,34534,Overdue,36839,606664374906,called twice
+C1485,Dhriti Sanghvi,-,,Hyderabad,28.12.2025,"Rs.34,908.85",-,30186,6484-4941-1631,
+C1486,Nidhi Sahni,nidhi.sahni35example.com,07807711306, Hyderabad,21.05.2025,-,PAID ,null,2790 8335 0902,
+C1487,Ishwar Ravel,ishwar.ravel42@example.com,75730-66248,Hyd,25 Oct 2024,null,Pending ,7573066248,707139848228,
+C1488,Ekta Garg,EKTA.GARG17@EXAMPLE.COM,6168809255,hyderabad ,23.06.2026,"Rs.12,624.70",Paid ,6168809255,0981-0796-4967,follow up next week
+ C1124 ,"Banik, Manthan", MANTHAN.BANIK68@EXAMPLE.COM ,916534578610,-,2026-07-19,21685,OVERDUE,NA,5241 4060 2933,follow up next week
+C1353,Jagrati Prasad,null,08459606339,hanamkonda,2025-09-08,49831.40,Overdue,58662,1024 8171 7524,gst invoice requested
+C1489,Triveni Pathak,triveni.pathak97@example.com,9945772785,,2024-12-16,"₹ 11,949",Overdue,N/A,6425 0642 0768,follow up next week
+C1113,"Lalla, Krish", KRISH.LALLA59@EXAMPLE.COM ,08205930407,Warangal ,2025-01-06,"Rs.25,980.49",,-,0396 5223 9559,called twice
+C1348,  Bhavna Karan ,bhavna.karan47@example.com,919286333021,N/A,12-05-2026,28365.44,Paid ,63289,1917 9202 5213,prefers whatsapp
+C1490,Rajeshri Cherian,RAJESHRI.CHERIAN61@EXAMPLE.COM,+91 75366 67776,N/A,15 Apr 2025,NA,NA,52475,9395 7865 4362,
+C1491,Rajata Rattan,rajata.rattan23@example.com,94960-33582,,19.11.2025,NA,Overdue,9496033582,0369 2492 6932,
+C1492,  Farhan Randhawa ,FARHAN.RANDHAWA50@EXAMPLE.COM,93275-99801,Pune,16 Aug 2026,"₹ 32,741",Overdue,53995,3415 9597 7524,
+C1493,Dayita Nori, dayita.nori22@example.com ,N/A,Hanamkonda,30 Mar 2025,,Pending,58560,312710267672,called twice
+C1494,Gauri Ganguly,null,87992-70795,bengaluru,07/12/2024,17077.43,Paid,73211,3541 5970 9962,
+ C1495 ,Yashvi Comar,yashvi.comar42@example.com,+91 78480 75203,Pune,25-11-2025,NA,Overdue,NA,7158 0290 9046,follow up next week
+c1496,Yashvi Hari,yashvi.hari70@example.com,+91 96046 55866,Pune,12.09.2026,N/A,Paid,55427,1715 8102 1312,
+C1175,Zaid Dara,-,7812735857,Pune,28 Sep 2025,"Rs.12,163.00",Pending ,,4077 8487 3928,
+C1497,Ikshita Panchal,ikshita.panchal18@example.com,-,Hydrabad,26-04-2026,NA,Paid,,5191 0231 2110,
+C1498,Manbir Keer,manbir.keer97@example.com,917301658373,-,27-12-2024,21756,Paid,N/A,0728 0123 4289,follow up next week
+C1499,MADHAV KUNDA,madhav.kunda25@example.com,06325326949,Warangal ,11-03-2025,NA,Paid,,3804 4210 1750,

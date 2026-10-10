@@ -171,7 +171,7 @@ def test_recipe_python_reruns_to_same_output(df, tmp_path):
     out, _ = apply_steps(df, plan["steps"])
     (tmp_path / "input.parquet").write_bytes(b"")
     df.write_parquet(tmp_path / "input.parquet")
-    (tmp_path / "recipe.py").write_text(recipe_python(plan["steps"], "dirty.csv"))
+    (tmp_path / "recipe.py").write_text(recipe_python(plan["steps"], "dirty.csv"), encoding="utf-8")
     r = subprocess.run([sys.executable, "recipe.py", "input.parquet", "clean.parquet"], cwd=tmp_path, capture_output=True, text=True)
     assert r.returncode == 0, r.stderr
     again = pl.read_parquet(tmp_path / "clean.parquet")

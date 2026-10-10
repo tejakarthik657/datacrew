@@ -1,6 +1,4 @@
-# PART 5: BACKEND
-
-## 05 · Backend Document
+# 05 · Backend Document
 
 > The backend ingests **any source**, runs a LangGraph crew, and serves clean data, answers, forecasts and advice with approval gates and a verifiable privacy layer.
 
@@ -248,7 +246,3 @@ Environment-driven: `MODE=cloud|byo|local`, `LLM_PROVIDERS`, `STORAGE_BACKEND`, 
 ## 17. Deployment
 
 Dockerized API and worker. Host: Hugging Face Spaces, Render free tier (sleeps when idle), or Oracle Always Free ARM VM (verify card requirement). Cloudflare for HTTPS. CI via GitHub Actions.
-
-
-
----

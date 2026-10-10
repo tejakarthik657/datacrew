@@ -7,6 +7,18 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 
+# Auto-load .env from ROOT, cwd, or apps/api if present
+for _p in (ROOT / ".env", Path.cwd() / ".env", Path(__file__).resolve().parents[1] / ".env"):
+    if _p.exists():
+        for _line in _p.read_text(encoding="utf-8").splitlines():
+            _line = _line.strip()
+            if not _line or _line.startswith("#") or "=" not in _line:
+                continue
+            _k, _v = _line.split("=", 1)
+            _k, _v = _k.strip(), _v.strip().strip("'\"")
+            if _k not in os.environ:
+                os.environ[_k] = _v
+
 
 def _env(name: str, default: str) -> str:
     return os.getenv(name, default)
@@ -28,6 +40,14 @@ class Settings:
     max_upload_mb: int = field(default_factory=lambda: int(_env("MAX_UPLOAD_MB", "50")))
     web_dir: str = field(default_factory=lambda: _env("WEB_DIR", str(ROOT / "apps" / "web")))
     schemas_dir: str = field(default_factory=lambda: _env("SCHEMAS_DIR", str(ROOT / "packages" / "schemas")))
+    neo4j_uri: str = field(default_factory=lambda: _env("NEO4J_URI", ""))
+    neo4j_username: str = field(default_factory=lambda: _env("NEO4J_USERNAME", "neo4j"))
+    neo4j_password: str = field(default_factory=lambda: _env("NEO4J_PASSWORD", ""))
+    neo4j_database: str = field(default_factory=lambda: _env("NEO4J_DATABASE", "neo4j"))
+    google_client_id: str = field(default_factory=lambda: _env("GOOGLE_CLIENT_ID", ""))
+    google_client_secret: str = field(default_factory=lambda: _env("GOOGLE_CLIENT_SECRET", ""))
+    google_redirect_uri: str = field(default_factory=lambda: _env("GOOGLE_REDIRECT_URI", "http://localhost:8000/auth/google/callback"))
+    allowed_origins: str = field(default_factory=lambda: _env("ALLOWED_ORIGINS", "*"))
 
     @property
     def external_llm_allowed(self) -> bool:

@@ -1,6 +1,4 @@
-# PART 6: DATABASE
-
-## 06 · Database and Storage Document
+# 06 · Database and Storage Document
 
 > Stores support **any data source**: raw objects and Parquet for data, Postgres for metadata and governance, Neo4j for lineage, Qdrant/Chroma for vectors.
 
@@ -217,7 +215,3 @@ Inject with a Python + Faker script:
 - Fake contract PDF ("payment within 30 days") plus invoices, some violating it
 
 Keep a seeded generator so the "before" score is reproducibly ~42.
-
-
-
----

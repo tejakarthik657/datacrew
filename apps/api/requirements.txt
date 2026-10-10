@@ -19,3 +19,4 @@ faker>=24
 pytest>=8
 beautifulsoup4>=4.12
 lxml>=5
+neo4j>=5.0.0
