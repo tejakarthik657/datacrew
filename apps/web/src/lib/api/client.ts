@@ -32,6 +32,7 @@ type FetchOptions = {
 export async function apiFetch<T = unknown>(
   path: string,
   opts: FetchOptions = {},
+  retries = 3,
 ): Promise<T> {
   const url = `/api/proxy${path.startsWith("/") ? path : `/${path}`}`;
 
@@ -45,15 +46,29 @@ export async function apiFetch<T = unknown>(
     body = JSON.stringify(opts.body);
   }
 
-  const res = await fetch(url, {
-    method: opts.method ?? "GET",
-    headers,
-    body,
-    signal: opts.signal,
-    credentials: "same-origin",
-  });
+  let res: Response;
+  try {
+    res = await fetch(url, {
+      method: opts.method ?? "GET",
+      headers,
+      body,
+      signal: opts.signal,
+      credentials: "same-origin",
+    });
+  } catch (err) {
+    if (retries > 0) {
+      await new Promise((r) => setTimeout(r, 1500));
+      return apiFetch<T>(path, opts, retries - 1);
+    }
+    throw err;
+  }
 
   if (opts.raw) return res as unknown as T;
+
+  if ((res.status === 502 || res.status === 503) && retries > 0) {
+    await new Promise((r) => setTimeout(r, 1500));
+    return apiFetch<T>(path, opts, retries - 1);
+  }
 
   const requestId = res.headers.get("x-request-id") ?? undefined;
 
@@ -66,7 +81,7 @@ export async function apiFetch<T = unknown>(
     }
     throw new ApiError(
       errBody.code ?? "UNKNOWN",
-      errBody.message ?? res.statusText,
+      errBody.message ?? (res.status === 502 ? "Backend server is starting up. Please wait..." : res.statusText),
       errBody.hint,
       requestId,
       res.status,
