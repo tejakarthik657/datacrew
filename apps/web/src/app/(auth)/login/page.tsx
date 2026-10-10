@@ -73,11 +73,6 @@ function LoginFormContent() {
     }
   };
 
-  const handleQuickDemo = () => {
-    setValue("email", "testuser@datacrew.ai");
-    setValue("password", "TestUser123!");
-    toast.info("Demo credentials loaded! Click Sign in to proceed.");
-  };
 
   const handleGoogleSignIn = async () => {
     try {
@@ -184,39 +179,7 @@ function LoginFormContent() {
         <div style={{ flex: 1, height: 1, background: "var(--border)" }} />
       </div>
 
-      {/* 1-Click Demo Credentials Pill */}
-      <div
-        onClick={handleQuickDemo}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "8px 12px",
-          borderRadius: 8,
-          background: "var(--surface-raised, rgba(0,0,0,0.02))",
-          border: "1px dashed var(--border)",
-          marginBottom: 20,
-          cursor: "pointer",
-          transition: "all 150ms ease",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.borderColor = "var(--brand, #635bff)";
-          e.currentTarget.style.background = "rgba(99, 91, 255, 0.05)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.borderColor = "var(--border)";
-          e.currentTarget.style.background = "var(--surface-raised, rgba(0,0,0,0.02))";
-        }}
-        title="Click to populate with test demo account"
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: "var(--text-muted)" }}>
-          <Sparkles size={13} style={{ color: "#f59e0b" }} />
-          <span>Need demo access?</span>
-        </div>
-        <span style={{ fontSize: 11, fontWeight: 600, color: "var(--brand, #635bff)" }}>
-          Load Demo Account
-        </span>
-      </div>
+
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         {/* Email Field */}
